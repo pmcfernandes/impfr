@@ -1,0 +1,83 @@
+{
+  "name": "Formulário Simples",
+  "description": "Campos básicos de texto, email e data para testar o viewer.",
+  "visible": true,
+  "fields": [
+    {
+      "id": "f00000000001",
+      "type": "heading",
+      "label": "Dados Pessoais",
+      "helpText": "Preencha os seus dados de contacto.",
+      "condition": { "enabled": false, "logic": "any", "rules": [] }
+    },
+    {
+      "id": "f00000000002",
+      "type": "text",
+      "label": "Nome completo",
+      "name": "nome_completo",
+      "placeholder": "Introduza o seu nome",
+      "required": true,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 12,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    },
+    {
+      "id": "f00000000003",
+      "type": "email",
+      "label": "Email",
+      "name": "email",
+      "placeholder": "nome@exemplo.com",
+      "required": true,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 6,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Usado para confirmação."
+    },
+    {
+      "id": "f00000000004",
+      "type": "date",
+      "label": "Data de nascimento",
+      "name": "data_nascimento",
+      "placeholder": "dd/mm/aaaa",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 6,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    },
+    {
+      "id": "f00000000005",
+      "type": "textarea",
+      "label": "Observações",
+      "name": "observacoes",
+      "placeholder": "Alguma informação adicional…",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 12,
+      "rows": 4,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Máximo de 500 caracteres."
+    }
+  ]
+}

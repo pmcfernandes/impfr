@@ -1,0 +1,208 @@
+{
+  "name": "Condições de Visibilidade",
+  "description": "Campos que aparecem/desaparecem consoante as respostas anteriores.",
+  "visible": true,
+  "fields": [
+    {
+      "id": "f20000000001",
+      "type": "heading",
+      "label": "Tipo de pedido",
+      "helpText": "Escolha o tipo para ver campos condicionais.",
+      "condition": { "enabled": false, "logic": "any", "rules": [] }
+    },
+    {
+      "id": "f20000000002",
+      "type": "select",
+      "label": "Tipo de pedido",
+      "name": "tipo_pedido",
+      "required": true,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 6,
+      "options": [
+        { "label": "Reclamação", "value": "reclamacao" },
+        { "label": "Sugestão", "value": "sugestao" },
+        { "label": "Elogio", "value": "elogio" },
+        { "label": "Outro", "value": "outro" }
+      ],
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    },
+    {
+      "id": "f20000000003",
+      "type": "radio",
+      "label": "Urgência",
+      "name": "urgencia",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": {
+        "enabled": true,
+        "logic": "any",
+        "rules": [
+          { "field": "f20000000002", "op": "eq", "value": "reclamacao" }
+        ]
+      },
+      "defaultValue": "",
+      "columns": 6,
+      "options": [
+        { "label": "Baixa", "value": "baixa" },
+        { "label": "Média", "value": "media" },
+        { "label": "Alta", "value": "alta" }
+      ],
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Apenas para reclamações."
+    },
+    {
+      "id": "f20000000004",
+      "type": "textarea",
+      "label": "Descreva a reclamação",
+      "name": "descricao_reclamacao",
+      "placeholder": "Descreva o problema…",
+      "required": false,
+      "requiredCondition": {
+        "enabled": true,
+        "logic": "any",
+        "rules": [
+          { "field": "f20000000002", "op": "eq", "value": "reclamacao" }
+        ]
+      },
+      "condition": {
+        "enabled": true,
+        "logic": "any",
+        "rules": [
+          { "field": "f20000000002", "op": "eq", "value": "reclamacao" }
+        ]
+      },
+      "defaultValue": "",
+      "columns": 12,
+      "rows": 4,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Obrigatório apenas para reclamações."
+    },
+    {
+      "id": "f20000000005",
+      "type": "text",
+      "label": "Tema da sugestão",
+      "name": "tema_sugestao",
+      "placeholder": "Ex.: Melhoria do site",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": {
+        "enabled": true,
+        "logic": "any",
+        "rules": [
+          { "field": "f20000000002", "op": "eq", "value": "sugestao" }
+        ]
+      },
+      "defaultValue": "",
+      "columns": 6,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Apenas para sugestões."
+    },
+    {
+      "id": "f20000000006",
+      "type": "checkbox",
+      "label": "Autoriza contacto para esclarecimentos",
+      "name": "autoriza_contacto",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": {
+        "enabled": true,
+        "logic": "any",
+        "rules": [
+          { "field": "f20000000002", "op": "ne", "value": "elogio" }
+        ]
+      },
+      "defaultValue": "",
+      "columns": 12,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Não aparece para elogios."
+    },
+    {
+      "id": "f20000000007",
+      "type": "text",
+      "label": "Telefone de contacto",
+      "name": "telefone_contacto",
+      "placeholder": "912 345 678",
+      "required": false,
+      "requiredCondition": {
+        "enabled": true,
+        "logic": "all",
+        "rules": [
+          { "field": "f20000000006", "op": "checked", "value": "" }
+        ]
+      },
+      "condition": {
+        "enabled": true,
+        "logic": "all",
+        "rules": [
+          { "field": "f20000000006", "op": "checked", "value": "" }
+        ]
+      },
+      "defaultValue": "",
+      "columns": 6,
+      "pattern": "^9[0-9]{8}$",
+      "patternMessage": "Introduza um telemóvel português com 9 dígitos.",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Aparece e é obrigatório se autorizar contacto."
+    },
+    {
+      "id": "f20000000008",
+      "type": "number",
+      "label": "Nº de colaboradores afetados",
+      "name": "colaboradores_afetados",
+      "placeholder": "0",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": {
+        "enabled": true,
+        "logic": "all",
+        "rules": [
+          { "field": "f20000000002", "op": "eq", "value": "reclamacao" },
+          { "field": "f20000000003", "op": "eq", "value": "alta" }
+        ]
+      },
+      "defaultValue": "",
+      "columns": 6,
+      "min": "1",
+      "max": "999",
+      "step": "1",
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": "Só para reclamações de urgência alta (lógica ALL)."
+    },
+    {
+      "id": "f20000000009",
+      "type": "html",
+      "label": "Nota final",
+      "html": "<p><strong>Obrigado</strong> pelo seu contacto. Responderemos no prazo de 48h.</p>",
+      "helpText": "",
+      "condition": {
+        "enabled": true,
+        "logic": "any",
+        "rules": [
+          { "field": "f20000000002", "op": "eq", "value": "elogio" }
+        ]
+      }
+    }
+  ]
+}

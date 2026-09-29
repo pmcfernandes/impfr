@@ -1,0 +1,140 @@
+{
+  "name": "Barra de Progresso",
+  "description": "Wizard com modo progress (barra) em vez de passos numerados.",
+  "visible": true,
+  "fields": [
+    {
+      "id": "f50000000001",
+      "type": "steps",
+      "label": "Progresso",
+      "steps": ["Dados", "Preferências", "Revisão"],
+      "activeStep": 1,
+      "mode": "progress",
+      "helpText": "",
+      "condition": { "enabled": false, "logic": "any", "rules": [] }
+    },
+    {
+      "id": "f50000000002",
+      "type": "heading",
+      "label": "Dados",
+      "parentId": "f50000000001",
+      "helpText": "",
+      "condition": { "enabled": false, "logic": "any", "rules": [] }
+    },
+    {
+      "id": "f50000000003",
+      "type": "text",
+      "label": "Nome",
+      "name": "nome",
+      "parentId": "f50000000002",
+      "placeholder": "",
+      "required": true,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 6,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    },
+    {
+      "id": "f50000000004",
+      "type": "email",
+      "label": "Email",
+      "name": "email",
+      "parentId": "f50000000002",
+      "placeholder": "",
+      "required": true,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 6,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    },
+    {
+      "id": "f50000000005",
+      "type": "heading",
+      "label": "Preferências",
+      "parentId": "f50000000001",
+      "helpText": "",
+      "condition": { "enabled": false, "logic": "any", "rules": [] }
+    },
+    {
+      "id": "f50000000006",
+      "type": "radio",
+      "label": "Formato preferido",
+      "name": "formato",
+      "parentId": "f50000000005",
+      "required": true,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 6,
+      "options": [
+        { "label": "Digital", "value": "digital" },
+        { "label": "Impresso", "value": "impresso" }
+      ],
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    },
+    {
+      "id": "f50000000007",
+      "type": "checkboxgroup",
+      "label": "Canais de contacto",
+      "name": "canais",
+      "parentId": "f50000000005",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 6,
+      "options": [
+        { "label": "Email", "value": "email" },
+        { "label": "Telefone", "value": "telefone" },
+        { "label": "SMS", "value": "sms" },
+        { "label": "Correio", "value": "correio" }
+      ],
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    },
+    {
+      "id": "f50000000008",
+      "type": "heading",
+      "label": "Revisão",
+      "parentId": "f50000000001",
+      "helpText": "Confirme antes de submeter.",
+      "condition": { "enabled": false, "logic": "any", "rules": [] }
+    },
+    {
+      "id": "f50000000009",
+      "type": "textarea",
+      "label": "Notas",
+      "name": "notas",
+      "parentId": "f50000000008",
+      "placeholder": "",
+      "required": false,
+      "requiredCondition": { "enabled": false, "logic": "any", "rules": [] },
+      "condition": { "enabled": false, "logic": "any", "rules": [] },
+      "defaultValue": "",
+      "columns": 12,
+      "rows": 3,
+      "pattern": "",
+      "patternMessage": "",
+      "readOnly": false,
+      "visible": true,
+      "helpText": ""
+    }
+  ]
+}

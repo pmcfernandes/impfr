@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "codigo": "pt", "nome": "Português" },
+    { "codigo": "en", "nome": "Inglês" },
+    { "codigo": "es", "nome": "Espanhol" },
+    { "codigo": "fr", "nome": "Francês" },
+    { "codigo": "de", "nome": "Alemão" }
+  ]
+}

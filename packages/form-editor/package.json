@@ -1,0 +1,63 @@
+{
+  "name": "@form-editor/react",
+  "version": "1.0.0",
+  "description": "Editor e visualizador de formulários JSON para React",
+  "keywords": [
+    "form",
+    "editor",
+    "form",
+    "viewer",
+    "form",
+    "runner"
+  ],
+  "homepage": "https://github.com/pmcfernandes/forms-editor#readme",
+  "bugs": {
+    "url": "https://github.com/pmcfernandes/forms-editor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmcfernandes/forms-editor.git"
+  },
+  "license": "ISC",
+  "author": "Pedro Fernandes",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/form-editor.js",
+      "require": "./dist/form-editor.cjs"
+    },
+    "./styles.css": "./dist/form-editor.css"
+  },
+  "main": "./dist/form-editor.cjs",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "npm --prefix samples run dev",
+    "build": "vite build",
+    "preview": "npm --prefix samples run preview"
+  },
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.3.11",
+    "@radix-ui/react-radio-group": "^1.4.7",
+    "@radix-ui/react-select": "^2.3.7",
+    "date-fns": "^4.4.0",
+    "react-day-picker": "^10.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.1"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "module": "./dist/form-editor.js"
+}

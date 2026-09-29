@@ -1,0 +1,6 @@
+{
+  "name": "Formulário Vazio",
+  "description": "Sem campos — testa o estado vazio do editor e do viewer.",
+  "visible": true,
+  "fields": []
+}
