@@ -1,0 +1,11 @@
+@import "tailwindcss" source(none);
+
+/* A demonstração é sempre apresentada no tema claro. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  color-scheme: light;
+}
+
+@source "../src/**/*.{js,jsx}";
+@source "./**/*.{js,jsx}";
