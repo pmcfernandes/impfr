@@ -1,0 +1,241 @@
+import { useMemo } from "react";
+import { VIEW_MODES, getRowId, normalizeConfig, resolveFieldSearchKeys } from "../../core/config.js";
+import { useDataView } from "../../hooks/useDataView.js";
+import { createTranslator } from "../../i18n/index.js";
+import { Card, CardHeader, Pagination } from "../../ui/index.js";
+import { DataViewCards } from "./DataViewCards.jsx";
+import { DataViewEditor } from "./DataViewEditor.jsx";
+import { DataViewList } from "./DataViewList.jsx";
+import { DataViewTable } from "./DataViewTable.jsx";
+import { DataViewToolbar } from "./DataViewToolbar.jsx";
+import { DataViewViewSwitcher } from "./DataViewViewSwitcher.jsx";
+
+/**
+ * DataView — componente reutilizável de visualização e edição.
+ *
+ * @param {object} props.config JSON de configuração (com `data`)
+ * @param {string} [props.locale] "pt" | "en" (default: config.locale ?? "pt")
+ * @param {(rows) => void} [props.onChange] chamado após criar/editar/eliminar
+ * @param {string[]} [props.viewModes] restringe as vistas (ex.: ["table","cards"]).
+ *   Sobrepõe-se a `config.viewModes`.
+ * @param {boolean} [props.showExport] mostra/esconde o botão Exportar CSV.
+ *   Sobrepõe-se a `config.exportable`.
+ * @param {boolean|string[]} [props.fieldSearch] mostra filtros por coluna.
+ *   `true` mostra todos; uma lista limita as chaves. Sobrepõe `config.fieldSearch`.
+ * @param {Array} [props.actions] botões extra na toolbar:
+ *   [{ key?, label, icon?: ReactNode, variant?: "primary"|"secondary"|"danger"|"ghost",
+ *      onClick?: (ctx) => void }] onde ctx = { rows, selectedIds, query }.
+ *   Também pode vir em `config.actions` (sem onClick em JSON puro).
+ * @param {(ctx: { rows: object[], selectedIds: string[] }) => boolean | void} [props.onDeleteSelected]
+ *   Callback do botão "Eliminar seleção". Devolver `false` impede a eliminação local.
+ *
+ * @example
+ * const config = { title: "Produtos", data: [...], columns: [...] };
+ * <DataView
+ *   config={config}
+ *   locale="pt"
+ *   viewModes={["table", "cards"]}
+ *   showExport={false}
+ *   actions={[{ label: "Imprimir", onClick: () => window.print() }]}
+ *   onChange={setRows}
+ * />
+ */
+export function DataView({
+  config: rawConfig,
+  locale,
+  onChange,
+  className,
+  viewModes,
+  showExport,
+  fieldSearch,
+  actions,
+  onDeleteSelected,
+}) {
+  const config = useMemo(() => {
+    const normalized = normalizeConfig(rawConfig);
+
+    // Prop `viewModes` sobrepõe-se ao JSON.
+    if (Array.isArray(viewModes) && viewModes.length > 0) {
+      const allowed = viewModes.filter((v) => VIEW_MODES.includes(v));
+      if (allowed.length > 0) {
+        normalized.viewModes = allowed;
+        if (!allowed.includes(normalized.defaultView)) normalized.defaultView = allowed[0];
+      }
+    }
+
+    // Prop `showExport` sobrepõe-se a `config.exportable`.
+    if (typeof showExport === "boolean") normalized.exportable = showExport;
+    if (fieldSearch !== undefined) {
+      normalized.fieldSearch = fieldSearch;
+      normalized.fieldSearchKeys = resolveFieldSearchKeys(fieldSearch, normalized.columns);
+    }
+
+    if (Array.isArray(actions)) normalized.actions = actions;
+
+    return normalized;
+  }, [rawConfig, viewModes, showExport, fieldSearch, actions]);
+  const activeLocale = locale ?? rawConfig.locale ?? "pt";
+  const t = createTranslator(activeLocale);
+
+  const state = useDataView(config, onChange);
+  const {
+    visibleRows,
+    allFilteredRows,
+    view,
+    setView,
+    query,
+    setQuery,
+    fieldFilters,
+    setFieldFilters,
+    hiddenColumnKeys,
+    setHiddenColumnKeys,
+    selectedIds,
+    editingRow,
+    setEditingRow,
+  } = state;
+
+  const showToolbar =
+    config.searchable ||
+    config.addable ||
+    config.exportable ||
+    config.columnVisibility ||
+    config.fieldSearchKeys.length > 0 ||
+    (config.deletable && config.multiDelete) ||
+    (Array.isArray(config.actions) && config.actions.length > 0);
+
+  // Se a vista ativa deixar de estar disponível (ex.: viewModes mudou), usa a 1ª.
+  const activeView = config.viewModes.includes(view) ? view : config.viewModes[0];
+
+  // Cabeçalho: título à esquerda, alternador de vistas à direita no topo.
+  const showHeader = config.title || config.description || config.viewModes.length > 1;
+
+  function handleDelete(row) {
+    if (window.confirm(t("confirmDelete"))) state.deleteRow(row);
+  }
+
+  function handleDeleteSelected() {
+    const rows = state.rows.filter((row, index) =>
+      selectedIds.includes(getRowId(row, config.idKey, index)),
+    );
+    const handler = onDeleteSelected ?? config.onDeleteSelected;
+    // O callback pode validar ou tratar uma API. `false` cancela a alteração local.
+    if (handler?.({ rows, selectedIds }) === false) return;
+    state.deleteSelected();
+  }
+
+  const actionContext = {
+    rows: allFilteredRows,
+    selectedIds,
+    query,
+  };
+
+  return (
+    <Card className={className}>
+      {showHeader && (
+        <CardHeader
+          title={config.title}
+          description={
+            config.description ?? `${state.total} ${t("rows")}`
+          }
+          actions={
+            <DataViewViewSwitcher
+              viewModes={config.viewModes}
+              view={activeView}
+              onViewChange={setView}
+              t={t}
+            />
+          }
+        />
+      )}
+
+      {showToolbar && (
+        <DataViewToolbar
+          config={config}
+          query={query}
+          onQueryChange={setQuery}
+          selectedCount={selectedIds.length}
+          onAdd={() => setEditingRow({ mode: "create", row: {} })}
+          onDeleteSelected={handleDeleteSelected}
+          filteredRows={allFilteredRows}
+          showExport={config.exportable}
+          actions={config.actions}
+          actionContext={actionContext}
+          showColumnVisibility={activeView === "table" && config.columnVisibility}
+          visibilityColumns={config.columns.filter((column) => !column.description && !column.subGrid)}
+          hiddenColumnKeys={hiddenColumnKeys}
+          onHiddenColumnKeysChange={setHiddenColumnKeys}
+          t={t}
+        />
+      )}
+
+      {selectedIds.length > 0 && (
+        <p className="px-5 pb-1 text-xs text-gray-500">
+          {selectedIds.length} {t("selected")}
+        </p>
+      )}
+
+      {activeView === "table" && (
+        <DataViewTable
+          config={config}
+          rows={visibleRows}
+          locale={activeLocale}
+          sortKey={state.sortKey}
+          sortDir={state.sortDir}
+          onToggleSort={state.toggleSort}
+          fieldFilters={fieldFilters}
+          onFieldFiltersChange={setFieldFilters}
+          hiddenColumnKeys={hiddenColumnKeys}
+          selectedIds={selectedIds}
+          onToggleSelect={state.toggleSelect}
+          onToggleSelectAll={state.toggleSelectAll}
+          onEdit={(row) => setEditingRow({ mode: "edit", row })}
+          onDelete={handleDelete}
+          t={t}
+        />
+      )}
+      {activeView === "list" && (
+        <DataViewList
+          config={config}
+          rows={visibleRows}
+          locale={activeLocale}
+          onEdit={(row) => setEditingRow({ mode: "edit", row })}
+          onDelete={handleDelete}
+          t={t}
+        />
+      )}
+      {activeView === "cards" && (
+        <DataViewCards
+          config={config}
+          rows={visibleRows}
+          locale={activeLocale}
+          onEdit={(row) => setEditingRow({ mode: "edit", row })}
+          onDelete={handleDelete}
+          t={t}
+        />
+      )}
+
+      {config.paginated && (
+        <div className="border-t border-gray-100 dark:border-gray-800">
+          <Pagination
+            page={state.page}
+            totalPages={state.totalPages}
+            total={state.total}
+            pageSize={state.pageSize}
+            onPage={state.setPage}
+            t={t}
+          />
+        </div>
+      )}
+
+      {editingRow && (
+        <DataViewEditor
+          config={config}
+          editingRow={editingRow}
+          onSave={state.saveRow}
+          onClose={() => setEditingRow(null)}
+          t={t}
+        />
+      )}
+    </Card>
+  );
+}

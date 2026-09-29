@@ -1,0 +1,6 @@
+/* Reutiliza o tema e as utilities Tailwind do componente. */
+@import "../src/index.css";
+
+/* A app Vite vive em samples/, mas os componentes estão em ../src/. */
+@source "../src";
+@source ".";

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Força tema claro: variantes `dark:` só aplicam com a classe .dark (nunca adicionada) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #111827;
+  font-family:
+    ui-sans-system,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Inter,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,50 @@
+{
+  "name": "@table-editor/react",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Componente React reutilizável para edição e visualização de dados em tabelas, listas e cartões.",
+  "keywords": [
+    "react",
+    "table",
+    "data-grid",
+    "data-view",
+    "table-editor"
+  ],
+  "license": "MIT",
+  "author": "Pedro Fernandes",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/table-editor.cjs",
+  "module": "./dist/table-editor.js",
+  "exports": {
+    ".": {
+      "import": "./dist/table-editor.js",
+      "require": "./dist/table-editor.cjs"
+    },
+    "./styles.css": "./dist/table-editor.css"
+  },
+  "scripts": {
+    "dev": "npm --prefix samples run dev",
+    "build": "vite build",
+    "preview": "npm --prefix samples run preview"
+  },
+  "dependencies": {
+    "lucide-react": "^0.454.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

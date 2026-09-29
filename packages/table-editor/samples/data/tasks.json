@@ -1,0 +1,20 @@
+{
+  "title": "Tarefas",
+  "description": "Quadro de tarefas com prioridade e progresso.",
+  "idKey": "id",
+  "defaultView": "cards",
+  "viewModes": ["table", "list", "cards"],
+  "pageSize": 6,
+  "columns": [
+    { "key": "title", "label": "Tarefa", "type": "text" },
+    { "key": "status", "label": "Estado", "type": "badge", "badgeMap": { "A Fazer": "default", "Em curso": "warning", "Concluída": "success" } },
+    { "key": "priority", "label": "Prioridade", "type": "badge", "badgeMap": { "Alta": "error", "Média": "warning", "Baixa": "info" } },
+    { "key": "progress", "label": "Progresso", "type": "percent", "align": "right" },
+    { "key": "dueDate", "label": "Prazo", "type": "date" }
+  ],
+  "data": [
+    { "id": 1, "title": "Desenhar novo dashboard", "status": "Em curso", "priority": "Alta", "progress": 65, "dueDate": "2026-10-05" },
+    { "id": 2, "title": "Migrar base de dados", "status": "A Fazer", "priority": "Alta", "progress": 0, "dueDate": "2026-10-12" },
+    { "id": 3, "title": "Escrever documentação", "status": "Concluída", "priority": "Baixa", "progress": 100, "dueDate": "2026-09-20" }
+  ]
+}

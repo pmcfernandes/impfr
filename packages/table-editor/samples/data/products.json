@@ -1,0 +1,31 @@
+{
+  "title": "Produtos",
+  "description": "Catálogo com preço, stock e estado.",
+  "idKey": "id",
+  "groupBy": "category",
+  "multiDelete": true,
+  "fieldSearch": ["name", "category", "status"],
+  "defaultView": "table",
+  "viewModes": ["table", "list", "cards"],
+  "pageSize": 6,
+  "columns": [
+    { "key": "name", "label": "Produto", "type": "text" },
+    { "key": "variants", "label": "Variantes", "subGrid": { "title": "Variantes", "collapsible": true, "columns": [
+      { "key": "sku", "label": "SKU" },
+      { "key": "color", "label": "Cor" },
+      { "key": "stock", "label": "Stock", "type": "number" }
+    ] } },
+    { "key": "category", "label": "Categoria", "type": "select", "options": ["Eletrónica", "Casa", "Desporto"] },
+    { "key": "price", "label": "Preço", "type": "currency", "currency": "EUR", "align": "right" },
+    { "key": "stock", "label": "Stock", "type": "number", "align": "right" },
+    { "key": "status", "label": "Estado", "type": "badge", "badgeMap": { "Ativo": "success", "Esgotado": "error", "Rascunho": "warning" } }
+  ],
+  "data": [
+    { "id": 1, "name": "Teclado Mecânico", "description": "Switches táteis, iluminação RGB e ligação USB-C.", "variants": [{ "id": "kb-black", "sku": "KB-001-BK", "color": "Preto", "stock": 18 }, { "id": "kb-white", "sku": "KB-001-WH", "color": "Branco", "stock": 16 }], "category": "Eletrónica", "price": 89.9, "stock": 34, "status": "Ativo" },
+    { "id": 2, "name": "Cadeira Ergonómica", "description": "Apoio lombar ajustável e braços reguláveis.", "category": "Casa", "price": 249, "stock": 0, "status": "Esgotado" },
+    { "id": 3, "name": "Halteres 20kg", "description": "Conjunto modular para treino funcional.", "category": "Desporto", "price": 59.5, "stock": 12, "status": "Ativo" },
+    { "id": 4, "name": "Monitor 27\" 4K", "description": "Painel IPS com cobertura de cor profissional.", "variants": [{ "id": "mon-ips", "sku": "MON-27-IPS", "color": "Preto", "stock": 7 }], "category": "Eletrónica", "price": 399.99, "stock": 7, "status": "Ativo" },
+    { "id": 5, "name": "Candeeiro LED", "description": "Luz regulável em três temperaturas de cor.", "category": "Casa", "price": 29.9, "stock": 50, "status": "Rascunho" },
+    { "id": 6, "name": "Bola de Futebol", "description": "Bola de treino resistente para relva e piso sintético.", "category": "Desporto", "price": 24, "stock": 100, "status": "Ativo" }
+  ]
+}

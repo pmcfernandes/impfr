@@ -1,0 +1,21 @@
+{
+  "title": "Equipa",
+  "description": "Membros, função e data de entrada.",
+  "idKey": "id",
+  "defaultView": "list",
+  "viewModes": ["table", "list", "cards"],
+  "searchKeys": ["name", "role", "email"],
+  "pageSize": 5,
+  "columns": [
+    { "key": "name", "label": "Nome", "type": "text" },
+    { "key": "email", "label": "Email", "type": "text" },
+    { "key": "role", "label": "Função", "type": "badge", "badgeMap": { "Admin": "violet", "Editor": "info", "Viewer": "default" } },
+    { "key": "joinedAt", "label": "Entrada", "type": "date" },
+    { "key": "active", "label": "Ativo", "type": "boolean" }
+  ],
+  "data": [
+    { "id": 1, "name": "Ana Sousa", "email": "ana@exemplo.pt", "role": "Admin", "joinedAt": "2023-01-15", "active": true },
+    { "id": 2, "name": "Bruno Lima", "email": "bruno@exemplo.pt", "role": "Editor", "joinedAt": "2023-06-02", "active": true },
+    { "id": 3, "name": "Carla Mendes", "email": "carla@exemplo.pt", "role": "Viewer", "joinedAt": "2024-02-20", "active": false }
+  ]
+}
