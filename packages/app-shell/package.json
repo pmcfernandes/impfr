@@ -1,0 +1,50 @@
+{
+  "name": "@app-shell/react",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Componente React reutilizável para estruturar aplicações com cabeçalho, navegação lateral e conteúdo.",
+  "keywords": [
+    "react",
+    "app-shell",
+    "layout",
+    "sidebar"
+  ],
+  "license": "MIT",
+  "author": "Pedro Fernandes",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/app-shell.cjs",
+  "module": "./dist/app-shell.js",
+  "exports": {
+    ".": {
+      "import": "./dist/app-shell.js",
+      "require": "./dist/app-shell.cjs"
+    },
+    "./styles.css": "./dist/app-shell.css"
+  },
+  "scripts": {
+    "dev": "npm --prefix samples run dev",
+    "build": "vite build",
+    "preview": "npm --prefix samples run preview"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^1.48.0",
+    "md5": "^2.3.0"
+  }
+}
