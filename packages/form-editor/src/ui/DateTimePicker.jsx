@@ -51,13 +51,13 @@ export function DateTimePicker({
           'datetime-picker',
           triggerClass,
           error && 'border-red-400 focus:border-red-500 focus:ring-red-500/30',
-          !selected && 'text-gray-400',
+          !selected && 'text-gray-400 dark:text-gray-500',
           className
         )}
         onClick={toggle}
       >
         <span className="truncate">{selected ? formatWhen(raw) : placeholder}</span>
-        <CalendarIcon className="h-4 w-4 flex-none text-gray-400" />
+        <CalendarIcon className="h-4 w-4 flex-none text-gray-400 dark:text-gray-500" />
       </button>
       {open && (
         <PickerPopover triggerRef={triggerRef} pos={pos} onClose={() => setOpen(false)}>
@@ -68,8 +68,8 @@ export function DateTimePicker({
               else setOpen(false)
             }}
           />
-          <div className="mt-2 flex items-center gap-2 border-t border-gray-100 pt-2">
-            <label className="text-xs font-semibold text-gray-500" htmlFor={`${id}-time`}>
+          <div className="mt-2 flex items-center gap-2 border-t border-gray-100 dark:border-gray-800 pt-2">
+            <label className="text-xs font-semibold text-gray-500 dark:text-gray-400" htmlFor={`${id}-time`}>
               Hora
             </label>
             <input

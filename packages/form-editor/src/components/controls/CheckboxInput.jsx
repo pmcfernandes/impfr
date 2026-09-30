@@ -9,7 +9,7 @@ export default function CheckboxInput({ field, value, onChange, disabled, inputI
         disabled={disabled}
         onChange={(e) => onChange(e.target.checked)}
       />
-      <label htmlFor={inputId} className="cursor-pointer text-sm font-medium text-gray-900">
+      <label htmlFor={inputId} className="cursor-pointer text-sm font-medium text-gray-900 dark:text-gray-50">
         {field.label}
       </label>
     </div>

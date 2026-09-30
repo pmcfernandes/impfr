@@ -1,2 +1,9 @@
 @import "tailwindcss" source(none);
 @source "../src/**/*.{js,jsx}";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark .form-editor,
+.dark .form-viewer {
+  color-scheme: dark;
+}

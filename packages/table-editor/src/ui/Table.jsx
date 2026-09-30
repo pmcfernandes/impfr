@@ -13,7 +13,7 @@ export function Table({ children }) {
 export function TableHead({ children, filterRow }) {
   return (
     <thead>
-      <tr className="border-b border-gray-200 text-left text-xs uppercase tracking-wide text-gray-500 dark:border-gray-800">
+      <tr className="border-b border-gray-200 text-left text-xs uppercase tracking-wide text-gray-500 dark:border-gray-800 dark:text-gray-400">
         {children}
       </tr>
       {filterRow && (

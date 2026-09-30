@@ -34,15 +34,15 @@ export default function StepsSection({ field, fields, patch }) {
           <option value="progress">{t('field.stepsModeProgress')}</option>
         </Select>
       </Row>
-      {hasSectionsInside && <p className="text-xs text-gray-500">{t('field.stepsWizardHint')}</p>}
+      {hasSectionsInside && <p className="text-xs text-gray-500 dark:text-gray-400">{t('field.stepsWizardHint')}</p>}
       <div className="flex flex-col gap-1.5">
         {stepsList.map((step, i) => (
           <div className="grid grid-cols-[1fr_auto] items-center gap-1.5" key={i}>
             <Input placeholder={`${t('fields.steps')} ${i + 1}`} value={step} onChange={(e) => updateStep(i, e.target.value)} />
-            <button type="button" className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40" title={t('field.removeStep')} disabled={stepsList.length <= 1} onClick={() => removeStep(i)}>✕</button>
+            <button type="button" className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-40" title={t('field.removeStep')} disabled={stepsList.length <= 1} onClick={() => removeStep(i)}>✕</button>
           </div>
         ))}
-        <button type="button" className="w-fit cursor-pointer rounded-lg border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50" disabled={stepsList.length >= 15} onClick={addStep}>
+        <button type="button" className="w-fit cursor-pointer rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-2.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 shadow-sm transition hover:bg-gray-50 dark:hover:bg-gray-900 disabled:cursor-not-allowed disabled:opacity-50" disabled={stepsList.length >= 15} onClick={addStep}>
           {t('field.addStep')}
         </button>
       </div>

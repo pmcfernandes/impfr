@@ -12,7 +12,7 @@ function DefaultControl({ field, patch }) {
   }
   if (field.type === 'checkbox') {
     return (
-      <label className="flex cursor-pointer items-center gap-2 text-xs text-gray-700">
+      <label className="flex cursor-pointer items-center gap-2 text-xs text-gray-700 dark:text-gray-300">
         <Checkbox checked={field.defaultValue === '1' || field.defaultValue === true || field.defaultValue === 'true'} onChange={(e) => patch({ defaultValue: e.target.checked ? '1' : '' })} />
         <span>{t('field.startChecked')}</span>
       </label>

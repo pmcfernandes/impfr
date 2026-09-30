@@ -12,7 +12,7 @@ export default function HtmlSection({ field, HtmlEditor, tinymceBaseUrl, patch }
       ) : (
         <RichTextEditor key={field.id} id={`html-editor-${field.id}`} value={field.html || ''} onChange={(html) => patch({ html })} tinymceBaseUrl={tinymceBaseUrl} />
       )}
-      <p className="text-xs text-gray-500">{t('field.htmlSectionHint')}</p>
+      <p className="text-xs text-gray-500 dark:text-gray-400">{t('field.htmlSectionHint')}</p>
     </section>
   )
 }

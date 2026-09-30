@@ -18,7 +18,7 @@ export default function RequiredSection({ field, fields, patch }) {
         />
         <label
           className={cx(
-            'flex items-start gap-2 text-xs text-gray-700',
+            'flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300',
             condRequired ? 'opacity-60' : 'cursor-pointer'
           )}
         >
@@ -30,10 +30,10 @@ export default function RequiredSection({ field, fields, patch }) {
           />
           <span>
             Campo obrigatório
-            {condRequired && <span className="block text-gray-500">Gerido pela condição abaixo.</span>}
+            {condRequired && <span className="block text-gray-500 dark:text-gray-400">Gerido pela condição abaixo.</span>}
           </span>
         </label>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           Tem de ser preenchido para o registo ser submetido.
         </p>
       </section>

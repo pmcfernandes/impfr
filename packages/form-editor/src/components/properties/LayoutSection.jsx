@@ -18,7 +18,7 @@ export default function LayoutSection({ field, patch }) {
         {[3, 4, 6, 12].map((n) => (
           <button key={n} type="button"
             className={cx('cursor-pointer rounded-full border px-3 py-1 text-xs font-semibold transition',
-              clampColumns(field.columns) === n ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-300 bg-white text-gray-600 hover:border-blue-400 hover:text-blue-600'
+              clampColumns(field.columns) === n ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-600 dark:text-gray-400 hover:border-blue-400 dark:hover:border-blue-700 hover:text-blue-600 dark:hover:text-blue-400'
             )}
             onClick={() => patch({ columns: n })}
           >{n}</button>

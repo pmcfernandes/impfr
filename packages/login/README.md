@@ -86,7 +86,7 @@ Email and password sign-in form.
 
 ```jsx
 <Login
-  onSubmit={(credentials) => authenticate(credentials)}
+  onSubmit={({ email, password, rememberMe }) => authenticate({ email, password, rememberMe })}
   socialProviders={["google", "microsoft"]}
   onSocialLogin={(provider) => beginOAuth(provider)}
 />
@@ -97,10 +97,14 @@ Email and password sign-in form.
 | `locale` | `"pt" \| "en"` | `"pt"` | Text language. Other values use Portuguese. |
 | `title` | `string` | translated text | Form title. |
 | `description` | `string` | translated text | Form description. |
-| `onSubmit` | `({ email, password }) => void \| Promise<void>` | - | Receives submitted credentials. |
+| `onSubmit` | `({ email, password, rememberMe }) => void \| Promise<void>` | - | Receives submitted credentials and the "Remember me" choice. |
 | `onSocialLogin` | `(provider) => void \| Promise<void>` | - | Receives `google`, `microsoft`, or `apple`. |
 | `socialProviders` | `string[]` | `[]` | Displayed providers: `google`, `microsoft`, and `apple`. Unknown values are ignored. |
 | `submitting` | `boolean` | `false` | Disables buttons while authenticating. |
+| `showRememberMe` | `boolean` | `true` | Displays the "Remember me" checkbox. |
+| `rememberMe` | `boolean` | - | Controlled checkbox value. |
+| `defaultRememberMe` | `boolean` | `false` | Initial checkbox value in uncontrolled mode. |
+| `onRememberMeChange` | `(value) => void` | - | Called when the "Remember me" checkbox changes. |
 | `className` | `string` | `""` | Additional container classes. |
 
 ### `ForgotPassword`

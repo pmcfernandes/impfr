@@ -30,7 +30,7 @@ export function DataViewViewSwitcher({ viewModes, view, onViewChange, t }) {
               "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
               active
                 ? "bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900"
-                : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-100",
+                : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100",
             )}
           >
             <Icon className="h-3.5 w-3.5" />

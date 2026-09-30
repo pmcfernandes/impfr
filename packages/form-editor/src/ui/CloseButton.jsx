@@ -8,7 +8,7 @@ export function CloseButton({ onClick, label = 'Fechar', size = 'md', className 
       title={label}
       onClick={onClick}
       className={cx(
-        'flex cursor-pointer flex-none items-center justify-center rounded-md text-gray-400 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40',
+        'flex cursor-pointer flex-none items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40',
         size === 'sm' ? 'h-7 w-7' : 'h-8 w-8',
         className
       )}

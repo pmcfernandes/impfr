@@ -56,7 +56,7 @@ function NestedGrid({ column, rows, locale, showTitle = true }) {
         </p>
       )}
       <table className="w-full text-sm">
-        <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500 dark:bg-gray-900">
+        <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500 dark:bg-gray-900 dark:text-gray-400">
           <tr>
             {columns.map((childColumn) => (
               <th key={childColumn.key} className="px-3 py-2 font-medium">
@@ -202,7 +202,7 @@ export function DataViewTable({
                   >
                     {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                     {title}
-                    <span className="font-normal text-gray-400">{nestedRows.length} {t("items")}</span>
+                    <span className="font-normal text-gray-400 dark:text-gray-500">{nestedRows.length} {t("items")}</span>
                   </button>
                 )}
                 {!collapsed && <NestedGrid column={column} rows={nestedRows} locale={locale} showTitle={!collapsible} />}
@@ -298,7 +298,7 @@ export function DataViewTable({
                       >
                         {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                         {t("group")}: {label}
-                        <span className="font-normal text-gray-400">{group.rows.length} {t("items")}</span>
+                        <span className="font-normal text-gray-400 dark:text-gray-500">{group.rows.length} {t("items")}</span>
                       </button>
                     </TableCell>
                   </TableRow>,

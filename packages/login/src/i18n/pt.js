@@ -14,6 +14,7 @@ export default {
   name: "Nome",
   email: "Email",
   password: "Palavra-passe",
+  rememberMe: "Lembrar-me",
   currentPassword: "Palavra-passe atual",
   newPassword: "Nova palavra-passe",
   confirmPassword: "Confirmar palavra-passe",

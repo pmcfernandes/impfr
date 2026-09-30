@@ -107,7 +107,7 @@ export function DataViewToolbar({
               </Button>
               {columnsOpen && (
                 <div className="absolute right-0 top-full z-20 mt-2 w-52 rounded-lg border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-800 dark:bg-gray-950">
-                  <p className="px-2 pb-1 text-xs font-semibold text-gray-500">{t("showColumns")}</p>
+                  <p className="px-2 pb-1 text-xs font-semibold text-gray-500 dark:text-gray-400">{t("showColumns")}</p>
                   {visibilityColumns.map((column) => (
                     <label key={column.key} className="flex cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-sm hover:bg-gray-50 dark:hover:bg-gray-900">
                       <input type="checkbox" checked={!hiddenColumnKeys.includes(column.key)} onChange={() => toggleColumn(column.key)} className="h-4 w-4 accent-blue-600" />

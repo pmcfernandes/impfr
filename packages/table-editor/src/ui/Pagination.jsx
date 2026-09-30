@@ -6,7 +6,7 @@ export function Pagination({ page, totalPages, total, pageSize, onPage, t }) {
   const end = Math.min(total, page * pageSize);
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3">
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-500 dark:text-gray-400">
         {t("showing")} {start}–{end} {t("of")} {total} {t("rows")}
       </p>
       <div className="flex items-center gap-1">

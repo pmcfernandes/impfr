@@ -12,7 +12,7 @@ export default function FormVisibilitySection({ form, onChange }) {
           </Badge>
         }
       />
-      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
         <Checkbox
           id="form-visible"
           className="mt-0.5"
@@ -21,7 +21,7 @@ export default function FormVisibilitySection({ form, onChange }) {
         />
         <span>Formulário visível</span>
       </label>
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-500 dark:text-gray-400">
         Quando oculto, ninguém pode preencher nem submeter registos.
       </p>
     </section>

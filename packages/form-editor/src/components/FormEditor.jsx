@@ -160,16 +160,16 @@ function FormEditorInner({
 
   return (
     <div
-      className="editor flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-gray-50"
+      className="form-editor editor flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-gray-50 dark:bg-gray-950"
       style={{ '--props-w': `${propsWidth}px` }}
     >
-      <header className="editor-top flex flex-wrap items-center gap-3 border-b border-gray-200 bg-white px-4 py-2.5">
+      <header className="editor-top flex flex-wrap items-center gap-3 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-4 py-2.5">
         {onCancel && (
           <Button variant="ghost" size="sm" onClick={handleCancel}>{t('common.back')}</Button>
         )}
         <div className="editor-title flex min-w-0 flex-1 flex-wrap items-center gap-3">
           <input
-            className="w-full max-w-sm rounded-lg border border-transparent bg-transparent px-2 py-1.5 text-base font-semibold text-gray-900 transition hover:bg-gray-50 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+            className="w-full max-w-sm rounded-lg border border-transparent bg-transparent px-2 py-1.5 text-base font-semibold text-gray-900 dark:text-gray-50 transition hover:bg-gray-50 dark:hover:bg-gray-900 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
             value={form.name}
             placeholder={t('editor.formName')}
             aria-label={t('editor.formName')}
@@ -187,7 +187,7 @@ function FormEditorInner({
             </span>
           )}
           {mergedErrors.general.name && (
-            <span className="text-xs font-medium text-red-600">{mergedErrors.general.name}</span>
+            <span className="text-xs font-medium text-red-600 dark:text-red-400">{mergedErrors.general.name}</span>
           )}
         </div>
         <div className="editor-actions flex flex-wrap items-center gap-2">

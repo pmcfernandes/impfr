@@ -54,7 +54,7 @@ export function DataViewList({ config, rows, locale, onEdit, onDelete, t }) {
                       {String(row[col.key])}
                     </Badge>
                   ) : (
-                    <span key={col.key} className="truncate text-xs text-gray-500">
+                    <span key={col.key} className="truncate text-xs text-gray-500 dark:text-gray-400">
                       <ListValue row={row} column={col} locale={locale} />
                     </span>
                   ),

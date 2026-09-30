@@ -9,9 +9,9 @@ import {
 function Row({ label, hint, htmlFor, children }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-xs font-semibold text-gray-700" htmlFor={htmlFor}>{label}</label>
+      <label className="text-xs font-semibold text-gray-700 dark:text-gray-300" htmlFor={htmlFor}>{label}</label>
       {children}
-      {hint && <p className="text-xs text-gray-500">{hint}</p>}
+      {hint && <p className="text-xs text-gray-500 dark:text-gray-400">{hint}</p>}
     </div>
   )
 }
@@ -119,13 +119,13 @@ export default function ApiSourceDialog({ open, field, onCancel, onImport, onFet
         </div>
         <datalist id="api-label-keys">{keys.map((k) => (<option key={k} value={k} />))}</datalist>
         <datalist id="api-value-keys">{keys.map((k) => (<option key={k} value={k} />))}</datalist>
-        {status === 'error' && <p className="text-xs font-medium text-red-600">{message}</p>}
-        {status === 'ok' && <p className="text-xs font-medium text-emerald-700">{message}</p>}
-        {showEmptyPath && <p className="text-xs font-medium text-amber-700">Nenhuma lista encontrada neste caminho — ajuste o caminho e clique em "Obter".</p>}
-        {status === 'ok' && items.length > 0 && <p className="text-xs text-gray-500">Mapeando {items.length} item(ns) em {options.length} opções (máx. 500).</p>}
+        {status === 'error' && <p className="text-xs font-medium text-red-600 dark:text-red-400">{message}</p>}
+        {status === 'ok' && <p className="text-xs font-medium text-emerald-700 dark:text-emerald-400">{message}</p>}
+        {showEmptyPath && <p className="text-xs font-medium text-amber-700 dark:text-amber-400">Nenhuma lista encontrada neste caminho — ajuste o caminho e clique em "Obter".</p>}
+        {status === 'ok' && items.length > 0 && <p className="text-xs text-gray-500 dark:text-gray-400">Mapeando {items.length} item(ns) em {options.length} opções (máx. 500).</p>}
         {options.length > 0 && (
           <div>
-            <p className="mb-1.5 text-xs font-semibold text-gray-700">Pré-visualização do mapeamento</p>
+            <p className="mb-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300">Pré-visualização do mapeamento</p>
             <TableRoot className="max-h-44">
               <Table>
                 <TableHead><TableRow><TableHeaderCell>Rótulo</TableHeaderCell><TableHeaderCell>Valor</TableHeaderCell></TableRow></TableHead>
@@ -141,7 +141,7 @@ export default function ApiSourceDialog({ open, field, onCancel, onImport, onFet
             </TableRoot>
           </div>
         )}
-        <div className="flex justify-end gap-2 border-t border-gray-100 pt-4">
+        <div className="flex justify-end gap-2 border-t border-gray-100 dark:border-gray-800 pt-4">
           <Button variant="ghost" onClick={onCancel}>Cancelar</Button>
           <Button variant="primary" onClick={doImport} disabled={options.length === 0 || status === 'loading'}>
             {options.length > 0 ? `Importar ${options.length} opções` : 'Importar opções'}

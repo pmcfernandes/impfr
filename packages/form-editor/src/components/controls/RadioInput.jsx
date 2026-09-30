@@ -11,7 +11,7 @@ export default function RadioInput({ field, value, onChange, error, disabled, in
       aria-label={field.label}
     >
       {options.map((opt, i) => (
-        <div className="option-item flex items-center gap-2 text-sm text-gray-700" key={`${opt.value}-${i}`}>
+        <div className="option-item flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300" key={`${opt.value}-${i}`}>
           <RadioGroupItem value={opt.value} id={`${inputId}-r${i}`} />
           <label htmlFor={`${inputId}-r${i}`} className="cursor-pointer">
             {opt.label}

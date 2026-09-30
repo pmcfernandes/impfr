@@ -16,7 +16,7 @@ export function Checkbox({ checked = false, onChange, onCheckedChange, id, disab
       onCheckedChange={handle}
       disabled={disabled}
       className={cx(
-        'flex h-4 w-4 flex-none cursor-pointer items-center justify-center rounded border border-gray-300 bg-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50',
+        'flex h-4 w-4 flex-none cursor-pointer items-center justify-center rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50',
         'data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=indeterminate]:border-blue-600 data-[state=indeterminate]:bg-blue-600',
         className
       )}

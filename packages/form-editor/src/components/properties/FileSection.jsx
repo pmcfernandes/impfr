@@ -13,7 +13,7 @@ export default function FileSection({ field, patch }) {
           onBlur={(e) => { const n = Number(e.target.value); patch({ maxSizeMb: Number.isFinite(n) && n > 0 ? Math.round(Math.max(0.1, n) * 10) / 10 : 5 }) }}
         />
       </Row>
-      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
         <Checkbox className="mt-0.5" checked={field.multiple !== false} onChange={(e) => patch({ multiple: e.target.checked })} />
         <span>{t('field.multiple')}</span>
       </label>

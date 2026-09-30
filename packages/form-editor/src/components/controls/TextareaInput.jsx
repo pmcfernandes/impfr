@@ -9,7 +9,7 @@ export default function TextareaInput({ field, value, onChange, error, disabled,
       placeholder={field.placeholder || ''}
       disabled={disabled}
       readOnly={readOnly}
-      className={readOnly ? 'bg-gray-50! cursor-default' : ''}
+      className={readOnly ? 'bg-gray-50! dark:bg-gray-900! cursor-default' : ''}
       error={Boolean(error)}
       onChange={(e) => onChange(e.target.value)}
     />

@@ -83,7 +83,7 @@ export default function FileControl({ field, value, onChange, error, disabled })
       <div
         className={cx(
           'file-drop rounded-lg border border-dashed p-3 text-center transition-colors',
-          dragOver ? 'border-blue-400 bg-blue-50/70' : 'border-gray-300 bg-gray-50/60'
+          dragOver ? 'border-blue-400 bg-blue-50/70 dark:bg-blue-950/70' : 'border-gray-300 dark:border-gray-700 bg-gray-50/60 dark:bg-gray-900/60'
         )}
         onDragOver={(e) => {
           if (disabled || busy) return
@@ -115,27 +115,27 @@ export default function FileControl({ field, value, onChange, error, disabled })
         <Button size="sm" onClick={() => inputRef.current && inputRef.current.click()} disabled={disabled || busy}>
           {busy ? t('file.uploading') : files.length > 0 ? t('file.addMore') : t('file.add')}
         </Button>
-        <p className="mt-1.5 text-xs text-gray-500">
+        <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
           {t('file.maxSize', { size: sizeLabel })}
           {allowed.length ? ` · ${allowed.join(' ')}` : ''}
           {!multiple ? ` · ${t('file.singleOnly')}` : ''} · {t('file.dropHere')}
         </p>
       </div>
-      {message && <p className="text-xs font-medium text-red-600">{message}</p>}
+      {message && <p className="text-xs font-medium text-red-600 dark:text-red-400">{message}</p>}
       {files.map((file, i) => {
         const href = fileHref(file)
         return (
-          <div key={`${file.name}-${i}`} className="file-item flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5">
-            <span className="min-w-0 flex-1 truncate text-sm text-gray-700">{file.original}</span>
-            <span className="text-xs whitespace-nowrap text-gray-500">{fmtBytes(file.size)}</span>
+          <div key={`${file.name}-${i}`} className="file-item flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-2.5 py-1.5">
+            <span className="min-w-0 flex-1 truncate text-sm text-gray-700 dark:text-gray-300">{file.original}</span>
+            <span className="text-xs whitespace-nowrap text-gray-500 dark:text-gray-400">{fmtBytes(file.size)}</span>
             {href && (
-              <a className="text-xs font-semibold whitespace-nowrap text-blue-600 hover:underline" href={href} target="_blank" rel="noreferrer">
+              <a className="text-xs font-semibold whitespace-nowrap text-blue-600 dark:text-blue-400 hover:underline" href={href} target="_blank" rel="noreferrer">
                 {t('file.open')}
               </a>
             )}
             <button
               type="button"
-              className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600"
+              className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400"
               title={t('file.remove')}
               disabled={disabled || busy}
               onClick={() => remove(i)}
@@ -145,7 +145,7 @@ export default function FileControl({ field, value, onChange, error, disabled })
           </div>
         )
       })}
-      {error && <p className="text-xs font-medium text-red-600">{error}</p>}
+      {error && <p className="text-xs font-medium text-red-600 dark:text-red-400">{error}</p>}
     </div>
   )
 }

@@ -42,7 +42,7 @@ export default function FormNotificationsSection({ form, fields, errors, onChang
         </Select>
       </Row>
       {!hasEmail && (
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           Adicione um campo Email ao formulário para poder notificar o utilizador.
         </p>
       )}

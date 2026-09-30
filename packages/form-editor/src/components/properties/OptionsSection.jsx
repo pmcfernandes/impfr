@@ -21,9 +21,9 @@ export default function OptionsSection({ field, patch, onFetchSource }) {
         )}
       </div>
       {field.apiSource && (
-        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
+        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
           <span className="truncate">Endpoint: {shortUrl(field.apiSource.url)}</span>
-          <button type="button" className="cursor-pointer font-semibold text-red-600 hover:underline" onClick={() => patch({ apiSource: null })}>
+          <button type="button" className="cursor-pointer font-semibold text-red-600 dark:text-red-400 hover:underline" onClick={() => patch({ apiSource: null })}>
             {t('common.delete')}
           </button>
         </div>

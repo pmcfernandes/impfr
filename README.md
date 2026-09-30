@@ -54,6 +54,25 @@ export function App() {
 
 See the documentation for each package for all props, configuration formats, and complete examples.
 
+## Integrated Demo
+
+The [`demo/`](demo/) directory contains a Vite application that showcases all four packages in one back-office flow:
+
+- Dashboard with KPIs, bar/line/donut charts, and panel containers.
+- Project data in table, list, and card views via `@table-editor/react`.
+- Simple and multi-step (wizard) forms with conditional fields, file upload, consent, and API-powered selects via `@form-editor/react`, plus the JSON form editor.
+- A `/api/*` in-browser mock (latency + `localStorage` persistence) driving every REST hook: `useGetList`, `useGetOne`, `useGetMany`, `useInfiniteGetList`, `useCreate`, `useUpdate`, `useDelete`, `useDeleteMany`, `useStore`, and `fetchJson`.
+- A gallery of `@app-shell/react` primitives: alerts, accordion, tabs, buttons, badges, dialogs, drawers, confirm dialogs, wizards, and tables.
+- Every `@login/react` screen: sign in with Remember me (persisted session), register, forgot password, change password, edit profile, groups and permissions, and `CanAccess` permission gates.
+
+Run it locally:
+
+```bash
+cd demo
+npm install
+npm run dev
+```
+
 ## Development
 
 There is no root `package.json`: each package manages its own dependencies and commands. To develop a library, enter its directory:

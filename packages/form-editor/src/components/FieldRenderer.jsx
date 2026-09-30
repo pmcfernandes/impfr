@@ -82,9 +82,9 @@ export default function FieldRenderer({
   return (
     <div className={cx('field flex flex-col gap-1.5', error && 'has-error')} style={span}>
       {field.type !== 'checkbox' && (
-        <label className="field-label block text-sm font-semibold text-gray-900" htmlFor={inputId}>
+        <label className="field-label block text-sm font-semibold text-gray-900 dark:text-gray-50" htmlFor={inputId}>
           {field.label}
-          {field.required && <span className="ml-1 text-red-500" title="Obrigatório">*</span>}
+          {field.required && <span className="ml-1 text-red-500 dark:text-red-400" title="Obrigatório">*</span>}
         </label>
       )}
       {field.type === 'file' ? (
@@ -100,8 +100,8 @@ export default function FieldRenderer({
           inputId={inputId}
         />
       )}
-      {field.helpText && <p className="field-help text-xs text-gray-500">{field.helpText}</p>}
-      {error && <p className="field-error text-xs font-medium text-red-600">{error}</p>}
+      {field.helpText && <p className="field-help text-xs text-gray-500 dark:text-gray-400">{field.helpText}</p>}
+      {error && <p className="field-error text-xs font-medium text-red-600 dark:text-red-400">{error}</p>}
     </div>
   )
 }

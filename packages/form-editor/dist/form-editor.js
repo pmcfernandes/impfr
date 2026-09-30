@@ -1175,20 +1175,20 @@ function Ge(e) {
 function Ke({ onAdd: e }) {
 	let { t } = z();
 	return /* @__PURE__ */ g("aside", {
-		className: "palette flex min-h-0 flex-col rounded-lg border border-gray-200 bg-white p-3.5 lg:overflow-y-auto",
+		className: "palette flex min-h-0 flex-col rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3.5 lg:overflow-y-auto",
 		children: [
 			/* @__PURE__ */ h("h2", {
-				className: "text-xs font-semibold uppercase tracking-wide text-gray-500",
+				className: "text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400",
 				children: t("palette.title")
 			}),
 			/* @__PURE__ */ h("p", {
-				className: "mt-1 text-xs text-gray-500",
+				className: "mt-1 text-xs text-gray-500 dark:text-gray-400",
 				children: t("palette.hint")
 			}),
 			/* @__PURE__ */ h("div", {
 				className: "mt-3 flex flex-col gap-2",
 				children: S.map((n) => /* @__PURE__ */ g("div", {
-					className: "palette-item flex cursor-grab touch-none items-center gap-2.5 rounded-lg border border-gray-200 bg-white px-2.5 py-2 select-none transition hover:border-blue-400 hover:bg-blue-50 active:cursor-grabbing",
+					className: "palette-item flex cursor-grab touch-none items-center gap-2.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-2.5 py-2 select-none transition hover:border-blue-400 dark:hover:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950 active:cursor-grabbing",
 					role: "button",
 					tabIndex: 0,
 					draggable: !0,
@@ -1200,15 +1200,15 @@ function Ke({ onAdd: e }) {
 						(t.key === "Enter" || t.key === " ") && (t.preventDefault(), e(n.type));
 					},
 					children: [/* @__PURE__ */ h("span", {
-						className: "type-badge flex h-6 min-w-[30px] flex-none items-center justify-center rounded-md bg-blue-50 px-1.5 text-[11px] font-bold text-blue-700",
+						className: "type-badge flex h-6 min-w-[30px] flex-none items-center justify-center rounded-md bg-blue-50 dark:bg-blue-950 px-1.5 text-[11px] font-bold text-blue-700 dark:text-blue-300",
 						children: t(`fields.badge.${n.type}`)
 					}), /* @__PURE__ */ g("span", {
 						className: "flex min-w-0 flex-col",
 						children: [/* @__PURE__ */ h("strong", {
-							className: "truncate text-sm font-medium text-gray-900",
+							className: "truncate text-sm font-medium text-gray-900 dark:text-gray-50",
 							children: t(`fields.${n.type}`)
 						}), /* @__PURE__ */ h("small", {
-							className: "truncate text-xs text-gray-500",
+							className: "truncate text-xs text-gray-500 dark:text-gray-400",
 							children: t(`fields.${n.type}Hint`)
 						})]
 					})]
@@ -1224,27 +1224,27 @@ function B(...e) {
 }
 //#endregion
 //#region src/ui/theme.js
-var qe = "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:bg-gray-50 disabled:text-gray-500", Je = {
+var qe = "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:bg-gray-50 disabled:text-gray-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder:text-gray-500 dark:disabled:bg-gray-900", Je = {
 	primary: "border-transparent bg-blue-600 text-white hover:bg-blue-700",
-	secondary: "border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
-	ghost: "border-transparent bg-transparent text-gray-500 hover:bg-gray-100 hover:text-gray-900",
+	secondary: "border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900",
+	ghost: "border-transparent bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-50",
 	danger: "border-transparent bg-red-600 text-white hover:bg-red-700",
-	dangerGhost: "border-transparent bg-transparent text-red-600 hover:bg-red-50"
+	dangerGhost: "border-transparent bg-transparent text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50"
 }, Ye = {
 	sm: "gap-1 px-2.5 py-1.5 text-xs",
 	md: "gap-1.5 px-3.5 py-2 text-sm",
 	lg: "gap-2 px-5 py-2.5 text-sm"
 }, Xe = {
-	gray: "bg-gray-100 text-gray-700 ring-gray-200",
-	blue: "bg-blue-50 text-blue-700 ring-blue-200",
-	red: "bg-red-50 text-red-700 ring-red-200",
-	emerald: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-	amber: "bg-amber-50 text-amber-800 ring-amber-200"
+	gray: "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 ring-gray-200 dark:ring-gray-700",
+	blue: "bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 ring-blue-200 dark:ring-blue-900",
+	red: "bg-red-50 dark:bg-red-950/50 text-red-700 dark:text-red-300 ring-red-200 dark:ring-red-900",
+	emerald: "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 ring-emerald-200 dark:ring-emerald-900",
+	amber: "bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 ring-amber-200 dark:ring-amber-900"
 }, Ze = {
-	red: "bg-red-50 text-red-800 ring-red-200",
-	blue: "bg-blue-50 text-blue-800 ring-blue-200",
-	amber: "bg-amber-50 text-amber-900 ring-amber-200",
-	emerald: "bg-emerald-50 text-emerald-800 ring-emerald-200"
+	red: "bg-red-50 dark:bg-red-950/50 text-red-800 dark:text-red-300 ring-red-200 dark:ring-red-900",
+	blue: "bg-blue-50 dark:bg-blue-950/50 text-blue-800 dark:text-blue-300 ring-blue-200 dark:ring-blue-900",
+	amber: "bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 ring-amber-200 dark:ring-amber-900",
+	emerald: "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 ring-emerald-200 dark:ring-emerald-900"
 };
 //#endregion
 //#region src/ui/Icons.jsx
@@ -5056,19 +5056,19 @@ function Ac({ value: e = "", onChange: t, placeholder: n = "— Selecione —", 
 			children: [/* @__PURE__ */ h("span", {
 				className: "truncate",
 				children: /* @__PURE__ */ h(Ks, { placeholder: d })
-			}), /* @__PURE__ */ h(qs, { children: /* @__PURE__ */ h(Qe, { className: "h-4 w-4 flex-none text-gray-400" }) })]
+			}), /* @__PURE__ */ h(qs, { children: /* @__PURE__ */ h(Qe, { className: "h-4 w-4 flex-none text-gray-400 dark:text-gray-500" }) })]
 		}), /* @__PURE__ */ h(Xs, { children: /* @__PURE__ */ h(Qs, {
 			position: "popper",
 			sideOffset: 4,
-			className: "z-50 max-h-72 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg",
+			className: "z-50 max-h-72 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-lg",
 			style: { minWidth: "var(--radix-select-trigger-width)" },
 			children: /* @__PURE__ */ h(uc, {
 				className: "p-1",
 				children: p.map((e) => /* @__PURE__ */ g(gc, {
 					value: e.value,
-					className: "flex cursor-pointer select-none items-center rounded-md px-2.5 py-1.5 text-sm text-gray-700 outline-none data-[highlighted]:bg-blue-50 data-[highlighted]:text-blue-700 data-[state=checked]:font-semibold",
+					className: "flex cursor-pointer select-none items-center rounded-md px-2.5 py-1.5 text-sm text-gray-700 dark:text-gray-300 outline-none data-[highlighted]:bg-blue-50 dark:data-[highlighted]:bg-blue-950 data-[highlighted]:text-blue-700 dark:data-[highlighted]:text-blue-300 data-[state=checked]:font-semibold",
 					children: [/* @__PURE__ */ h(vc, { children: e.label }), /* @__PURE__ */ h(bc, {
-						className: "ml-auto pl-2 text-blue-600",
+						className: "ml-auto pl-2 text-blue-600 dark:text-blue-400",
 						children: "✓"
 					})]
 				}, e.value))
@@ -5247,7 +5247,7 @@ function Yc({ checked: e = !1, onChange: t, onCheckedChange: n, id: r, disabled:
 			} });
 		},
 		disabled: i,
-		className: B("flex h-4 w-4 flex-none cursor-pointer items-center justify-center rounded border border-gray-300 bg-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50", "data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=indeterminate]:border-blue-600 data-[state=indeterminate]:bg-blue-600", a),
+		className: B("flex h-4 w-4 flex-none cursor-pointer items-center justify-center rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-50", "data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=indeterminate]:border-blue-600 data-[state=indeterminate]:bg-blue-600", a),
 		...o,
 		children: /* @__PURE__ */ h(Uc, { children: h(s === "indeterminate" ? tt : et, {}) })
 	});
@@ -5669,7 +5669,7 @@ function au({ value: e, onChange: t, onValueChange: n, className: r = "", childr
 }
 function ou({ className: e = "", ...t }) {
 	return /* @__PURE__ */ h(nu, {
-		className: B("flex h-4 w-4 flex-none cursor-pointer items-center justify-center rounded-full border border-gray-300 bg-white transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600", e),
+		className: B("flex h-4 w-4 flex-none cursor-pointer items-center justify-center rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600", e),
 		...t,
 		children: /* @__PURE__ */ h(iu, { className: "h-1.5 w-1.5 rounded-full bg-white" })
 	});
@@ -5682,7 +5682,7 @@ function su({ onClick: e, label: t = "Fechar", size: n = "md", className: r = ""
 		"aria-label": t,
 		title: t,
 		onClick: e,
-		className: B("flex cursor-pointer flex-none items-center justify-center rounded-md text-gray-400 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40", n === "sm" ? "h-7 w-7" : "h-8 w-8", r),
+		className: B("flex cursor-pointer flex-none items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40", n === "sm" ? "h-7 w-7" : "h-8 w-8", r),
 		children: /* @__PURE__ */ h("svg", {
 			viewBox: "0 0 20 20",
 			fill: "none",
@@ -5709,16 +5709,16 @@ function cu({ open: e, onClose: t, title: n, description: r, className: i = "", 
 			role: "dialog",
 			"aria-modal": "true",
 			"aria-label": n,
-			className: B("modal flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-gray-950/10", i),
+			className: B("modal flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl bg-white dark:bg-gray-950 shadow-2xl ring-1 ring-gray-950/10 dark:border dark:border-gray-600", i),
 			children: [/* @__PURE__ */ g("div", {
-				className: "flex items-start justify-between gap-4 border-b border-gray-100 px-6 py-4",
+				className: "flex items-start justify-between gap-4 border-b border-gray-100 dark:border-gray-700 px-6 py-4",
 				children: [/* @__PURE__ */ g("div", {
 					className: "min-w-0",
 					children: [/* @__PURE__ */ h("h2", {
-						className: "truncate text-base font-semibold text-gray-900",
+						className: "truncate text-base font-semibold text-gray-900 dark:text-gray-50",
 						children: n
 					}), r && /* @__PURE__ */ h("p", {
-						className: "mt-0.5 truncate text-sm text-gray-500",
+						className: "mt-0.5 truncate text-sm text-gray-500 dark:text-gray-400",
 						children: r
 					})]
 				}), /* @__PURE__ */ h(su, { onClick: t })]
@@ -5733,7 +5733,7 @@ function cu({ open: e, onClose: t, title: n, description: r, className: i = "", 
 //#region src/ui/Table.jsx
 function lu({ className: e = "", children: t }) {
 	return /* @__PURE__ */ h("div", {
-		className: B("overflow-auto rounded-lg border border-gray-200 bg-white shadow-sm", e),
+		className: B("overflow-auto rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-sm", e),
 		children: t
 	});
 }
@@ -5745,33 +5745,33 @@ function uu({ className: e = "", children: t }) {
 }
 function du({ className: e = "", children: t }) {
 	return /* @__PURE__ */ h("thead", {
-		className: B("bg-gray-50", e),
+		className: B("bg-gray-50 dark:bg-gray-900", e),
 		children: t
 	});
 }
 function fu({ className: e = "", children: t }) {
 	return /* @__PURE__ */ h("tbody", {
-		className: B("divide-y divide-gray-100", e),
+		className: B("divide-y divide-gray-100 dark:divide-gray-800", e),
 		children: t
 	});
 }
 function pu({ className: e = "", children: t, ...n }) {
 	return /* @__PURE__ */ h("tr", {
-		className: B("transition-colors hover:bg-gray-50/70", e),
+		className: B("transition-colors hover:bg-gray-50/70 dark:hover:bg-gray-900/70", e),
 		...n,
 		children: t
 	});
 }
 function mu({ className: e = "", children: t, ...n }) {
 	return /* @__PURE__ */ h("th", {
-		className: B("px-4 py-2.5 text-xs font-semibold uppercase tracking-wide whitespace-nowrap text-gray-500", e),
+		className: B("px-4 py-2.5 text-xs font-semibold uppercase tracking-wide whitespace-nowrap text-gray-500 dark:text-gray-400", e),
 		...n,
 		children: t
 	});
 }
 function hu({ className: e = "", children: t, ...n }) {
 	return /* @__PURE__ */ h("td", {
-		className: B("px-4 py-3 align-top text-gray-700", e),
+		className: B("px-4 py-3 align-top text-gray-700 dark:text-gray-300", e),
 		...n,
 		children: t
 	});
@@ -9324,7 +9324,7 @@ function Dm({ triggerRef: e, pos: t, onClose: n, children: r }) {
 		};
 	}, [n, e]), v(/* @__PURE__ */ h("div", {
 		ref: i,
-		className: "fe-picker fixed z-50 rounded-xl border border-gray-200 bg-white p-3 shadow-xl",
+		className: "fe-picker fixed z-50 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 text-gray-950 dark:text-gray-50 p-3 shadow-xl",
 		style: {
 			top: t.top,
 			left: t.left
@@ -9361,12 +9361,12 @@ function Am({ value: e = "", onChange: t, id: n, placeholder: r = "dd/mm/aaaa", 
 		id: n,
 		ref: d,
 		disabled: i,
-		className: B(qe, "date-picker", km, a && "border-red-400 focus:border-red-500 focus:ring-red-500/30", !_ && !e && "text-gray-400", o),
+		className: B(qe, "date-picker", km, a && "border-red-400 focus:border-red-500 focus:ring-red-500/30", !_ && !e && "text-gray-400 dark:text-gray-500", o),
 		onClick: v,
 		children: [/* @__PURE__ */ h("span", {
 			className: "truncate",
 			children: _ ? it(_) : r
-		}), /* @__PURE__ */ h($e, { className: "h-4 w-4 flex-none text-gray-400" })]
+		}), /* @__PURE__ */ h($e, { className: "h-4 w-4 flex-none text-gray-400 dark:text-gray-500" })]
 	}), s && /* @__PURE__ */ g(Dm, {
 		triggerRef: d,
 		pos: l,
@@ -9377,10 +9377,10 @@ function Am({ value: e = "", onChange: t, id: n, placeholder: r = "dd/mm/aaaa", 
 				y(e ? rt(e) : ""), c(!1);
 			}
 		}), /* @__PURE__ */ g("div", {
-			className: "mt-2 flex items-center justify-between gap-2 border-t border-gray-100 pt-2",
+			className: "mt-2 flex items-center justify-between gap-2 border-t border-gray-100 dark:border-gray-800 pt-2",
 			children: [/* @__PURE__ */ h("button", {
 				type: "button",
-				className: "cursor-pointer rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition hover:bg-gray-100 hover:text-gray-900",
+				className: "cursor-pointer rounded-md px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 transition hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-50",
 				onClick: () => {
 					y(""), c(!1);
 				},
@@ -9440,7 +9440,7 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 		let a = r.id === t, l = re(r.condition, { summary: c("condition.summary") }), u = fe(r.type), d = me(e, r.id).length;
 		return /* @__PURE__ */ g("div", {
 			"data-field-card": !0,
-			className: B("field-card group flex cursor-grab touch-none select-none items-center gap-2.5 rounded-lg border px-3 py-2.5 shadow-sm transition", a ? "border-blue-500 bg-blue-50/70 ring-1 ring-blue-500" : "border-gray-200 bg-white hover:border-gray-300", m === r.id && "opacity-40", r.visible === !1 && "opacity-60", i && "ring-2 ring-blue-500 ring-offset-1"),
+			className: B("field-card group flex cursor-grab touch-none select-none items-center gap-2.5 rounded-lg border px-3 py-2.5 shadow-sm transition", a ? "border-blue-500 bg-blue-50/70 dark:bg-blue-950/70 ring-1 ring-blue-500" : "border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 hover:border-gray-300 dark:hover:border-gray-700", m === r.id && "opacity-40", r.visible === !1 && "opacity-60", i && "ring-2 ring-blue-500 ring-offset-1"),
 			style: { gridColumn: `span ${jm(r)}` },
 			draggable: !0,
 			onClick: (e) => {
@@ -9452,24 +9452,24 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 			onDragEnd: S,
 			children: [
 				/* @__PURE__ */ h("span", {
-					className: "drag-handle hidden flex-none select-none text-sm leading-none text-gray-300 sm:block",
+					className: "drag-handle hidden flex-none select-none text-sm leading-none text-gray-300 dark:text-gray-600 sm:block",
 					"aria-hidden": "true",
 					children: ":::"
 				}),
 				/* @__PURE__ */ h("span", {
-					className: "type-badge flex h-6 min-w-[30px] flex-none items-center justify-center rounded-md bg-blue-50 px-1.5 text-[11px] font-bold text-blue-700",
+					className: "type-badge flex h-6 min-w-[30px] flex-none items-center justify-center rounded-md bg-blue-50 dark:bg-blue-950 px-1.5 text-[11px] font-bold text-blue-700 dark:text-blue-300",
 					children: c(`fields.badge.${r.type}`)
 				}),
 				/* @__PURE__ */ g("span", {
 					className: "flex min-w-0 flex-1 flex-col",
 					children: [/* @__PURE__ */ g("span", {
-						className: "field-card-label truncate text-sm font-semibold text-gray-900",
+						className: "field-card-label truncate text-sm font-semibold text-gray-900 dark:text-gray-50",
 						children: [r.label || c("fields.noLabel"), P(r.type) && r.required && /* @__PURE__ */ h("span", {
-							className: "text-red-500",
+							className: "text-red-500 dark:text-red-400",
 							children: "*"
 						})]
 					}), /* @__PURE__ */ g("span", {
-						className: "field-card-sub truncate text-xs text-gray-500",
+						className: "field-card-sub truncate text-xs text-gray-500 dark:text-gray-400",
 						children: [
 							c(`fields.${r.type}`),
 							P(r.type) && r.name ? ` · ${r.name}` : "",
@@ -9484,7 +9484,7 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 					className: B("field-card-actions flex flex-none gap-0.5 transition-opacity", a ? "opacity-100" : "opacity-0 group-hover:opacity-100"),
 					children: [/* @__PURE__ */ h("button", {
 						type: "button",
-						className: "flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-gray-100 hover:text-gray-900",
+						className: "flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100",
 						title: c("common.duplicate"),
 						onClick: (e) => {
 							e.stopPropagation(), o(r.id);
@@ -9492,7 +9492,7 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 						children: "⧉"
 					}), /* @__PURE__ */ h("button", {
 						type: "button",
-						className: "flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600",
+						className: "flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400",
 						title: c("common.delete"),
 						onClick: (e) => {
 							e.stopPropagation(), s(r.id);
@@ -9505,10 +9505,10 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 	}, w = (t, n = 0) => {
 		let i = he(e, t);
 		return /* @__PURE__ */ h(r, { children: i.map((i, a) => /* @__PURE__ */ g(r, { children: [C(i, b(t, a)), fe(i.type) && n < 5 && /* @__PURE__ */ g("div", {
-			className: B("nested-zone col-span-full grid min-h-12 h-max grid-cols-12 content-start gap-2 rounded-lg border-l-2 border-dashed py-2 pl-3", me(e, i.id).length > 0 ? "border-gray-300 bg-gray-50/70" : "border-blue-300 bg-blue-50/40", x(i.id, me(e, i.id).length) && "ring-2 ring-blue-400 ring-inset"),
+			className: B("nested-zone col-span-full grid min-h-12 h-max grid-cols-12 content-start gap-2 rounded-lg border-l-2 border-dashed py-2 pl-3", me(e, i.id).length > 0 ? "border-gray-300 dark:border-gray-700 bg-gray-50/70 dark:bg-gray-900/70" : "border-blue-300 dark:border-blue-800 bg-blue-50/40 dark:bg-blue-950/40", x(i.id, me(e, i.id).length) && "ring-2 ring-blue-400 ring-inset"),
 			...y(i.id, (e) => e.currentTarget),
 			children: [me(e, i.id).length === 0 && /* @__PURE__ */ h("p", {
-				className: "col-span-full pl-1 text-xs text-gray-400",
+				className: "col-span-full pl-1 text-xs text-gray-400 dark:text-gray-500",
 				children: i.type === "steps" ? c("canvas.dropSection", { label: i.label || c("fields.steps") }) : c("canvas.dropContainer", { label: i.label || c("fields.heading") })
 			}), w(i.id, n + 1)]
 		})] }, i.id)) });
@@ -9521,16 +9521,16 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 		},
 		...y(null, () => l.current),
 		children: /* @__PURE__ */ g("div", {
-			className: B("canvas-drop grid min-h-[240px] flex-1 grid-cols-12 content-start gap-2 overflow-y-auto rounded-lg border p-3.5 transition-colors", u && u.parentId === null ? "is-over border-blue-400 bg-blue-50/50" : "border-gray-200 bg-white"),
+			className: B("canvas-drop grid min-h-[240px] flex-1 grid-cols-12 content-start gap-2 overflow-y-auto rounded-lg border p-3.5 transition-colors", u && u.parentId === null ? "is-over border-blue-400 bg-blue-50/50 dark:bg-blue-950/50" : "border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950"),
 			ref: l,
 			...y(null, (e) => e.currentTarget),
 			children: [e.length === 0 && !u && /* @__PURE__ */ g("div", {
-				className: "canvas-empty col-span-full flex flex-col items-center gap-1.5 rounded-xl border-2 border-dashed border-gray-300 px-6 py-14 text-center",
+				className: "canvas-empty col-span-full flex flex-col items-center gap-1.5 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-700 px-6 py-14 text-center",
 				children: [/* @__PURE__ */ h("strong", {
-					className: "text-sm font-semibold text-gray-900",
+					className: "text-sm font-semibold text-gray-900 dark:text-gray-50",
 					children: c("canvas.empty")
 				}), /* @__PURE__ */ h("span", {
-					className: "text-sm text-gray-500",
+					className: "text-sm text-gray-500 dark:text-gray-400",
 					children: c("canvas.emptyHint")
 				})]
 			}), w(null)]
@@ -9544,23 +9544,23 @@ function $({ label: e, hint: t, error: n, htmlFor: r, children: i }) {
 		className: "props-row flex flex-col gap-1.5",
 		children: [
 			/* @__PURE__ */ h("label", {
-				className: "text-xs font-semibold text-gray-700",
+				className: "text-xs font-semibold text-gray-700 dark:text-gray-300",
 				htmlFor: r,
 				children: e
 			}),
 			i,
 			n && /* @__PURE__ */ h("p", {
-				className: "text-xs font-medium text-red-600",
+				className: "text-xs font-medium text-red-600 dark:text-red-400",
 				children: n
 			}),
 			!n && t && /* @__PURE__ */ h("p", {
-				className: "text-xs text-gray-500",
+				className: "text-xs text-gray-500 dark:text-gray-400",
 				children: t
 			})
 		]
 	});
 }
-var Nm = "props-section flex flex-col gap-2.5 border-t border-gray-100 pt-4", Pm = "text-xs font-semibold uppercase tracking-wide text-gray-500";
+var Nm = "props-section flex flex-col gap-2.5 border-t border-gray-100 dark:border-gray-800 pt-4", Pm = "text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400";
 function Fm({ title: e, badge: t, children: n }) {
 	return /* @__PURE__ */ g("div", {
 		className: "flex items-center justify-between gap-2",
@@ -9623,14 +9623,14 @@ function Bm({ onResizeStart: e, onResizeKey: t }) {
 function Vm({ form: e, fields: t, errors: n, onChangeForm: r, onResizeStart: i, onResizeKey: a }) {
 	let { t: o } = z(), s = Te(e);
 	return /* @__PURE__ */ g("aside", {
-		className: "props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 bg-white p-3.5 lg:overflow-y-auto",
+		className: "props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3.5 lg:overflow-y-auto",
 		children: [
 			/* @__PURE__ */ h(Bm, {
 				onResizeStart: i,
 				onResizeKey: a
 			}),
 			/* @__PURE__ */ h("h2", {
-				className: "text-xs font-semibold uppercase tracking-wide text-gray-500",
+				className: "text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400",
 				children: o("props.form")
 			}),
 			/* @__PURE__ */ g("section", {
@@ -9669,7 +9669,7 @@ function Vm({ form: e, fields: t, errors: n, onChangeForm: r, onResizeStart: i, 
 						})
 					}),
 					/* @__PURE__ */ g("label", {
-						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700",
+						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300",
 						children: [/* @__PURE__ */ h(Yc, {
 							id: "form-visible",
 							className: "mt-0.5",
@@ -9678,7 +9678,7 @@ function Vm({ form: e, fields: t, errors: n, onChangeForm: r, onResizeStart: i, 
 						}), /* @__PURE__ */ h("span", { children: o("props.formVisible") })]
 					}),
 					/* @__PURE__ */ h("p", {
-						className: "text-xs text-gray-500",
+						className: "text-xs text-gray-500 dark:text-gray-400",
 						children: o("props.formVisibleHint")
 					})
 				]
@@ -9701,7 +9701,7 @@ function Vm({ form: e, fields: t, errors: n, onChangeForm: r, onResizeStart: i, 
 							children: /* @__PURE__ */ h("input", {
 								id: "form-from",
 								type: "datetime-local",
-								className: "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30",
+								className: "w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-3 py-2 text-sm text-gray-900 dark:text-gray-50 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30",
 								value: (e.available_from || "").replace(" ", "T").slice(0, 16),
 								onChange: (e) => r({ available_from: e.target.value ? e.target.value.replace("T", " ") : "" })
 							})
@@ -9711,18 +9711,18 @@ function Vm({ form: e, fields: t, errors: n, onChangeForm: r, onResizeStart: i, 
 							children: /* @__PURE__ */ h("input", {
 								id: "form-to",
 								type: "datetime-local",
-								className: "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30",
+								className: "w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-3 py-2 text-sm text-gray-900 dark:text-gray-50 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30",
 								value: (e.available_to || "").replace(" ", "T").slice(0, 16),
 								onChange: (e) => r({ available_to: e.target.value ? e.target.value.replace("T", " ") : "" })
 							})
 						})]
 					}),
 					n.general.available_to && /* @__PURE__ */ h("p", {
-						className: "text-xs font-medium text-red-600",
+						className: "text-xs font-medium text-red-600 dark:text-red-400",
 						children: n.general.available_to
 					}),
 					/* @__PURE__ */ g("p", {
-						className: "text-xs text-gray-500",
+						className: "text-xs text-gray-500 dark:text-gray-400",
 						children: [o("props.availabilityHint"), s.hasRange ? o("props.availabilityCurrent", { range: zm(e.available_from, e.available_to) }) : ""]
 					})
 				]
@@ -9738,7 +9738,7 @@ function Vm({ form: e, fields: t, errors: n, onChangeForm: r, onResizeStart: i, 
 						})
 					}),
 					/* @__PURE__ */ g("label", {
-						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700",
+						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300",
 						children: [/* @__PURE__ */ h(Yc, {
 							id: "form-consent",
 							className: "mt-0.5",
@@ -9837,7 +9837,7 @@ function Vm({ form: e, fields: t, errors: n, onChangeForm: r, onResizeStart: i, 
 						})
 					}),
 					!t.some((e) => e.type === "email") && /* @__PURE__ */ h("p", {
-						className: "text-xs text-gray-500",
+						className: "text-xs text-gray-500 dark:text-gray-400",
 						children: o("props.notifyNoEmail")
 					})
 				]
@@ -9894,14 +9894,14 @@ function Um({ condition: e, onChange: t, fields: n, fieldId: r, title: i, toggle
 		}] });
 	}, v = (e) => f({ rules: d.filter((t, n) => n !== e) });
 	return /* @__PURE__ */ g("section", {
-		className: "props-section flex flex-col gap-2.5 border-t border-gray-100 pt-4",
+		className: "props-section flex flex-col gap-2.5 border-t border-gray-100 dark:border-gray-800 pt-4",
 		children: [
 			/* @__PURE__ */ h("h3", {
-				className: "text-xs font-semibold uppercase tracking-wide text-gray-500",
+				className: "text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400",
 				children: s
 			}),
 			/* @__PURE__ */ g("label", {
-				className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700",
+				className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300",
 				children: [/* @__PURE__ */ h(Yc, {
 					className: "mt-0.5",
 					checked: l.enabled === !0,
@@ -9912,7 +9912,7 @@ function Um({ condition: e, onChange: t, fields: n, fieldId: r, title: i, toggle
 				className: "flex flex-wrap items-center gap-2",
 				children: [
 					/* @__PURE__ */ h("label", {
-						className: "text-xs font-semibold text-gray-700",
+						className: "text-xs font-semibold text-gray-700 dark:text-gray-300",
 						htmlFor: "cond-logic",
 						children: o("condition.showIf")
 					}),
@@ -9930,19 +9930,19 @@ function Um({ condition: e, onChange: t, fields: n, fieldId: r, title: i, toggle
 						})]
 					}),
 					/* @__PURE__ */ h("span", {
-						className: "text-xs text-gray-500",
+						className: "text-xs text-gray-500 dark:text-gray-400",
 						children: o("condition.tail")
 					})
 				]
 			}), u.length === 0 ? /* @__PURE__ */ h("p", {
-				className: "text-xs text-gray-500",
+				className: "text-xs text-gray-500 dark:text-gray-400",
 				children: o("condition.emptyHint")
 			}) : /* @__PURE__ */ g("div", {
 				className: "flex flex-col gap-2",
 				children: [d.map((e, t) => {
 					let n = u.find((t) => t.id === e.field) || null, r = C.find((t) => t.op === e.op), i = !!(r && r.value && n);
 					return /* @__PURE__ */ g("div", {
-						className: "grid grid-cols-[minmax(0,1fr)_auto] items-end gap-1.5 rounded-lg border border-gray-200 bg-gray-50/70 p-2",
+						className: "grid grid-cols-[minmax(0,1fr)_auto] items-end gap-1.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/70 p-2",
 						children: [
 							/* @__PURE__ */ h(Ac, {
 								value: e.field,
@@ -9971,7 +9971,7 @@ function Um({ condition: e, onChange: t, fields: n, fieldId: r, title: i, toggle
 							}),
 							/* @__PURE__ */ h("button", {
 								type: "button",
-								className: "flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600",
+								className: "flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400",
 								title: o("condition.remove"),
 								onClick: () => v(t),
 								children: "✕"
@@ -9980,7 +9980,7 @@ function Um({ condition: e, onChange: t, fields: n, fieldId: r, title: i, toggle
 					}, t);
 				}), /* @__PURE__ */ h("button", {
 					type: "button",
-					className: "w-fit cursor-pointer rounded-lg border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50",
+					className: "w-fit cursor-pointer rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-2.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 shadow-sm transition hover:bg-gray-50 dark:hover:bg-gray-900",
 					onClick: _,
 					children: o("condition.add")
 				})]
@@ -10023,7 +10023,7 @@ function qm({ field: e, patch: t }) {
 		onChange: (e) => t({ defaultValue: e.target.value })
 	});
 	if (e.type === "checkbox") return /* @__PURE__ */ g("label", {
-		className: "flex cursor-pointer items-center gap-2 text-xs text-gray-700",
+		className: "flex cursor-pointer items-center gap-2 text-xs text-gray-700 dark:text-gray-300",
 		children: [/* @__PURE__ */ h(Yc, {
 			checked: e.defaultValue === "1" || e.defaultValue === !0 || e.defaultValue === "true",
 			onChange: (e) => t({ defaultValue: e.target.checked ? "1" : "" })
@@ -10109,7 +10109,7 @@ function Ym({ field: e, patch: t }) {
 				})
 			}),
 			/* @__PURE__ */ g("label", {
-				className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700",
+				className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300",
 				children: [/* @__PURE__ */ h(Yc, {
 					className: "mt-0.5",
 					checked: e.multiple !== !1,
@@ -10269,7 +10269,7 @@ function sh({ options: e, onChange: t }) {
 				}),
 				/* @__PURE__ */ h("button", {
 					type: "button",
-					className: "flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40",
+					className: "flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-40",
 					title: n("options.remove"),
 					disabled: r.length <= 1,
 					onClick: () => a(t),
@@ -10278,7 +10278,7 @@ function sh({ options: e, onChange: t }) {
 			]
 		}, t)), /* @__PURE__ */ h("button", {
 			type: "button",
-			className: "w-fit cursor-pointer rounded-lg border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50",
+			className: "w-fit cursor-pointer rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-2.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 shadow-sm transition hover:bg-gray-50 dark:hover:bg-gray-900",
 			onClick: () => {
 				let e = r.map((e) => e.value), n = r.length + 1, i = `opcao_${n}`;
 				for (; e.includes(i);) n += 1, i = `opcao_${n}`;
@@ -10298,13 +10298,13 @@ function ch({ label: e, hint: t, htmlFor: n, children: r }) {
 		className: "flex flex-col gap-1.5",
 		children: [
 			/* @__PURE__ */ h("label", {
-				className: "text-xs font-semibold text-gray-700",
+				className: "text-xs font-semibold text-gray-700 dark:text-gray-300",
 				htmlFor: n,
 				children: e
 			}),
 			r,
 			t && /* @__PURE__ */ h("p", {
-				className: "text-xs text-gray-500",
+				className: "text-xs text-gray-500 dark:text-gray-400",
 				children: t
 			})
 		]
@@ -10452,19 +10452,19 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 					children: E.map((e) => /* @__PURE__ */ h("option", { value: e }, e))
 				}),
 				S === "error" && /* @__PURE__ */ h("p", {
-					className: "text-xs font-medium text-red-600",
+					className: "text-xs font-medium text-red-600 dark:text-red-400",
 					children: w
 				}),
 				S === "ok" && /* @__PURE__ */ h("p", {
-					className: "text-xs font-medium text-emerald-700",
+					className: "text-xs font-medium text-emerald-700 dark:text-emerald-400",
 					children: w
 				}),
 				P && /* @__PURE__ */ h("p", {
-					className: "text-xs font-medium text-amber-700",
+					className: "text-xs font-medium text-amber-700 dark:text-amber-400",
 					children: "Nenhuma lista encontrada neste caminho — ajuste o caminho e clique em \"Obter\"."
 				}),
 				S === "ok" && k.length > 0 && /* @__PURE__ */ g("p", {
-					className: "text-xs text-gray-500",
+					className: "text-xs text-gray-500 dark:text-gray-400",
 					children: [
 						"Mapeando ",
 						k.length,
@@ -10474,7 +10474,7 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 					]
 				}),
 				A.length > 0 && /* @__PURE__ */ g("div", { children: [/* @__PURE__ */ h("p", {
-					className: "mb-1.5 text-xs font-semibold text-gray-700",
+					className: "mb-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300",
 					children: "Pré-visualização do mapeamento"
 				}), /* @__PURE__ */ h(lu, {
 					className: "max-h-44",
@@ -10484,7 +10484,7 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 					})] }, `${e.value}-${t}`)) })] })
 				})] }),
 				/* @__PURE__ */ g("div", {
-					className: "flex justify-end gap-2 border-t border-gray-100 pt-4",
+					className: "flex justify-end gap-2 border-t border-gray-100 dark:border-gray-800 pt-4",
 					children: [/* @__PURE__ */ h(at, {
 						variant: "ghost",
 						onClick: n,
@@ -10520,13 +10520,13 @@ function uh({ field: e, patch: t, onFetchSource: n }) {
 				})]
 			}),
 			e.apiSource && /* @__PURE__ */ g("div", {
-				className: "flex flex-wrap items-center gap-2 text-xs text-gray-500",
+				className: "flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400",
 				children: [/* @__PURE__ */ g("span", {
 					className: "truncate",
 					children: ["Endpoint: ", ah(e.apiSource.url)]
 				}), /* @__PURE__ */ h("button", {
 					type: "button",
-					className: "cursor-pointer font-semibold text-red-600 hover:underline",
+					className: "cursor-pointer font-semibold text-red-600 dark:text-red-400 hover:underline",
 					onClick: () => t({ apiSource: null }),
 					children: r("common.delete")
 				})]
@@ -10696,7 +10696,7 @@ function mh({ field: e, patch: t }) {
 					12
 				].map((n) => /* @__PURE__ */ h("button", {
 					type: "button",
-					className: B("cursor-pointer rounded-full border px-3 py-1 text-xs font-semibold transition", k(e.columns) === n ? "border-blue-600 bg-blue-600 text-white" : "border-gray-300 bg-white text-gray-600 hover:border-blue-400 hover:text-blue-600"),
+					className: B("cursor-pointer rounded-full border px-3 py-1 text-xs font-semibold transition", k(e.columns) === n ? "border-blue-600 bg-blue-600 text-white" : "border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-600 dark:text-gray-400 hover:border-blue-400 dark:hover:border-blue-700 hover:text-blue-600 dark:hover:text-blue-400"),
 					onClick: () => t({ columns: n }),
 					children: n
 				}, n))
@@ -10790,7 +10790,7 @@ function bh({ field: e, HtmlEditor: t, tinymceBaseUrl: n, patch: r }) {
 				tinymceBaseUrl: n
 			}, e.id),
 			/* @__PURE__ */ h("p", {
-				className: "text-xs text-gray-500",
+				className: "text-xs text-gray-500 dark:text-gray-400",
 				children: i("field.htmlSectionHint")
 			})
 		]
@@ -10841,7 +10841,7 @@ function xh({ field: e, fields: t, patch: n }) {
 				})
 			}),
 			l && /* @__PURE__ */ h("p", {
-				className: "text-xs text-gray-500",
+				className: "text-xs text-gray-500 dark:text-gray-400",
 				children: r("field.stepsWizardHint")
 			}),
 			/* @__PURE__ */ g("div", {
@@ -10854,7 +10854,7 @@ function xh({ field: e, fields: t, patch: n }) {
 						onChange: (e) => a(t, e.target.value)
 					}), /* @__PURE__ */ h("button", {
 						type: "button",
-						className: "flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40",
+						className: "flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-40",
 						title: r("field.removeStep"),
 						disabled: i.length <= 1,
 						onClick: () => s(t),
@@ -10862,7 +10862,7 @@ function xh({ field: e, fields: t, patch: n }) {
 					})]
 				}, t)), /* @__PURE__ */ h("button", {
 					type: "button",
-					className: "w-fit cursor-pointer rounded-lg border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50",
+					className: "w-fit cursor-pointer rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-2.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 shadow-sm transition hover:bg-gray-50 dark:hover:bg-gray-900 disabled:cursor-not-allowed disabled:opacity-50",
 					disabled: i.length >= 15,
 					onClick: o,
 					children: r("field.addStep")
@@ -10908,7 +10908,7 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 		...t
 	}), x = n.general[`fields.${y}.pattern`], S = !!(e.requiredCondition && e.requiredCondition.enabled);
 	return /* @__PURE__ */ g("aside", {
-		className: "props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 bg-white p-3.5 lg:overflow-y-auto",
+		className: "props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3.5 lg:overflow-y-auto",
 		children: [
 			/* @__PURE__ */ h(Wm, {
 				onResizeStart: o,
@@ -10917,7 +10917,7 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 			/* @__PURE__ */ g("div", {
 				className: "props-head flex items-center justify-between gap-2",
 				children: [/* @__PURE__ */ h("span", {
-					className: "inline-flex h-6 items-center rounded-md bg-blue-50 px-2 text-[11px] font-bold text-blue-700",
+					className: "inline-flex h-6 items-center rounded-md bg-blue-50 dark:bg-blue-950 px-2 text-[11px] font-bold text-blue-700 dark:text-blue-300",
 					children: d(`fields.${e.type}`)
 				}), /* @__PURE__ */ g("div", {
 					className: "props-head-actions flex gap-1",
@@ -11018,7 +11018,7 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 						})
 					}),
 					/* @__PURE__ */ g("label", {
-						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700",
+						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300",
 						children: [/* @__PURE__ */ h(Yc, {
 							className: "mt-0.5",
 							checked: e.visible !== !1,
@@ -11026,7 +11026,7 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 						}), /* @__PURE__ */ h("span", { children: d("field.fieldVisible") })]
 					}),
 					/* @__PURE__ */ h("p", {
-						className: "text-xs text-gray-500",
+						className: "text-xs text-gray-500 dark:text-gray-400",
 						children: d("field.visibilityHint")
 					})
 				]
@@ -11038,14 +11038,14 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 				onChange: (e) => b({ condition: e })
 			}),
 			f && /* @__PURE__ */ g("section", {
-				className: "props-section flex flex-col gap-2.5 border-t border-gray-100 pt-4",
+				className: "props-section flex flex-col gap-2.5 border-t border-gray-100 dark:border-gray-800 pt-4",
 				children: [
 					/* @__PURE__ */ h("h3", {
-						className: "text-xs font-semibold uppercase tracking-wide text-gray-500",
+						className: "text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400",
 						children: d("field.readOnlySection")
 					}),
 					/* @__PURE__ */ g("label", {
-						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700",
+						className: "flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300",
 						children: [/* @__PURE__ */ h(Yc, {
 							className: "mt-0.5",
 							checked: e.readOnly === !0,
@@ -11053,13 +11053,13 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 						}), /* @__PURE__ */ h("span", { children: d("field.readOnlyLabel") })]
 					}),
 					/* @__PURE__ */ h("p", {
-						className: "text-xs text-gray-500",
+						className: "text-xs text-gray-500 dark:text-gray-400",
 						children: d("field.readOnlyHint")
 					})
 				]
 			}),
 			f && /* @__PURE__ */ g(m, { children: [/* @__PURE__ */ g("section", {
-				className: "props-section flex flex-col gap-2.5 border-t border-gray-100 pt-4",
+				className: "props-section flex flex-col gap-2.5 border-t border-gray-100 dark:border-gray-800 pt-4",
 				children: [
 					/* @__PURE__ */ h(Fm, {
 						title: d("field.requiredSection"),
@@ -11069,19 +11069,19 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 						})
 					}),
 					/* @__PURE__ */ g("label", {
-						className: B("flex items-start gap-2 text-xs text-gray-700", S ? "opacity-60" : "cursor-pointer"),
+						className: B("flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300", S ? "opacity-60" : "cursor-pointer"),
 						children: [/* @__PURE__ */ h(Yc, {
 							className: "mt-0.5",
 							checked: e.required === !0,
 							disabled: S,
 							onChange: (e) => b({ required: e.target.checked })
 						}), /* @__PURE__ */ g("span", { children: [d("field.requiredLabel"), S && /* @__PURE__ */ h("span", {
-							className: "block text-gray-500",
+							className: "block text-gray-500 dark:text-gray-400",
 							children: d("field.requiredCondNote")
 						})] })]
 					}),
 					/* @__PURE__ */ h("p", {
-						className: "text-xs text-gray-500",
+						className: "text-xs text-gray-500 dark:text-gray-400",
 						children: d("field.requiredHint")
 					})
 				]
@@ -11105,9 +11105,9 @@ function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, 
 				patch: b
 			}),
 			!f && !p && !_ && /* @__PURE__ */ h("section", {
-				className: "props-section flex flex-col gap-2.5 border-t border-gray-100 pt-4",
+				className: "props-section flex flex-col gap-2.5 border-t border-gray-100 dark:border-gray-800 pt-4",
 				children: /* @__PURE__ */ h("p", {
-					className: "text-xs text-gray-500",
+					className: "text-xs text-gray-500 dark:text-gray-400",
 					children: d("field.sectionOnly")
 				})
 			})
@@ -11218,7 +11218,7 @@ function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 		className: "flex flex-col gap-2",
 		children: [
 			/* @__PURE__ */ g("div", {
-				className: B("file-drop rounded-lg border border-dashed p-3 text-center transition-colors", d ? "border-blue-400 bg-blue-50/70" : "border-gray-300 bg-gray-50/60"),
+				className: B("file-drop rounded-lg border border-dashed p-3 text-center transition-colors", d ? "border-blue-400 bg-blue-50/70 dark:bg-blue-950/70" : "border-gray-300 dark:border-gray-700 bg-gray-50/60 dark:bg-gray-900/60"),
 				onDragOver: (e) => {
 					i || s || (e.preventDefault(), e.dataTransfer.dropEffect = "copy", m(!0));
 				},
@@ -11246,7 +11246,7 @@ function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 						children: s ? a("file.uploading") : v.length > 0 ? a("file.addMore") : a("file.add")
 					}),
 					/* @__PURE__ */ g("p", {
-						className: "mt-1.5 text-xs text-gray-500",
+						className: "mt-1.5 text-xs text-gray-500 dark:text-gray-400",
 						children: [
 							a("file.maxSize", { size: S }),
 							b.length ? ` · ${b.join(" ")}` : "",
@@ -11258,24 +11258,24 @@ function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 				]
 			}),
 			l && /* @__PURE__ */ h("p", {
-				className: "text-xs font-medium text-red-600",
+				className: "text-xs font-medium text-red-600 dark:text-red-400",
 				children: l
 			}),
 			v.map((e, t) => {
 				let n = T(e);
 				return /* @__PURE__ */ g("div", {
-					className: "file-item flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-2.5 py-1.5",
+					className: "file-item flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-2.5 py-1.5",
 					children: [
 						/* @__PURE__ */ h("span", {
-							className: "min-w-0 flex-1 truncate text-sm text-gray-700",
+							className: "min-w-0 flex-1 truncate text-sm text-gray-700 dark:text-gray-300",
 							children: e.original
 						}),
 						/* @__PURE__ */ h("span", {
-							className: "text-xs whitespace-nowrap text-gray-500",
+							className: "text-xs whitespace-nowrap text-gray-500 dark:text-gray-400",
 							children: Oh(e.size)
 						}),
 						n && /* @__PURE__ */ h("a", {
-							className: "text-xs font-semibold whitespace-nowrap text-blue-600 hover:underline",
+							className: "text-xs font-semibold whitespace-nowrap text-blue-600 dark:text-blue-400 hover:underline",
 							href: n,
 							target: "_blank",
 							rel: "noreferrer",
@@ -11283,7 +11283,7 @@ function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 						}),
 						/* @__PURE__ */ h("button", {
 							type: "button",
-							className: "flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600",
+							className: "flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400",
 							title: a("file.remove"),
 							disabled: i || s,
 							onClick: () => w(t),
@@ -11293,7 +11293,7 @@ function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 				}, `${e.name}-${t}`);
 			}),
 			r && /* @__PURE__ */ h("p", {
-				className: "text-xs font-medium text-red-600",
+				className: "text-xs font-medium text-red-600 dark:text-red-400",
 				children: r
 			})
 		]
@@ -11310,7 +11310,7 @@ function jh({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: 
 		placeholder: e.placeholder || "",
 		disabled: i,
 		readOnly: a,
-		className: a ? "bg-gray-50! cursor-default" : "",
+		className: a ? "bg-gray-50! dark:bg-gray-900! cursor-default" : "",
 		error: !!r,
 		min: e.type === "number" && e.min !== "" && e.min !== void 0 ? e.min : void 0,
 		max: e.type === "number" && e.max !== "" && e.max !== void 0 ? e.max : void 0,
@@ -11328,7 +11328,7 @@ function Mh({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: 
 		placeholder: e.placeholder || "",
 		disabled: i,
 		readOnly: a,
-		className: a ? "bg-gray-50! cursor-default" : "",
+		className: a ? "bg-gray-50! dark:bg-gray-900! cursor-default" : "",
 		error: !!r,
 		onChange: (e) => n(e.target.value)
 	});
@@ -11375,7 +11375,7 @@ function Fh({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a
 		onValueChange: (e) => n(e),
 		"aria-label": e.label,
 		children: o.map((e, t) => /* @__PURE__ */ g("div", {
-			className: "option-item flex items-center gap-2 text-sm text-gray-700",
+			className: "option-item flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300",
 			children: [/* @__PURE__ */ h(ou, {
 				value: e.value,
 				id: `${a}-r${t}`
@@ -11399,7 +11399,7 @@ function Ih({ field: e, value: t, onChange: n, disabled: r, inputId: i }) {
 			onChange: (e) => n(e.target.checked)
 		}), /* @__PURE__ */ h("label", {
 			htmlFor: i,
-			className: "cursor-pointer text-sm font-medium text-gray-900",
+			className: "cursor-pointer text-sm font-medium text-gray-900 dark:text-gray-50",
 			children: e.label
 		})]
 	});
@@ -11411,7 +11411,7 @@ function Lh({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 	return /* @__PURE__ */ h("div", {
 		className: B("option-list flex flex-col gap-1.5 rounded-lg", r && "rounded-md ring-1 ring-red-400"),
 		children: a.map((e, t) => /* @__PURE__ */ g("label", {
-			className: "option-item flex cursor-pointer items-center gap-2 text-sm text-gray-700",
+			className: "option-item flex cursor-pointer items-center gap-2 text-sm text-gray-700 dark:text-gray-300",
 			children: [/* @__PURE__ */ h(Yc, {
 				checked: o.includes(e.value),
 				disabled: i,
@@ -11432,18 +11432,18 @@ function Rh({ field: e, stepsLabels: t, stepsActive: n, children: r }) {
 				/* @__PURE__ */ g("div", {
 					className: "mb-1.5 flex items-center justify-between gap-3 text-xs",
 					children: [/* @__PURE__ */ g("span", {
-						className: "min-w-0 truncate font-semibold text-gray-900",
+						className: "min-w-0 truncate font-semibold text-gray-900 dark:text-gray-50",
 						children: [i("steps.of", {
 							current: s,
 							total: e
 						}), a[s - 1] ? ` · ${a[s - 1]}` : ""]
 					}), /* @__PURE__ */ g("span", {
-						className: "flex-none font-semibold tabular-nums text-blue-600",
+						className: "flex-none font-semibold tabular-nums text-blue-600 dark:text-blue-400",
 						children: [t, "%"]
 					})]
 				}),
 				/* @__PURE__ */ h("div", {
-					className: "progress-track h-2.5 w-full overflow-hidden rounded-full bg-gray-200",
+					className: "progress-track h-2.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800",
 					children: /* @__PURE__ */ h("div", {
 						className: "progress-fill h-full rounded-full bg-blue-600 transition-all duration-300",
 						style: { width: `${t}%` }
@@ -11466,15 +11466,15 @@ function Rh({ field: e, stepsLabels: t, stepsActive: n, children: r }) {
 					className: "flex min-w-0 flex-1 items-center gap-2.5",
 					children: [
 						/* @__PURE__ */ h("span", {
-							className: B("flex h-7 w-7 flex-none items-center justify-center rounded-full text-xs font-bold", r === "done" && "bg-emerald-600 text-white", r === "active" && "bg-blue-600 text-white ring-2 ring-blue-200", r === "pending" && "border border-gray-300 bg-white text-gray-500"),
+							className: B("flex h-7 w-7 flex-none items-center justify-center rounded-full text-xs font-bold", r === "done" && "bg-emerald-600 text-white", r === "active" && "bg-blue-600 text-white ring-2 ring-blue-200", r === "pending" && "border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-500 dark:text-gray-400"),
 							children: r === "done" ? "✓" : n
 						}),
 						/* @__PURE__ */ h("span", {
-							className: B("min-w-0 truncate text-sm", r === "active" ? "font-semibold text-gray-900" : "text-gray-500"),
+							className: B("min-w-0 truncate text-sm", r === "active" ? "font-semibold text-gray-900 dark:text-gray-50" : "text-gray-500 dark:text-gray-400"),
 							children: e
 						}),
 						t < a.length - 1 && /* @__PURE__ */ h("span", {
-							className: "hidden h-px min-w-4 flex-1 bg-gray-200 sm:block",
+							className: "hidden h-px min-w-4 flex-1 bg-gray-200 dark:bg-gray-800 sm:block",
 							"aria-hidden": "true"
 						})
 					]
@@ -11490,7 +11490,7 @@ function Rh({ field: e, stepsLabels: t, stepsActive: n, children: r }) {
 //#region src/components/controls/HtmlBlock.jsx
 function zh({ field: e }) {
 	return /* @__PURE__ */ h("div", {
-		className: "field field-html text-sm text-gray-700 [&_a]:text-blue-600 [&_h2]:mt-3 [&_h2]:text-base [&_h2]:font-semibold [&_h2]:text-gray-900 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:text-gray-900 [&_li]:my-0.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-1.5 [&_ul]:list-disc [&_ul]:pl-5",
+		className: "field field-html text-sm text-gray-700 dark:text-gray-300 [&_a]:text-blue-600 dark:[&_a]:text-blue-400 [&_h2]:mt-3 [&_h2]:text-base [&_h2]:font-semibold [&_h2]:text-gray-900 dark:[&_h2]:text-gray-50 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:text-gray-900 dark:[&_h3]:text-gray-50 [&_li]:my-0.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-1.5 [&_ul]:list-disc [&_ul]:pl-5",
 		dangerouslySetInnerHTML: { __html: e.html || "" }
 	});
 }
@@ -11498,14 +11498,14 @@ function zh({ field: e }) {
 //#region src/components/controls/HeadingBlock.jsx
 function Bh({ field: e, hideTitle: t, children: n }) {
 	return /* @__PURE__ */ g("div", {
-		className: B("field field-heading", !t && "border-b border-gray-200 pb-2"),
+		className: B("field field-heading", !t && "border-b border-gray-200 dark:border-gray-800 pb-2"),
 		children: [
 			!t && /* @__PURE__ */ h("h3", {
-				className: "text-base font-semibold text-gray-900",
+				className: "text-base font-semibold text-gray-900 dark:text-gray-50",
 				children: e.label
 			}),
 			!t && e.helpText && /* @__PURE__ */ h("p", {
-				className: "field-help mt-0.5 text-xs text-gray-500",
+				className: "field-help mt-0.5 text-xs text-gray-500 dark:text-gray-400",
 				children: e.helpText
 			}),
 			n && /* @__PURE__ */ h("div", {
@@ -11564,10 +11564,10 @@ function Hh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 		style: f,
 		children: [
 			e.type !== "checkbox" && /* @__PURE__ */ g("label", {
-				className: "field-label block text-sm font-semibold text-gray-900",
+				className: "field-label block text-sm font-semibold text-gray-900 dark:text-gray-50",
 				htmlFor: d,
 				children: [e.label, e.required && /* @__PURE__ */ h("span", {
-					className: "ml-1 text-red-500",
+					className: "ml-1 text-red-500 dark:text-red-400",
 					title: "Obrigatório",
 					children: "*"
 				})]
@@ -11588,11 +11588,11 @@ function Hh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 				inputId: d
 			}),
 			e.helpText && /* @__PURE__ */ h("p", {
-				className: "field-help text-xs text-gray-500",
+				className: "field-help text-xs text-gray-500 dark:text-gray-400",
 				children: e.helpText
 			}),
 			r && /* @__PURE__ */ h("p", {
-				className: "field-error text-xs font-medium text-red-600",
+				className: "field-error text-xs font-medium text-red-600 dark:text-red-400",
 				children: r
 			})
 		]
@@ -11659,9 +11659,9 @@ function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 		}
 	};
 	if (O) return /* @__PURE__ */ h("div", {
-		className: "runner flex flex-col gap-5",
+		className: "form-viewer runner flex flex-col gap-5",
 		children: /* @__PURE__ */ g("div", {
-			className: "success-box flex flex-col items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 py-9 text-center",
+			className: "success-box flex flex-col items-center gap-2 rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-6 py-9 text-center",
 			children: [
 				/* @__PURE__ */ h("span", {
 					className: "flex h-11 w-11 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white",
@@ -11669,11 +11669,11 @@ function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 					children: "OK"
 				}),
 				/* @__PURE__ */ h("h3", {
-					className: "text-base font-semibold text-emerald-900",
+					className: "text-base font-semibold text-emerald-900 dark:text-emerald-300",
 					children: o || y("form.successTitle")
 				}),
 				/* @__PURE__ */ h("p", {
-					className: "text-sm text-emerald-800",
+					className: "text-sm text-emerald-800 dark:text-emerald-300",
 					children: M
 				}),
 				/* @__PURE__ */ h("div", {
@@ -11739,7 +11739,7 @@ function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 		value: se,
 		children: /* @__PURE__ */ g("form", {
 			id: f,
-			className: "runner flex flex-col gap-5",
+			className: "form-viewer runner flex flex-col gap-5",
 			onSubmit: _e,
 			noValidate: !0,
 			onKeyDown: (e) => {
@@ -11750,22 +11750,22 @@ function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 			children: [
 				E && /* @__PURE__ */ h(st, { children: E }),
 				A && /* @__PURE__ */ h("div", {
-					className: "rounded-lg border border-emerald-200 bg-emerald-50 px-3.5 py-2.5 text-sm font-medium text-emerald-800",
+					className: "rounded-lg border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-3.5 py-2.5 text-sm font-medium text-emerald-800 dark:text-emerald-300",
 					children: M
 				}),
 				/* @__PURE__ */ g("div", {
 					className: "runner-fields grid grid-cols-12 items-start gap-4",
 					children: [be.length === 0 && /* @__PURE__ */ h("p", {
-						className: "col-span-full text-sm text-gray-500",
+						className: "col-span-full text-sm text-gray-500 dark:text-gray-400",
 						children: y("form.emptyFields")
 					}), ve.map(ke)]
 				}),
 				ie && Te && /* @__PURE__ */ g("div", {
 					"data-consent-block": !0,
-					className: `rounded-lg border p-3.5 ${ne ? "border-red-300 bg-red-50" : "border-gray-200 bg-gray-50"}`,
+					className: `rounded-lg border p-3.5 ${ne ? "border-red-300 dark:border-red-900 bg-red-50 dark:bg-red-950/50" : "border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900"}`,
 					children: [
 						/* @__PURE__ */ g("label", {
-							className: `flex cursor-pointer items-start gap-2 text-sm ${ne ? "text-red-800" : "text-gray-700"}`,
+							className: `flex cursor-pointer items-start gap-2 text-sm ${ne ? "text-red-800 dark:text-red-300" : "text-gray-700 dark:text-gray-300"}`,
 							htmlFor: x,
 							children: [/* @__PURE__ */ h(Yc, {
 								id: x,
@@ -11783,21 +11783,21 @@ function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 							href: e.privacy_url,
 							target: "_blank",
 							rel: "noopener noreferrer",
-							className: "ml-6 mt-1 inline-block text-sm font-medium text-blue-600 underline",
+							className: "ml-6 mt-1 inline-block text-sm font-medium text-blue-600 dark:text-blue-400 underline",
 							children: y("form.privacyPolicy")
 						}),
 						ne && /* @__PURE__ */ h("p", {
-							className: "ml-6 mt-1 text-xs font-medium text-red-600",
+							className: "ml-6 mt-1 text-xs font-medium text-red-600 dark:text-red-400",
 							children: y("form.consentError")
 						}),
 						!te && /* @__PURE__ */ h("p", {
-							className: "ml-6 mt-1 text-xs text-gray-500",
+							className: "ml-6 mt-1 text-xs text-gray-500 dark:text-gray-400",
 							children: y("form.consentHint")
 						})
 					]
 				}),
 				!u && /* @__PURE__ */ g("div", {
-					className: "runner-actions flex items-center justify-between gap-2 border-t border-gray-100 pt-4",
+					className: "runner-actions flex items-center justify-between gap-2 border-t border-gray-100 dark:border-gray-800 pt-4",
 					children: [/* @__PURE__ */ g("div", {
 						className: "flex items-center gap-2",
 						children: [
@@ -11975,11 +11975,11 @@ function Jh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 		general: C.general
 	}, R = Object.entries(C.general).filter(([e]) => e !== "available_to" && !e.startsWith("fields.")).map(([, e]) => e);
 	return /* @__PURE__ */ g("div", {
-		className: "editor flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-gray-50",
+		className: "form-editor editor flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-gray-50 dark:bg-gray-950",
 		style: { "--props-w": `${D}px` },
 		children: [
 			/* @__PURE__ */ g("header", {
-				className: "editor-top flex flex-wrap items-center gap-3 border-b border-gray-200 bg-white px-4 py-2.5",
+				className: "editor-top flex flex-wrap items-center gap-3 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-4 py-2.5",
 				children: [
 					n && /* @__PURE__ */ h(at, {
 						variant: "ghost",
@@ -11991,7 +11991,7 @@ function Jh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 						className: "editor-title flex min-w-0 flex-1 flex-wrap items-center gap-3",
 						children: [
 							/* @__PURE__ */ h("input", {
-								className: "w-full max-w-sm rounded-lg border border-transparent bg-transparent px-2 py-1.5 text-base font-semibold text-gray-900 transition hover:bg-gray-50 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/30",
+								className: "w-full max-w-sm rounded-lg border border-transparent bg-transparent px-2 py-1.5 text-base font-semibold text-gray-900 dark:text-gray-50 transition hover:bg-gray-50 dark:hover:bg-gray-900 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-blue-500/30",
 								value: f.name,
 								placeholder: d("editor.formName"),
 								"aria-label": d("editor.formName"),
@@ -12027,7 +12027,7 @@ function Jh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 								})
 							}),
 							L.general.name && /* @__PURE__ */ h("span", {
-								className: "text-xs font-medium text-red-600",
+								className: "text-xs font-medium text-red-600 dark:text-red-400",
 								children: L.general.name
 							})
 						]

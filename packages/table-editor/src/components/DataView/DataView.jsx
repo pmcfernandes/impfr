@@ -169,7 +169,7 @@ export function DataView({
       )}
 
       {selectedIds.length > 0 && (
-        <p className="px-5 pb-1 text-xs text-gray-500">
+        <p className="px-5 pb-1 text-xs text-gray-500 dark:text-gray-400">
           {selectedIds.length} {t("selected")}
         </p>
       )}

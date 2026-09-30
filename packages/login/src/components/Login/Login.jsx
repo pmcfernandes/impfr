@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { createTranslator } from "../../i18n/index.js";
 import { Button, Card, Input } from "../../ui/index.js";
 import { SocialLoginButtons } from "./SocialLoginButtons.jsx";
@@ -11,15 +11,28 @@ export function Login({
   onSocialLogin,
   socialProviders = [],
   submitting = false,
+  showRememberMe = true,
+  rememberMe,
+  defaultRememberMe = false,
+  onRememberMeChange,
   className = "",
 }) {
   const t = createTranslator(locale);
+  const rememberId = useId();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [internalRememberMe, setInternalRememberMe] = useState(defaultRememberMe);
+  const rememberMeChecked = rememberMe ?? internalRememberMe;
+
+  function handleRememberMeChange(event) {
+    const value = event.target.checked;
+    if (rememberMe === undefined) setInternalRememberMe(value);
+    onRememberMeChange?.(value);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    onSubmit?.({ email, password });
+    onSubmit?.({ email, password, rememberMe: rememberMeChecked });
   }
 
   return (
@@ -47,6 +60,19 @@ export function Login({
           type="password"
           value={password}
         />
+        {showRememberMe && (
+          <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-600 dark:text-gray-300" htmlFor={rememberId}>
+            <input
+              checked={rememberMeChecked}
+              className="h-4 w-4 rounded border-gray-300 accent-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-700"
+              id={rememberId}
+              name="rememberMe"
+              onChange={handleRememberMeChange}
+              type="checkbox"
+            />
+            {t("rememberMe")}
+          </label>
+        )}
         <Button className="w-full" disabled={submitting} type="submit">
           {submitting ? t("submitting") : t("submit")}
         </Button>

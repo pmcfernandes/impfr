@@ -34,11 +34,11 @@ export default function FieldProperties({
   const condRequired = Boolean(field.requiredCondition && field.requiredCondition.enabled)
 
   return (
-    <aside className="props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 bg-white p-3.5 lg:overflow-y-auto">
+    <aside className="props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3.5 lg:overflow-y-auto">
       <ResizeHandle onResizeStart={onResizeStart} onResizeKey={onResizeKey} />
 
       <div className="props-head flex items-center justify-between gap-2">
-        <span className="inline-flex h-6 items-center rounded-md bg-blue-50 px-2 text-[11px] font-bold text-blue-700">
+        <span className="inline-flex h-6 items-center rounded-md bg-blue-50 dark:bg-blue-950 px-2 text-[11px] font-bold text-blue-700 dark:text-blue-300">
           {t(`fields.${field.type}`)}
         </span>
         <div className="props-head-actions flex gap-1">
@@ -74,11 +74,11 @@ export default function FieldProperties({
 
       <section className={sectionClass}>
         <SectionHeader title={t('props.visibility')} badge={<Badge color={field.visible !== false ? 'emerald' : 'red'}>{field.visible !== false ? t('props.visible') : t('props.hidden')}</Badge>} />
-        <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+        <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
           <Checkbox className="mt-0.5" checked={field.visible !== false} onChange={(e) => patch({ visible: e.target.checked })} />
           <span>{t('field.fieldVisible')}</span>
         </label>
-        <p className="text-xs text-gray-500">{t('field.visibilityHint')}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">{t('field.visibilityHint')}</p>
       </section>
 
       <ConditionEditor
@@ -91,11 +91,11 @@ export default function FieldProperties({
       {data && (
         <section className={sectionClass}>
           <h3 className={sectionTitle}>{t('field.readOnlySection')}</h3>
-          <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+          <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
             <Checkbox className="mt-0.5" checked={field.readOnly === true} onChange={(e) => patch({ readOnly: e.target.checked })} />
             <span>{t('field.readOnlyLabel')}</span>
           </label>
-          <p className="text-xs text-gray-500">{t('field.readOnlyHint')}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{t('field.readOnlyHint')}</p>
         </section>
       )}
 
@@ -106,14 +106,14 @@ export default function FieldProperties({
               title={t('field.requiredSection')}
               badge={<Badge color={condRequired || field.required ? 'red' : 'gray'}>{condRequired ? t('field.requiredBadgeCond') : field.required ? t('field.requiredBadgeReq') : t('field.requiredBadgeOpt')}</Badge>}
             />
-            <label className={cx('flex items-start gap-2 text-xs text-gray-700', condRequired ? 'opacity-60' : 'cursor-pointer')}>
+            <label className={cx('flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300', condRequired ? 'opacity-60' : 'cursor-pointer')}>
               <Checkbox className="mt-0.5" checked={field.required === true} disabled={condRequired} onChange={(e) => patch({ required: e.target.checked })} />
               <span>
                 {t('field.requiredLabel')}
-                {condRequired && <span className="block text-gray-500">{t('field.requiredCondNote')}</span>}
+                {condRequired && <span className="block text-gray-500 dark:text-gray-400">{t('field.requiredCondNote')}</span>}
               </span>
             </label>
-            <p className="text-xs text-gray-500">{t('field.requiredHint')}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t('field.requiredHint')}</p>
           </section>
           <ConditionEditor
             title={t('condition.requiredTitle')}
@@ -131,7 +131,7 @@ export default function FieldProperties({
 
       {!data && !isHtml && !isSteps && (
         <section className={sectionClass}>
-          <p className="text-xs text-gray-500">{t('field.sectionOnly')}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{t('field.sectionOnly')}</p>
         </section>
       )}
     </aside>

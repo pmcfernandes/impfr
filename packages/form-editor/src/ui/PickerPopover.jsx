@@ -41,7 +41,7 @@ export function PickerPopover({ triggerRef, pos, onClose, children }) {
   return createPortal(
     <div
       ref={popRef}
-      className="fe-picker fixed z-50 rounded-xl border border-gray-200 bg-white p-3 shadow-xl"
+      className="fe-picker fixed z-50 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 text-gray-950 dark:text-gray-50 p-3 shadow-xl"
       style={{ top: pos.top, left: pos.left }}
     >
       {children}

@@ -37,8 +37,8 @@ export default function FormAvailabilitySection({ form, error, onChange }) {
           />
         </Row>
       </div>
-      {error && <p className="text-xs font-medium text-red-600">{error}</p>}
-      <p className="text-xs text-gray-500">
+      {error && <p className="text-xs font-medium text-red-600 dark:text-red-400">{error}</p>}
+      <p className="text-xs text-gray-500 dark:text-gray-400">
         Fora deste intervalo o formulário não aceita registos. Deixe vazio para manter sempre disponível.
         {availability.hasRange ? ` Atual: ${rangeLabel(form.available_from, form.available_to)}.` : ''}
       </p>

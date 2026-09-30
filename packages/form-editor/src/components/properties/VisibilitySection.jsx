@@ -12,7 +12,7 @@ export default function VisibilitySection({ field, patch }) {
           </Badge>
         }
       />
-      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
         <Checkbox
           className="mt-0.5"
           checked={field.visible !== false}
@@ -20,7 +20,7 @@ export default function VisibilitySection({ field, patch }) {
         />
         <span>Campo visível</span>
       </label>
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-500 dark:text-gray-400">
         Campos ocultos não aparecem no formulário nem são submetidos.
       </p>
     </section>

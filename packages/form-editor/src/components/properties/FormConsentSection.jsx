@@ -12,7 +12,7 @@ export default function FormConsentSection({ form, errors, onChange }) {
           </Badge>
         }
       />
-      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
         <Checkbox
           id="form-consent"
           className="mt-0.5"

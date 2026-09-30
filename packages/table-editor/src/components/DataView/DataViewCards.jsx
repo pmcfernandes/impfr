@@ -62,7 +62,7 @@ export function DataViewCards({ config, rows, locale, onEdit, onDelete, t }) {
             <dl className="mt-3 space-y-1.5">
               {otherCols.slice(0, 5).map((col) => (
                 <div key={col.key} className="flex items-center justify-between gap-3 text-sm">
-                  <dt className="shrink-0 text-xs text-gray-500">{col.label}</dt>
+                  <dt className="shrink-0 text-xs text-gray-500 dark:text-gray-400">{col.label}</dt>
                   <dd className="truncate text-right text-gray-800 dark:text-gray-200">
                     <CardValue row={row} column={col} locale={locale} />
                   </dd>

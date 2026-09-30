@@ -122,11 +122,11 @@ function FormRunnerInner({
 
   if (done) {
     return (
-      <div className="runner flex flex-col gap-5">
-        <div className="success-box flex flex-col items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 py-9 text-center">
+      <div className="form-viewer runner flex flex-col gap-5">
+        <div className="success-box flex flex-col items-center gap-2 rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-6 py-9 text-center">
           <span className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white" aria-hidden="true">OK</span>
-          <h3 className="text-base font-semibold text-emerald-900">{successTitle || t('form.successTitle')}</h3>
-          <p className="text-sm text-emerald-800">{successText}</p>
+          <h3 className="text-base font-semibold text-emerald-900 dark:text-emerald-300">{successTitle || t('form.successTitle')}</h3>
+          <p className="text-sm text-emerald-800 dark:text-emerald-300">{successText}</p>
           <div className="success-actions mt-2 flex flex-wrap items-center justify-center gap-2">{successActions}</div>
         </div>
       </div>
@@ -209,7 +209,7 @@ function FormRunnerInner({
     <FileHandlersContext.Provider value={fileHandlers}>
       <form
         id={domId}
-        className="runner flex flex-col gap-5"
+        className="form-viewer runner flex flex-col gap-5"
         onSubmit={handleSubmit}
         noValidate
         onKeyDown={(e) => {
@@ -220,17 +220,17 @@ function FormRunnerInner({
       >
         {general && <Callout>{general}</Callout>}
         {showNotice && (
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-3.5 py-2.5 text-sm font-medium text-emerald-800">{successText}</div>
+          <div className="rounded-lg border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-3.5 py-2.5 text-sm font-medium text-emerald-800 dark:text-emerald-300">{successText}</div>
         )}
         <div className="runner-fields grid grid-cols-12 items-start gap-4">
           {visibleTop.length === 0 && (
-            <p className="col-span-full text-sm text-gray-500">{t('form.emptyFields')}</p>
+            <p className="col-span-full text-sm text-gray-500 dark:text-gray-400">{t('form.emptyFields')}</p>
           )}
           {topLevel.map(renderField)}
         </div>
         {needsConsent && isLastStep && (
-          <div data-consent-block className={`rounded-lg border p-3.5 ${consentError ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-gray-50'}`}>
-            <label className={`flex cursor-pointer items-start gap-2 text-sm ${consentError ? 'text-red-800' : 'text-gray-700'}`} htmlFor={consentId}>
+          <div data-consent-block className={`rounded-lg border p-3.5 ${consentError ? 'border-red-300 dark:border-red-900 bg-red-50 dark:bg-red-950/50' : 'border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900'}`}>
+            <label className={`flex cursor-pointer items-start gap-2 text-sm ${consentError ? 'text-red-800 dark:text-red-300' : 'text-gray-700 dark:text-gray-300'}`} htmlFor={consentId}>
               <Checkbox
                 id={consentId}
                 className="mt-0.5"
@@ -243,20 +243,20 @@ function FormRunnerInner({
               <span className="whitespace-pre-line">{form.consent_text}</span>
             </label>
             {form.privacy_url && (
-              <a href={form.privacy_url} target="_blank" rel="noopener noreferrer" className="ml-6 mt-1 inline-block text-sm font-medium text-blue-600 underline">
+              <a href={form.privacy_url} target="_blank" rel="noopener noreferrer" className="ml-6 mt-1 inline-block text-sm font-medium text-blue-600 dark:text-blue-400 underline">
                 {t('form.privacyPolicy')}
               </a>
             )}
             {consentError && (
-              <p className="ml-6 mt-1 text-xs font-medium text-red-600">{t('form.consentError')}</p>
+              <p className="ml-6 mt-1 text-xs font-medium text-red-600 dark:text-red-400">{t('form.consentError')}</p>
             )}
             {!consentChecked && (
-              <p className="ml-6 mt-1 text-xs text-gray-500">{t('form.consentHint')}</p>
+              <p className="ml-6 mt-1 text-xs text-gray-500 dark:text-gray-400">{t('form.consentHint')}</p>
             )}
           </div>
         )}
         {!hideFooter && (
-          <div className="runner-actions flex items-center justify-between gap-2 border-t border-gray-100 pt-4">
+          <div className="runner-actions flex items-center justify-between gap-2 border-t border-gray-100 dark:border-gray-800 pt-4">
             <div className="flex items-center gap-2">
               {isWizard && (
                 <Button variant="secondary" disabled={currentStep === 0} onClick={(e) => { e.preventDefault(); goToStep(currentStep - 1) }}>

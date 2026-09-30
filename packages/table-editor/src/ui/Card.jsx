@@ -22,7 +22,7 @@ export function CardHeader({ title, description, actions }) {
         {title && (
           <h3 className="text-base font-semibold text-gray-900 dark:text-gray-50">{title}</h3>
         )}
-        {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+        {description && <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{description}</p>}
       </div>
       {actions && <div className="flex items-center gap-2">{actions}</div>}
     </div>

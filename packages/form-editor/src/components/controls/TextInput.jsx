@@ -10,7 +10,7 @@ export default function TextInput({ field, value, onChange, error, disabled, rea
       placeholder={field.placeholder || ''}
       disabled={disabled}
       readOnly={readOnly}
-      className={readOnly ? 'bg-gray-50! cursor-default' : ''}
+      className={readOnly ? 'bg-gray-50! dark:bg-gray-900! cursor-default' : ''}
       error={Boolean(error)}
       min={field.type === 'number' && field.min !== '' && field.min !== undefined ? field.min : undefined}
       max={field.type === 'number' && field.max !== '' && field.max !== undefined ? field.max : undefined}

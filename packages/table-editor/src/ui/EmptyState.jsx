@@ -7,7 +7,7 @@ export function EmptyState({ title, hint, action }) {
         <Inbox className="h-5 w-5" />
       </span>
       <p className="font-medium text-gray-900 dark:text-gray-100">{title}</p>
-      {hint && <p className="max-w-sm text-sm text-gray-500">{hint}</p>}
+      {hint && <p className="max-w-sm text-sm text-gray-500 dark:text-gray-400">{hint}</p>}
       {action && <div className="mt-2">{action}</div>}
     </div>
   );

@@ -27,9 +27,9 @@ export default function FormProperties({ form, fields, errors, onChangeForm, onR
   const availability = formAvailability(form)
 
   return (
-    <aside className="props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 bg-white p-3.5 lg:overflow-y-auto">
+    <aside className="props relative flex min-h-0 flex-col gap-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3.5 lg:overflow-y-auto">
       <ResizeHandle onResizeStart={onResizeStart} onResizeKey={onResizeKey} />
-      <h2 className="text-xs font-semibold uppercase tracking-wide text-gray-500">{t('props.form')}</h2>
+      <h2 className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{t('props.form')}</h2>
 
       <section className="props-section flex flex-col gap-2.5">
         <Row label={t('props.name')} htmlFor="form-name" error={errors.general.name} hint={form.slug ? t('props.slug', { slug: form.slug }) : undefined}>
@@ -42,11 +42,11 @@ export default function FormProperties({ form, fields, errors, onChangeForm, onR
 
       <section className={sectionClass}>
         <SectionHeader title={t('props.visibility')} badge={<Badge color={form.visible !== false ? 'emerald' : 'red'}>{form.visible !== false ? t('props.visible') : t('props.hidden')}</Badge>} />
-        <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+        <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
           <Checkbox id="form-visible" className="mt-0.5" checked={form.visible !== false} onChange={(e) => onChangeForm({ visible: e.target.checked })} />
           <span>{t('props.formVisible')}</span>
         </label>
-        <p className="text-xs text-gray-500">{t('props.formVisibleHint')}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">{t('props.formVisibleHint')}</p>
       </section>
 
       <section className={sectionClass}>
@@ -56,14 +56,14 @@ export default function FormProperties({ form, fields, errors, onChangeForm, onR
         />
         <div className="flex flex-col gap-2.5">
           <Row label={t('props.availableFrom')} htmlFor="form-from">
-            <input id="form-from" type="datetime-local" className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30" value={(form.available_from || '').replace(' ', 'T').slice(0, 16)} onChange={(e) => onChangeForm({ available_from: e.target.value ? e.target.value.replace('T', ' ') : '' })} />
+            <input id="form-from" type="datetime-local" className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-3 py-2 text-sm text-gray-900 dark:text-gray-50 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30" value={(form.available_from || '').replace(' ', 'T').slice(0, 16)} onChange={(e) => onChangeForm({ available_from: e.target.value ? e.target.value.replace('T', ' ') : '' })} />
           </Row>
           <Row label={t('props.availableTo')} htmlFor="form-to">
-            <input id="form-to" type="datetime-local" className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30" value={(form.available_to || '').replace(' ', 'T').slice(0, 16)} onChange={(e) => onChangeForm({ available_to: e.target.value ? e.target.value.replace('T', ' ') : '' })} />
+            <input id="form-to" type="datetime-local" className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-3 py-2 text-sm text-gray-900 dark:text-gray-50 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30" value={(form.available_to || '').replace(' ', 'T').slice(0, 16)} onChange={(e) => onChangeForm({ available_to: e.target.value ? e.target.value.replace('T', ' ') : '' })} />
           </Row>
         </div>
-        {errors.general.available_to && <p className="text-xs font-medium text-red-600">{errors.general.available_to}</p>}
-        <p className="text-xs text-gray-500">
+        {errors.general.available_to && <p className="text-xs font-medium text-red-600 dark:text-red-400">{errors.general.available_to}</p>}
+        <p className="text-xs text-gray-500 dark:text-gray-400">
           {t('props.availabilityHint')}
           {availability.hasRange ? t('props.availabilityCurrent', { range: rangeLabel(form.available_from, form.available_to) }) : ''}
         </p>
@@ -71,7 +71,7 @@ export default function FormProperties({ form, fields, errors, onChangeForm, onR
 
       <section className={sectionClass}>
         <SectionHeader title={t('props.consent')} badge={<Badge color={form.consent_required ? 'emerald' : 'gray'}>{form.consent_required ? t('props.consentRequiredBadge') : t('props.consentOff')}</Badge>} />
-        <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+        <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
           <Checkbox id="form-consent" className="mt-0.5" checked={form.consent_required === true} onChange={(e) => onChangeForm({ consent_required: e.target.checked })} />
           <span>{t('props.consentRequiredLabel')}</span>
         </label>
@@ -103,7 +103,7 @@ export default function FormProperties({ form, fields, errors, onChangeForm, onR
             ))}
           </Select>
         </Row>
-        {!fields.some((f) => f.type === 'email') && <p className="text-xs text-gray-500">{t('props.notifyNoEmail')}</p>}
+        {!fields.some((f) => f.type === 'email') && <p className="text-xs text-gray-500 dark:text-gray-400">{t('props.notifyNoEmail')}</p>}
       </section>
     </aside>
   )

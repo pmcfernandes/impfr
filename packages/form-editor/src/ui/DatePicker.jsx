@@ -38,13 +38,13 @@ export function DatePicker({ value = '', onChange, id, placeholder = 'dd/mm/aaaa
           'date-picker',
           triggerClass,
           error && 'border-red-400 focus:border-red-500 focus:ring-red-500/30',
-          !selected && !value && 'text-gray-400',
+          !selected && !value && 'text-gray-400 dark:text-gray-500',
           className
         )}
         onClick={toggle}
       >
         <span className="truncate">{selected ? formatDayBR(selected) : placeholder}</span>
-        <CalendarIcon className="h-4 w-4 flex-none text-gray-400" />
+        <CalendarIcon className="h-4 w-4 flex-none text-gray-400 dark:text-gray-500" />
       </button>
       {open && (
         <PickerPopover triggerRef={triggerRef} pos={pos} onClose={() => setOpen(false)}>
@@ -55,10 +55,10 @@ export function DatePicker({ value = '', onChange, id, placeholder = 'dd/mm/aaaa
               setOpen(false)
             }}
           />
-          <div className="mt-2 flex items-center justify-between gap-2 border-t border-gray-100 pt-2">
+          <div className="mt-2 flex items-center justify-between gap-2 border-t border-gray-100 dark:border-gray-800 pt-2">
             <button
               type="button"
-              className="cursor-pointer rounded-md px-2 py-1 text-xs font-semibold text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
+              className="cursor-pointer rounded-md px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 transition hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-50"
               onClick={() => {
                 emit('')
                 setOpen(false)

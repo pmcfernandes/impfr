@@ -53,14 +53,14 @@ export function Select({
           <RadixSelect.Value placeholder={clearLabel} />
         </span>
         <RadixSelect.Icon>
-          <ChevronDownIcon className="h-4 w-4 flex-none text-gray-400" />
+          <ChevronDownIcon className="h-4 w-4 flex-none text-gray-400 dark:text-gray-500" />
         </RadixSelect.Icon>
       </RadixSelect.Trigger>
       <RadixSelect.Portal>
         <RadixSelect.Content
           position="popper"
           sideOffset={4}
-          className="z-50 max-h-72 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg"
+          className="z-50 max-h-72 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-lg"
           style={{ minWidth: 'var(--radix-select-trigger-width)' }}
         >
           <RadixSelect.Viewport className="p-1">
@@ -68,10 +68,10 @@ export function Select({
               <RadixSelect.Item
                 key={item.value}
                 value={item.value}
-                className="flex cursor-pointer select-none items-center rounded-md px-2.5 py-1.5 text-sm text-gray-700 outline-none data-[highlighted]:bg-blue-50 data-[highlighted]:text-blue-700 data-[state=checked]:font-semibold"
+                className="flex cursor-pointer select-none items-center rounded-md px-2.5 py-1.5 text-sm text-gray-700 dark:text-gray-300 outline-none data-[highlighted]:bg-blue-50 dark:data-[highlighted]:bg-blue-950 data-[highlighted]:text-blue-700 dark:data-[highlighted]:text-blue-300 data-[state=checked]:font-semibold"
               >
                 <RadixSelect.ItemText>{item.label}</RadixSelect.ItemText>
-                <RadixSelect.ItemIndicator className="ml-auto pl-2 text-blue-600">✓</RadixSelect.ItemIndicator>
+                <RadixSelect.ItemIndicator className="ml-auto pl-2 text-blue-600 dark:text-blue-400">✓</RadixSelect.ItemIndicator>
               </RadixSelect.Item>
             ))}
           </RadixSelect.Viewport>

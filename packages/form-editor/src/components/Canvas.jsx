@@ -77,7 +77,7 @@ export default function Canvas({ fields, selectedId, onSelect, onInsert, onMove,
         data-field-card
         className={cx(
           'field-card group flex cursor-grab touch-none select-none items-center gap-2.5 rounded-lg border px-3 py-2.5 shadow-sm transition',
-          selected ? 'border-blue-500 bg-blue-50/70 ring-1 ring-blue-500' : 'border-gray-200 bg-white hover:border-gray-300',
+          selected ? 'border-blue-500 bg-blue-50/70 dark:bg-blue-950/70 ring-1 ring-blue-500' : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 hover:border-gray-300 dark:hover:border-gray-700',
           dragId === field.id && 'opacity-40',
           field.visible === false && 'opacity-60',
           targeted && 'ring-2 ring-blue-500 ring-offset-1'
@@ -92,16 +92,16 @@ export default function Canvas({ fields, selectedId, onSelect, onInsert, onMove,
         }}
         onDragEnd={handleDragEnd}
       >
-        <span className="drag-handle hidden flex-none select-none text-sm leading-none text-gray-300 sm:block" aria-hidden="true">:::</span>
-        <span className="type-badge flex h-6 min-w-[30px] flex-none items-center justify-center rounded-md bg-blue-50 px-1.5 text-[11px] font-bold text-blue-700">
+        <span className="drag-handle hidden flex-none select-none text-sm leading-none text-gray-300 dark:text-gray-600 sm:block" aria-hidden="true">:::</span>
+        <span className="type-badge flex h-6 min-w-[30px] flex-none items-center justify-center rounded-md bg-blue-50 dark:bg-blue-950 px-1.5 text-[11px] font-bold text-blue-700 dark:text-blue-300">
           {t(`fields.badge.${field.type}`)}
         </span>
         <span className="flex min-w-0 flex-1 flex-col">
-          <span className="field-card-label truncate text-sm font-semibold text-gray-900">
+          <span className="field-card-label truncate text-sm font-semibold text-gray-900 dark:text-gray-50">
             {field.label || t('fields.noLabel')}
-            {isDataType(field.type) && field.required && <span className="text-red-500">*</span>}
+            {isDataType(field.type) && field.required && <span className="text-red-500 dark:text-red-400">*</span>}
           </span>
-          <span className="field-card-sub truncate text-xs text-gray-500">
+          <span className="field-card-sub truncate text-xs text-gray-500 dark:text-gray-400">
             {t(`fields.${field.type}`)}
             {isDataType(field.type) && field.name ? ` · ${field.name}` : ''}
             {spanOf(field) < 12 ? ` · ${spanOf(field)}/12` : ''}
@@ -111,8 +111,8 @@ export default function Canvas({ fields, selectedId, onSelect, onInsert, onMove,
           </span>
         </span>
         <span className={cx('field-card-actions flex flex-none gap-0.5 transition-opacity', selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100')}>
-          <button type="button" className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-gray-100 hover:text-gray-900" title={t('common.duplicate')} onClick={(e) => { e.stopPropagation(); onDuplicate(field.id) }}>⧉</button>
-          <button type="button" className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600" title={t('common.delete')} onClick={(e) => { e.stopPropagation(); onDelete(field.id) }}>✕</button>
+          <button type="button" className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100" title={t('common.duplicate')} onClick={(e) => { e.stopPropagation(); onDuplicate(field.id) }}>⧉</button>
+          <button type="button" className="flex h-6 w-6 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400" title={t('common.delete')} onClick={(e) => { e.stopPropagation(); onDelete(field.id) }}>✕</button>
         </span>
       </div>
     )
@@ -129,13 +129,13 @@ export default function Canvas({ fields, selectedId, onSelect, onInsert, onMove,
               <div
                 className={cx(
                   'nested-zone col-span-full grid min-h-12 h-max grid-cols-12 content-start gap-2 rounded-lg border-l-2 border-dashed py-2 pl-3',
-                  childrenOf(fields, field.id).length > 0 ? 'border-gray-300 bg-gray-50/70' : 'border-blue-300 bg-blue-50/40',
+                  childrenOf(fields, field.id).length > 0 ? 'border-gray-300 dark:border-gray-700 bg-gray-50/70 dark:bg-gray-900/70' : 'border-blue-300 dark:border-blue-800 bg-blue-50/40 dark:bg-blue-950/40',
                   isZoneEnd(field.id, childrenOf(fields, field.id).length) && 'ring-2 ring-blue-400 ring-inset'
                 )}
                 {...zoneHandlers(field.id, (e) => e.currentTarget)}
               >
                 {childrenOf(fields, field.id).length === 0 && (
-                  <p className="col-span-full pl-1 text-xs text-gray-400">
+                  <p className="col-span-full pl-1 text-xs text-gray-400 dark:text-gray-500">
                     {field.type === 'steps'
                       ? t('canvas.dropSection', { label: field.label || t('fields.steps') })
                       : t('canvas.dropContainer', { label: field.label || t('fields.heading') })}
@@ -160,15 +160,15 @@ export default function Canvas({ fields, selectedId, onSelect, onInsert, onMove,
       <div
         className={cx(
           'canvas-drop grid min-h-[240px] flex-1 grid-cols-12 content-start gap-2 overflow-y-auto rounded-lg border p-3.5 transition-colors',
-          drop && drop.parentId === null ? 'is-over border-blue-400 bg-blue-50/50' : 'border-gray-200 bg-white'
+          drop && drop.parentId === null ? 'is-over border-blue-400 bg-blue-50/50 dark:bg-blue-950/50' : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950'
         )}
         ref={listRef}
         {...zoneHandlers(null, (e) => e.currentTarget)}
       >
         {fields.length === 0 && !drop && (
-          <div className="canvas-empty col-span-full flex flex-col items-center gap-1.5 rounded-xl border-2 border-dashed border-gray-300 px-6 py-14 text-center">
-            <strong className="text-sm font-semibold text-gray-900">{t('canvas.empty')}</strong>
-            <span className="text-sm text-gray-500">{t('canvas.emptyHint')}</span>
+          <div className="canvas-empty col-span-full flex flex-col items-center gap-1.5 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-700 px-6 py-14 text-center">
+            <strong className="text-sm font-semibold text-gray-900 dark:text-gray-50">{t('canvas.empty')}</strong>
+            <span className="text-sm text-gray-500 dark:text-gray-400">{t('canvas.emptyHint')}</span>
           </div>
         )}
         {renderZone(null)}

@@ -44,24 +44,24 @@ export default function ConditionEditor({
   const removeRule = (index) => patch({ rules: rules.filter((_, i) => i !== index) })
 
   return (
-    <section className="props-section flex flex-col gap-2.5 border-t border-gray-100 pt-4">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500">{resolvedTitle}</h3>
-      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700">
+    <section className="props-section flex flex-col gap-2.5 border-t border-gray-100 dark:border-gray-800 pt-4">
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{resolvedTitle}</h3>
+      <label className="flex cursor-pointer items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
         <Checkbox className="mt-0.5" checked={base.enabled === true} onChange={(e) => patch({ enabled: e.target.checked })} />
         <span>{resolvedToggle}</span>
       </label>
       {base.enabled && (
         <>
           <div className="flex flex-wrap items-center gap-2">
-            <label className="text-xs font-semibold text-gray-700" htmlFor="cond-logic">{t('condition.showIf')}</label>
+            <label className="text-xs font-semibold text-gray-700 dark:text-gray-300" htmlFor="cond-logic">{t('condition.showIf')}</label>
             <Select id="cond-logic" value={base.logic === 'all' ? 'all' : 'any'} onChange={(e) => patch({ logic: e.target.value })} className="w-auto">
               <option value="any">{t('condition.any')}</option>
               <option value="all">{t('condition.all')}</option>
             </Select>
-            <span className="text-xs text-gray-500">{t('condition.tail')}</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">{t('condition.tail')}</span>
           </div>
           {candidates.length === 0 ? (
-            <p className="text-xs text-gray-500">{t('condition.emptyHint')}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t('condition.emptyHint')}</p>
           ) : (
             <div className="flex flex-col gap-2">
               {rules.map((rule, i) => {
@@ -69,7 +69,7 @@ export default function ConditionEditor({
                 const opMeta = OPERATORS.find((o) => o.op === rule.op)
                 const needsValue = Boolean(opMeta && opMeta.value && target)
                 return (
-                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-1.5 rounded-lg border border-gray-200 bg-gray-50/70 p-2" key={i}>
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-1.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/70 p-2" key={i}>
                     <Select value={rule.field} onChange={(e) => updateRule(i, { field: e.target.value })} className="col-span-full min-w-0">
                       {candidates.map((f) => (<option key={f.id} value={f.id}>{f.label}</option>))}
                     </Select>
@@ -79,11 +79,11 @@ export default function ConditionEditor({
                       </Select>
                       <ValueInput rule={rule} target={target} onChange={(part) => updateRule(i, part)} />
                     </div>
-                    <button type="button" className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 transition hover:bg-red-50 hover:text-red-600" title={t('condition.remove')} onClick={() => removeRule(i)}>✕</button>
+                    <button type="button" className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-gray-400 dark:text-gray-500 transition hover:bg-red-50 dark:hover:bg-red-950/50 hover:text-red-600 dark:hover:text-red-400" title={t('condition.remove')} onClick={() => removeRule(i)}>✕</button>
                   </div>
                 )
               })}
-              <button type="button" className="w-fit cursor-pointer rounded-lg border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50" onClick={addRule}>
+              <button type="button" className="w-fit cursor-pointer rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-2.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 shadow-sm transition hover:bg-gray-50 dark:hover:bg-gray-900" onClick={addRule}>
                 {t('condition.add')}
               </button>
             </div>
