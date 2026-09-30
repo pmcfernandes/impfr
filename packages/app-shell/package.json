@@ -1,8 +1,8 @@
 {
-  "name": "@app-shell/react",
+  "name": "@pmcfernandes/app-shell",
   "version": "1.0.0",
   "type": "module",
-  "description": "Componente React reutilizável para estruturar aplicações com cabeçalho, navegação lateral e conteúdo.",
+  "description": "Reusable React component for structuring applications with a header, sidebar navigation, and content.",
   "keywords": [
     "react",
     "app-shell",

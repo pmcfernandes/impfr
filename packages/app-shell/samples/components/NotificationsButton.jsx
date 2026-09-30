@@ -1,6 +1,6 @@
 import { Bell } from "lucide-react";
 import { useState } from "react";
-import { Drawer } from "@app-shell/react";
+import { Drawer } from "@pmcfernandes/app-shell";
 
 const notifications = [
   { id: 1, title: "Relatório mensal disponível", description: "O relatório de setembro está pronto para revisão." },

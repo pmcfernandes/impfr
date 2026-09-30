@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Badge, Button, ConfirmDialog, Drawer, PanelContainer, SubHeader, Tabs } from "@app-shell/react";
+import { Badge, Button, ConfirmDialog, Drawer, PanelContainer, SubHeader, Tabs } from "@pmcfernandes/app-shell";
 
 const tabs = [
   { label: "Todos", value: "all" },

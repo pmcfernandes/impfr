@@ -1,4 +1,4 @@
-import { Accordion, AlertBox, Button, PanelContainer, SubHeader, useStore } from "@app-shell/react";
+import { Accordion, AlertBox, Button, PanelContainer, SubHeader, useStore } from "@pmcfernandes/app-shell";
 
 const helpItems = [
   { id: "storage", title: "Onde são guardadas as preferências?", content: "As preferências deste exemplo são guardadas em localStorage neste navegador." },

@@ -1,0 +1,26 @@
+{
+  "name": "create-react-framework",
+  "version": "1.0.0",
+  "description": "Scaffold React Framework projects with Vite.",
+  "type": "module",
+  "bin": {
+    "create-react-framework": "./bin/create-react-framework.js"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "react",
+    "vite",
+    "scaffold",
+    "boilerplate"
+  ],
+  "license": "MIT"
+}

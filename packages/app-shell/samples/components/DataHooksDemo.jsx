@@ -10,7 +10,7 @@ import {
   useGetOne,
   useInfiniteGetList,
   useUpdate,
-} from "@app-shell/react";
+} from "@pmcfernandes/app-shell";
 
 const endpoint = "https://jsonplaceholder.typicode.com/todos";
 

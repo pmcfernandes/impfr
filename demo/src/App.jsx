@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AppShell, LanguageProvider, ThemeProvider, ThemeSwitch, useLanguage } from "@app-shell/react";
-import { AuthProvider, Login, useAuth } from "@auth/react";
+import { AppShell, LanguageProvider, ThemeProvider, ThemeSwitch, useLanguage } from "@pmcfernandes/app-shell";
+import { AuthProvider, Login, useAuth } from "@pmcfernandes/auth";
 import Access from "./pages/Access.jsx";
 import ApiData from "./pages/ApiData.jsx";
 import Authentication from "./pages/Authentication.jsx";

@@ -1,4 +1,4 @@
-import { AlertBox, BarChart, Button, ChartContainer, DonutChart, Kpi, LineChart, PanelContainer, SubHeader, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRoot, TableRow } from "@app-shell/react";
+import { AlertBox, BarChart, Button, ChartContainer, DonutChart, Kpi, LineChart, PanelContainer, SubHeader, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRoot, TableRow } from "@pmcfernandes/app-shell";
 
 export function DashboardOverview({ projects, onCreateProject, onNavigate }) {
   const activeProjects = projects.filter((project) => project.status !== "Concluído");

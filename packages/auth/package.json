@@ -1,8 +1,8 @@
 {
-  "name": "@auth/react",
+  "name": "@pmcfernandes/auth",
   "version": "1.0.0",
   "type": "module",
-  "description": "Componente React reutilizável para autenticação por email e palavra-passe.",
+  "description": "Reusable React component for email and password authentication.",
   "keywords": [
     "react",
     "login",

@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@app-shell/react": "file:../packages/app-shell",
-    "@form-editor/react": "file:../packages/form-editor",
-    "@auth/react": "file:../packages/auth",
-    "@table-editor/react": "file:../packages/table-editor",
+    "@pmcfernandes/app-shell": "file:../packages/app-shell",
+    "@pmcfernandes/form-editor": "file:../packages/form-editor",
+    "@pmcfernandes/auth": "file:../packages/auth",
+    "@pmcfernandes/table-editor": "file:../packages/table-editor",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

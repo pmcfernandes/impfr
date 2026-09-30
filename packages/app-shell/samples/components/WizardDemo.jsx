@@ -1,4 +1,4 @@
-import { Wizard } from "@app-shell/react";
+import { Wizard } from "@pmcfernandes/app-shell";
 
 const steps = [
   {

@@ -1,4 +1,4 @@
-import { Button, PanelContainer, useStore } from "@app-shell/react";
+import { Button, PanelContainer, useStore } from "@pmcfernandes/app-shell";
 
 export function StoreDemo() {
   const [workspaceName, setWorkspaceName, removeWorkspaceName] = useStore("app-shell:workspace-name", "Backoffice");

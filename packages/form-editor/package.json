@@ -1,7 +1,7 @@
 {
-  "name": "@form-editor/react",
+  "name": "@pmcfernandes/form-editor",
   "version": "1.0.0",
-  "description": "Editor e visualizador de formulários JSON para React",
+  "description": "JSON form editor and viewer for React",
   "keywords": [
     "form",
     "editor",

@@ -18,7 +18,7 @@ import {
   TableRow,
   Tabs,
   Wizard,
-} from "@app-shell/react";
+} from "@pmcfernandes/app-shell";
 import { users } from "../data.js";
 import ResultJson from "./ResultJson.jsx";
 
@@ -46,7 +46,7 @@ export default function Components() {
     <section className="space-y-6">
       <SubHeader
         title="Components"
-        description="Interface primitives from @app-shell/react, rendered live."
+        description="Interface primitives from @pmcfernandes/app-shell, rendered live."
         actions={<Button onClick={() => setDialogOpen(true)}>Open dialog</Button>}
       />
 

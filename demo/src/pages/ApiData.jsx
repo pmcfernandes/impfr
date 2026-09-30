@@ -14,7 +14,7 @@ import {
   useInfiniteGetList,
   useStore,
   useUpdate,
-} from "@app-shell/react";
+} from "@pmcfernandes/app-shell";
 import ResultJson from "./ResultJson.jsx";
 
 const inputClass =
@@ -120,7 +120,7 @@ export default function ApiData() {
     <section className="space-y-6">
       <SubHeader
         title="API Data"
-        description="REST hooks from @app-shell/react against an in-browser mock API (/api/*) with latency and localStorage persistence."
+        description="REST hooks from @pmcfernandes/app-shell against an in-browser mock API (/api/*) with latency and localStorage persistence."
       />
 
       {actionError && <AlertBox variant="danger" title="Request failed" description={actionError} />}

@@ -1,4 +1,4 @@
-# @form-editor/react
+# @pmcfernandes/form-editor
 
 JSON form editor and viewer for React. Standalone components that receive a JSON configuration and return the result via callbacks.
 
@@ -7,7 +7,7 @@ JSON form editor and viewer for React. Standalone components that receive a JSON
 ## Installation
 
 ```bash
-npm install @form-editor/react
+npm install @pmcfernandes/form-editor
 ```
 
 The consumer must have `react` and `react-dom` (>=18) installed.
@@ -17,18 +17,18 @@ The consumer must have `react` and `react-dom` (>=18) installed.
 The library uses Tailwind CSS v4. Import the CSS:
 
 ```js
-import '@form-editor/react/styles.css'
+import '@pmcfernandes/form-editor/styles.css'
 ```
 
-Or, if you already use Tailwind in your project, just make sure the `content` option in `tailwind.config` includes `node_modules/@form-editor/react/dist/**/*.{js,cjs}`.
+Or, if you already use Tailwind in your project, just make sure the `content` option in `tailwind.config` includes `node_modules/@pmcfernandes/form-editor/dist/**/*.{js,cjs}`.
 
 ## Usage
 
 ### FormEditor — edit form definitions
 
 ```jsx
-import { FormEditor } from '@form-editor/react'
-import '@form-editor/react/styles.css'
+import { FormEditor } from '@pmcfernandes/form-editor'
+import '@pmcfernandes/form-editor/styles.css'
 
 function MyEditor() {
   const formJson = {
@@ -69,8 +69,8 @@ function MyEditor() {
 ### FormViewer — fill out / submit forms
 
 ```jsx
-import { FormViewer } from '@form-editor/react'
-import '@form-editor/react/styles.css'
+import { FormViewer } from '@pmcfernandes/form-editor'
+import '@pmcfernandes/form-editor/styles.css'
 
 function MyViewer() {
   return (
@@ -173,7 +173,7 @@ import {
   createField, validateValues, toPayload, evalCondition,
   isFieldVisible, isRequired, initialValues,
   FIELD_TYPES, OPERATORS, DATA_TYPES,
-} from '@form-editor/react'
+} from '@pmcfernandes/form-editor'
 ```
 
 ## Build

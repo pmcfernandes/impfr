@@ -1,24 +1,24 @@
-# @app-shell/react
+# @pmcfernandes/app-shell
 
 React library for building back-office applications and dashboards with `AppShell`, UI components, REST hooks, and internationalization. Requires React 18.2 or later.
 
 ## Installation
 
 ```bash
-npm install @app-shell/react
+npm install @pmcfernandes/app-shell
 ```
 
 Import the styles once in the application:
 
 ```jsx
-import "@app-shell/react/styles.css";
+import "@pmcfernandes/app-shell/styles.css";
 ```
 
 ## Quick start
 
 ```jsx
-import { AppShell, LanguageProvider } from "@app-shell/react";
-import "@app-shell/react/styles.css";
+import { AppShell, LanguageProvider } from "@pmcfernandes/app-shell";
+import "@pmcfernandes/app-shell/styles.css";
 
 const navigation = [
   {
@@ -441,7 +441,7 @@ Signature: `useDeleteMany(url, fetchOptions?)`. Executes `DELETE {url}` with `{ 
 ### LanguageProvider
 
 ```jsx
-import { LanguageProvider, useLanguage } from "@app-shell/react";
+import { LanguageProvider, useLanguage } from "@pmcfernandes/app-shell";
 
 function LanguageButton() {
   const { language, setLanguage, t } = useLanguage();
@@ -463,7 +463,7 @@ export function App() {
 ### ThemeProvider
 
 ```jsx
-import { ThemeProvider, ThemeSwitch, useTheme } from "@app-shell/react";
+import { ThemeProvider, ThemeSwitch, useTheme } from "@pmcfernandes/app-shell";
 
 function ThemeLabel() {
   const { theme } = useTheme();

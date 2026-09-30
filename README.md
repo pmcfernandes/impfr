@@ -6,10 +6,11 @@ A collection of reusable React libraries for building management interfaces, aut
 
 | Package | Description | Documentation |
 | --- | --- | --- |
-| `@app-shell/react` | Structure for back-office applications and dashboards, with a sidebar, header, UI components, REST hooks, themes, and internationalization. | [`packages/app-shell/README.md`](packages/app-shell/README.md) |
-| `@form-editor/react` | JSON configuration-driven form editor and viewer. | [`packages/form-editor/README.md`](packages/form-editor/README.md) |
-| `@table-editor/react` | JSON data viewing and editing in tables, lists, or cards. | [`packages/table-editor/README.md`](packages/table-editor/README.md) |
-| `@auth/react` | Components and context for authentication, profiles, groups, and permissions. | [`packages/auth/README.md`](packages/auth/README.md) |
+| `@pmcfernandes/app-shell` | Structure for back-office applications and dashboards, with a sidebar, header, UI components, REST hooks, themes, and internationalization. | [`packages/app-shell/README.md`](packages/app-shell/README.md) |
+| `@pmcfernandes/form-editor` | JSON configuration-driven form editor and viewer. | [`packages/form-editor/README.md`](packages/form-editor/README.md) |
+| `@pmcfernandes/table-editor` | JSON data viewing and editing in tables, lists, or cards. | [`packages/table-editor/README.md`](packages/table-editor/README.md) |
+| `@pmcfernandes/auth` | Components and context for authentication, profiles, groups, and permissions. | [`packages/auth/README.md`](packages/auth/README.md) |
+| `create-react-framework` | CLI for scaffolding Vite React projects with framework boilerplate. | [`packages/create-react-framework/README.md`](packages/create-react-framework/README.md) |
 
 ## Requirements
 
@@ -21,25 +22,25 @@ A collection of reusable React libraries for building management interfaces, aut
 Install only the packages required by your React application:
 
 ```bash
-npm install @app-shell/react @form-editor/react @table-editor/react @auth/react
+npm install @pmcfernandes/app-shell @pmcfernandes/form-editor @pmcfernandes/table-editor @pmcfernandes/auth
 ```
 
 Import each used library's stylesheet once:
 
 ```jsx
-import "@app-shell/react/styles.css";
-import "@form-editor/react/styles.css";
-import "@table-editor/react/styles.css";
-import "@auth/react/styles.css";
+import "@pmcfernandes/app-shell/styles.css";
+import "@pmcfernandes/form-editor/styles.css";
+import "@pmcfernandes/table-editor/styles.css";
+import "@pmcfernandes/auth/styles.css";
 ```
 
 ## Quick Start
 
 ```jsx
-import { AppShell } from "@app-shell/react";
-import { Login } from "@auth/react";
-import { FormViewer } from "@form-editor/react";
-import { DataView } from "@table-editor/react";
+import { AppShell } from "@pmcfernandes/app-shell";
+import { Login } from "@pmcfernandes/auth";
+import { FormViewer } from "@pmcfernandes/form-editor";
+import { DataView } from "@pmcfernandes/table-editor";
 
 export function App() {
   return (
@@ -59,11 +60,11 @@ See the documentation for each package for all props, configuration formats, and
 The [`demo/`](demo/) directory contains a Vite application that showcases all four packages in one back-office flow:
 
 - Dashboard with KPIs, bar/line/donut charts, and panel containers.
-- Project data in table, list, and card views via `@table-editor/react`.
-- Simple and multi-step (wizard) forms with conditional fields, file upload, consent, and API-powered selects via `@form-editor/react`, plus the JSON form editor.
+- Project data in table, list, and card views via `@pmcfernandes/table-editor`.
+- Simple and multi-step (wizard) forms with conditional fields, file upload, consent, and API-powered selects via `@pmcfernandes/form-editor`, plus the JSON form editor.
 - A `/api/*` in-browser mock (latency + `localStorage` persistence) driving every REST hook: `useGetList`, `useGetOne`, `useGetMany`, `useInfiniteGetList`, `useCreate`, `useUpdate`, `useDelete`, `useDeleteMany`, `useStore`, and `fetchJson`.
-- A gallery of `@app-shell/react` primitives: alerts, accordion, tabs, buttons, badges, dialogs, drawers, confirm dialogs, wizards, and tables.
-- Every `@auth/react` screen: sign in with Remember me (persisted session), register, forgot password, change password, edit profile, groups and permissions, and `CanAccess` permission gates.
+- A gallery of `@pmcfernandes/app-shell` primitives: alerts, accordion, tabs, buttons, badges, dialogs, drawers, confirm dialogs, wizards, and tables.
+- Every `@pmcfernandes/auth` screen: sign in with Remember me (persisted session), register, forgot password, change password, edit profile, groups and permissions, and `CanAccess` permission gates.
 
 Run it locally:
 
@@ -90,6 +91,16 @@ Replace `app-shell` with `form-editor`, `table-editor`, or `auth` as needed.
 - `npm run dev` starts the example located in `samples/`.
 - `npm run preview` previews the built example.
 
+## Create a project
+
+Create a dashboard application with the framework packages:
+
+```bash
+npx create-react-framework my-app
+```
+
+Use `--template blank` for a plain Vite React application, or `--no-install` to defer dependency installation. See [`packages/create-react-framework/README.md`](packages/create-react-framework/README.md) for all options.
+
 ## Structure
 
 ```text
@@ -98,8 +109,9 @@ packages/
   form-editor/    JSON form editor and viewer
   table-editor/   Data views for tables, lists, and cards
   auth/           Authentication, profiles, and access control
+  create-react-framework/  Project scaffolding CLI
 ```
 
 ## Licenses
 
-The `@app-shell/react`, `@table-editor/react`, and `@auth/react` packages use the MIT license. See each package's `package.json` for its applicable license.
+The `@pmcfernandes/app-shell`, `@pmcfernandes/table-editor`, and `@pmcfernandes/auth` packages use the MIT license. See each package's `package.json` for its applicable license.

@@ -1,5 +1,5 @@
 import { CircleAlert } from "lucide-react";
-import { AlertBox } from "@app-shell/react";
+import { AlertBox } from "@pmcfernandes/app-shell";
 
 export function AlertBoxDemo() {
   return (

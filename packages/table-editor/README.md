@@ -1,4 +1,4 @@
-# @table-editor/react
+# @pmcfernandes/table-editor
 
 Reusable React component for viewing and editing JSON data as tables, lists, or cards.
 
@@ -7,7 +7,7 @@ Reusable React component for viewing and editing JSON data as tables, lists, or 
 ## Installation
 
 ```bash
-npm install @table-editor/react
+npm install @pmcfernandes/table-editor
 ```
 
 The host application must provide `react` and `react-dom` version 18 or later.
@@ -17,16 +17,16 @@ The host application must provide `react` and `react-dom` version 18 or later.
 The library uses Tailwind CSS v4. Import the generated stylesheet once:
 
 ```js
-import "@table-editor/react/styles.css";
+import "@pmcfernandes/table-editor/styles.css";
 ```
 
-If your application already compiles Tailwind, include `node_modules/@table-editor/react/dist/**/*.{js,cjs}` in its content/source configuration instead.
+If your application already compiles Tailwind, include `node_modules/@pmcfernandes/table-editor/dist/**/*.{js,cjs}` in its content/source configuration instead.
 
 ## Usage
 
 ```jsx
-import { DataView } from "@table-editor/react";
-import "@table-editor/react/styles.css";
+import { DataView } from "@pmcfernandes/table-editor";
+import "@pmcfernandes/table-editor/styles.css";
 
 const config = {
   title: "Products",

@@ -7,7 +7,7 @@ import {
   LineChart,
   PanelContainer,
   SubHeader,
-} from "@app-shell/react";
+} from "@pmcfernandes/app-shell";
 
 const monthlySpend = [
   { name: "Jan", value: 4200 },
@@ -46,7 +46,7 @@ export default function Dashboard({ projects, onNavigate }) {
     <section className="space-y-6">
       <SubHeader
         title="Dashboard"
-        description="Metrics, charts and containers from @app-shell/react, fed by the projects dataset."
+        description="Metrics, charts and containers from @pmcfernandes/app-shell, fed by the projects dataset."
         actions={<Button onClick={() => onNavigate("projects")}>Open projects</Button>}
       />
 

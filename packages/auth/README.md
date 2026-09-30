@@ -1,17 +1,17 @@
-# @auth/react
+# @pmcfernandes/auth
 
 React components for authentication, profiles, group management, and permissions.
 
 ## Installation
 
 ```bash
-npm install @auth/react
+npm install @pmcfernandes/auth
 ```
 
 Import the styles once in your application:
 
 ```jsx
-import "@auth/react/styles.css";
+import "@pmcfernandes/auth/styles.css";
 ```
 
 ## Provider
@@ -21,7 +21,7 @@ import "@auth/react/styles.css";
 Provides authentication state to `useAuth`, `useAuthenticated`, `useCanAccess`, and `CanAccess`.
 
 ```jsx
-import { AuthProvider } from "@auth/react";
+import { AuthProvider } from "@pmcfernandes/auth";
 
 <AuthProvider
   initialUser={{ id: 1, name: "Ana Silva", permissions: ["users.role.edit"] }}
@@ -265,5 +265,5 @@ import {
   useAuth,
   useAuthenticated,
   useCanAccess,
-} from "@auth/react";
+} from "@pmcfernandes/auth";
 ```

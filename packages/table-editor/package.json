@@ -1,8 +1,8 @@
 {
-  "name": "@table-editor/react",
+  "name": "@pmcfernandes/table-editor",
   "version": "1.0.0",
   "type": "module",
-  "description": "Componente React reutilizável para edição e visualização de dados em tabelas, listas e cartões.",
+  "description": "Reusable React component for editing and viewing data in tables, lists, and cards.",
   "keywords": [
     "react",
     "table",

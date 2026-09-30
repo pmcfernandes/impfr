@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Tabs } from "@app-shell/react";
+import { Button, Card, Tabs } from "@pmcfernandes/app-shell";
 import {
   CanAccess,
   ChangePassword,
@@ -9,7 +9,7 @@ import {
   useAuth,
   useAuthenticated,
   useCanAccess,
-} from "@auth/react";
+} from "@pmcfernandes/auth";
 import { permissions } from "../data.js";
 import ResultJson from "./ResultJson.jsx";
 
@@ -47,7 +47,7 @@ export default function Authentication() {
       <Card className="p-5">
         <h1 className="text-xl font-semibold">Authentication</h1>
         <p className="mt-1 text-sm text-gray-500">
-          Every auth screen from `@auth/react`. Submissions are shown below instead of reaching a backend.
+          Every auth screen from `@pmcfernandes/auth`. Submissions are shown below instead of reaching a backend.
         </p>
         <div className="mt-4">
           <Tabs tabs={AUTH_TABS} value={tab} onValueChange={setTab} label="Authentication screens" />

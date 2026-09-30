@@ -1,8 +1,8 @@
 import { createRoot } from "react-dom/client";
-import "@app-shell/react/styles.css";
-import "@form-editor/react/styles.css";
-import "@auth/react/styles.css";
-import "@table-editor/react/styles.css";
+import "@pmcfernandes/app-shell/styles.css";
+import "@pmcfernandes/form-editor/styles.css";
+import "@pmcfernandes/auth/styles.css";
+import "@pmcfernandes/table-editor/styles.css";
 import "./styles.css";
 import App from "./App.jsx";
 import { installMockApi } from "./mockApi.js";

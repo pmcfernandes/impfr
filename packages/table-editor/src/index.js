@@ -1,5 +1,5 @@
 /**
- * API pública do pacote @table-editor/react.
+ * API pública do pacote @pmcfernandes/table-editor.
  * O CSS é incluído no bundle para que o consumidor apenas importe o componente.
  */
 import "./index.css";

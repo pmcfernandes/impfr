@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Badge, PanelContainer, Tabs } from "@app-shell/react";
+import { Badge, PanelContainer, Tabs } from "@pmcfernandes/app-shell";
 
 const tabs = [
   { label: "Atividade", value: "activity" },

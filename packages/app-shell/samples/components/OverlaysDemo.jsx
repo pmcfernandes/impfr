@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, ConfirmDialog, Dialog, Drawer, PanelContainer } from "@app-shell/react";
+import { Button, ConfirmDialog, Dialog, Drawer, PanelContainer } from "@pmcfernandes/app-shell";
 
 export function OverlaysDemo() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);

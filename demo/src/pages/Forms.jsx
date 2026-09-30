@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Card, fetchJson } from "@app-shell/react";
-import { FormEditor, FormViewer } from "@form-editor/react";
+import { Card, fetchJson } from "@pmcfernandes/app-shell";
+import { FormEditor, FormViewer } from "@pmcfernandes/form-editor";
 import { contactForm, intakeForm } from "../data.js";
 import ResultJson from "./ResultJson.jsx";
 

@@ -1,9 +1,9 @@
 import { createRoot } from "react-dom/client";
 import { useState } from "react";
 import { LayoutDashboard } from "lucide-react";
-import { AppShell, LanguageProvider, ThemeProvider, ThemeSwitch, useStore } from "@app-shell/react";
-import { AuthProvider, useAuth, useAuthenticated } from "@auth/react";
-import "@app-shell/react/styles.css";
+import { AppShell, LanguageProvider, ThemeProvider, ThemeSwitch, useStore } from "@pmcfernandes/app-shell";
+import { AuthProvider, useAuth, useAuthenticated } from "@pmcfernandes/auth";
+import "@pmcfernandes/app-shell/styles.css";
 import { DashboardOverview } from "./components/DashboardOverview.jsx";
 import { navigation } from "./components/navigation.jsx";
 import { NotificationsButton } from "./components/NotificationsButton.jsx";
