@@ -11,7 +11,7 @@
   "dependencies": {
     "@app-shell/react": "file:../packages/app-shell",
     "@form-editor/react": "file:../packages/form-editor",
-    "@login/react": "file:../packages/login",
+    "@auth/react": "file:../packages/auth",
     "@table-editor/react": "file:../packages/table-editor",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

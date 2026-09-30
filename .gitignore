@@ -5,3 +5,8 @@
 /**/*lock* 
 
 demo/dist/
+netcore/**/bin/
+netcore/**/obj/
+netcore/**/.vs/
+
+data.sql

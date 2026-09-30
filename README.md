@@ -9,7 +9,7 @@ A collection of reusable React libraries for building management interfaces, aut
 | `@app-shell/react` | Structure for back-office applications and dashboards, with a sidebar, header, UI components, REST hooks, themes, and internationalization. | [`packages/app-shell/README.md`](packages/app-shell/README.md) |
 | `@form-editor/react` | JSON configuration-driven form editor and viewer. | [`packages/form-editor/README.md`](packages/form-editor/README.md) |
 | `@table-editor/react` | JSON data viewing and editing in tables, lists, or cards. | [`packages/table-editor/README.md`](packages/table-editor/README.md) |
-| `@login/react` | Components and context for authentication, profiles, groups, and permissions. | [`packages/login/README.md`](packages/login/README.md) |
+| `@auth/react` | Components and context for authentication, profiles, groups, and permissions. | [`packages/auth/README.md`](packages/auth/README.md) |
 
 ## Requirements
 
@@ -21,7 +21,7 @@ A collection of reusable React libraries for building management interfaces, aut
 Install only the packages required by your React application:
 
 ```bash
-npm install @app-shell/react @form-editor/react @table-editor/react @login/react
+npm install @app-shell/react @form-editor/react @table-editor/react @auth/react
 ```
 
 Import each used library's stylesheet once:
@@ -30,14 +30,14 @@ Import each used library's stylesheet once:
 import "@app-shell/react/styles.css";
 import "@form-editor/react/styles.css";
 import "@table-editor/react/styles.css";
-import "@login/react/styles.css";
+import "@auth/react/styles.css";
 ```
 
 ## Quick Start
 
 ```jsx
 import { AppShell } from "@app-shell/react";
-import { Login } from "@login/react";
+import { Login } from "@auth/react";
 import { FormViewer } from "@form-editor/react";
 import { DataView } from "@table-editor/react";
 
@@ -63,7 +63,7 @@ The [`demo/`](demo/) directory contains a Vite application that showcases all fo
 - Simple and multi-step (wizard) forms with conditional fields, file upload, consent, and API-powered selects via `@form-editor/react`, plus the JSON form editor.
 - A `/api/*` in-browser mock (latency + `localStorage` persistence) driving every REST hook: `useGetList`, `useGetOne`, `useGetMany`, `useInfiniteGetList`, `useCreate`, `useUpdate`, `useDelete`, `useDeleteMany`, `useStore`, and `fetchJson`.
 - A gallery of `@app-shell/react` primitives: alerts, accordion, tabs, buttons, badges, dialogs, drawers, confirm dialogs, wizards, and tables.
-- Every `@login/react` screen: sign in with Remember me (persisted session), register, forgot password, change password, edit profile, groups and permissions, and `CanAccess` permission gates.
+- Every `@auth/react` screen: sign in with Remember me (persisted session), register, forgot password, change password, edit profile, groups and permissions, and `CanAccess` permission gates.
 
 Run it locally:
 
@@ -84,7 +84,7 @@ npm run build
 npm run dev
 ```
 
-Replace `app-shell` with `form-editor`, `table-editor`, or `login` as needed.
+Replace `app-shell` with `form-editor`, `table-editor`, or `auth` as needed.
 
 - `npm run build` creates the distribution in `dist/`.
 - `npm run dev` starts the example located in `samples/`.
@@ -97,9 +97,9 @@ packages/
   app-shell/      Layout, UI, hooks, and providers
   form-editor/    JSON form editor and viewer
   table-editor/   Data views for tables, lists, and cards
-  login/          Authentication, profiles, and access control
+  auth/           Authentication, profiles, and access control
 ```
 
 ## Licenses
 
-The `@app-shell/react`, `@table-editor/react`, and `@login/react` packages use the MIT license. See each package's `package.json` for its applicable license.
+The `@app-shell/react`, `@table-editor/react`, and `@auth/react` packages use the MIT license. See each package's `package.json` for its applicable license.

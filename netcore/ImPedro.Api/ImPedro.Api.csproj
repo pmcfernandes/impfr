@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ImPedro.Entity\ImPedro.Entity.csproj" />
+    <ProjectReference Include="..\ImPedro.Data\ImPedro.Data.csproj" />
+    <ProjectReference Include="..\ImPedro.Ddl\ImPedro.Ddl.csproj" />
+    <ProjectReference Include="..\ImPedro.ConventionApi\ImPedro.ConventionApi.csproj" />
+    <ProjectReference Include="..\ImPedro.Core\ImPedro.Core.csproj" />
+    <ProjectReference Include="..\ImPedro.Security\ImPedro.Security.csproj" />
+    <ProjectReference Include="..\ImPedro.Query\ImPedro.Query.csproj" />
+    <ProjectReference Include="..\ImPedro.Jobs\ImPedro.Jobs.csproj" />
+    <ProjectReference Include="..\ImPedro.Storage\ImPedro.Storage.csproj" />
+    <ProjectReference Include="..\ImPedro.Workflow\ImPedro.Workflow.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

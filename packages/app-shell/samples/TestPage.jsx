@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { useState } from "react";
 import { LayoutDashboard } from "lucide-react";
 import { AppShell, LanguageProvider, ThemeProvider, ThemeSwitch, useStore } from "@app-shell/react";
-import { AuthProvider, useAuth, useAuthenticated } from "@login/react";
+import { AuthProvider, useAuth, useAuthenticated } from "@auth/react";
 import "@app-shell/react/styles.css";
 import { DashboardOverview } from "./components/DashboardOverview.jsx";
 import { navigation } from "./components/navigation.jsx";

@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import "@app-shell/react/styles.css";
 import "@form-editor/react/styles.css";
-import "@login/react/styles.css";
+import "@auth/react/styles.css";
 import "@table-editor/react/styles.css";
 import "./styles.css";
 import App from "./App.jsx";

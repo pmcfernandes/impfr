@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@app-shell/react": "file:..",
-    "@login/react": "file:../../login",
+    "@auth/react": "file:../../auth",
     "@vitejs/plugin-react": "^4.3.4",
     "lucide-react": "^1.48.0",
     "react": "^18.3.1",

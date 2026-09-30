@@ -1,0 +1,16 @@
+<Solution>
+  <Project Path="ImPedro.Api/ImPedro.Api.csproj" />
+  <Project Path="ImPedro.ConventionApi/ImPedro.ConventionApi.csproj" />
+  <Project Path="ImPedro.Core/ImPedro.Core.csproj" />
+  <Project Path="ImPedro.Data/ImPedro.Data.csproj" />
+  <Project Path="ImPedro.Ddl/ImPedro.Ddl.csproj" />
+  <Project Path="ImPedro.Eloquent/ImPedro.Eloquent.csproj" />
+  <Project Path="ImPedro.Entity/ImPedro.Entity.csproj" />
+  <Project Path="ImPedro.Jobs/ImPedro.Jobs.csproj" />
+  <Project Path="ImPedro.Imaging/ImPedro.Imaging.csproj" />
+  <Project Path="ImPedro.Mail/ImPedro.Mail.csproj" />
+  <Project Path="ImPedro.Query/ImPedro.Query.csproj" />
+  <Project Path="ImPedro.Security/ImPedro.Security.csproj" />
+  <Project Path="ImPedro.Storage/ImPedro.Storage.csproj" />
+  <Project Path="ImPedro.Workflow/ImPedro.Workflow.csproj" />
+</Solution>
