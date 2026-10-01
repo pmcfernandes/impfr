@@ -1,10 +1,10 @@
 {
-  "name": "create-react-framework",
+  "name": "create-app",
   "version": "1.0.0",
   "description": "Scaffold React Framework projects with Vite.",
   "type": "module",
   "bin": {
-    "create-react-framework": "./bin/create-react-framework.js"
+    "create-app": "./bin/create-app.js"
   },
   "files": [
     "bin",

@@ -10,7 +10,7 @@ A collection of reusable React libraries for building management interfaces, aut
 | `@pmcfernandes/form-editor` | JSON configuration-driven form editor and viewer. | [`packages/form-editor/README.md`](packages/form-editor/README.md) |
 | `@pmcfernandes/table-editor` | JSON data viewing and editing in tables, lists, or cards. | [`packages/table-editor/README.md`](packages/table-editor/README.md) |
 | `@pmcfernandes/auth` | Components and context for authentication, profiles, groups, and permissions. | [`packages/auth/README.md`](packages/auth/README.md) |
-| `create-react-framework` | CLI for scaffolding Vite React projects with framework boilerplate. | [`packages/create-react-framework/README.md`](packages/create-react-framework/README.md) |
+| `create-app` | CLI for scaffolding Vite React projects with framework boilerplate. | [`packages/create-app/README.md`](packages/create-app/README.md) |
 
 ## Requirements
 
@@ -93,13 +93,13 @@ Replace `app-shell` with `form-editor`, `table-editor`, or `auth` as needed.
 
 ## Create a project
 
-Create a dashboard application with the framework packages:
+Create a dashboard application with an ASP.NET Core Web API and framework-powered React frontend:
 
 ```bash
-npx create-react-framework my-app
+npx create-app my-app
 ```
 
-Use `--template blank` for a plain Vite React application, or `--no-install` to defer dependency installation. See [`packages/create-react-framework/README.md`](packages/create-react-framework/README.md) for all options.
+The generated `my-app/` directory contains `my-app.csproj` and a `frontend/` Vite application. Use `--template blank` for a plain frontend or `--no-install` to defer its dependency installation. See [`packages/create-app/README.md`](packages/create-app/README.md) for all options.
 
 ## Structure
 
@@ -109,7 +109,7 @@ packages/
   form-editor/    JSON form editor and viewer
   table-editor/   Data views for tables, lists, and cards
   auth/           Authentication, profiles, and access control
-  create-react-framework/  Project scaffolding CLI
+  create-app/      Full-stack project scaffolding CLI
 ```
 
 ## Licenses
