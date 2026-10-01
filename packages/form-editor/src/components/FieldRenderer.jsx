@@ -17,6 +17,7 @@ const CONTROL_MAP = {
   text: TextInput,
   number: TextInput,
   email: TextInput,
+  password: TextInput,
   textarea: TextareaInput,
   select: SelectInput,
   date: DateInput,

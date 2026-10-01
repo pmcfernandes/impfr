@@ -6,6 +6,7 @@
  *   data: [...],            // obrigatório — linhas de dados
  *   columns?: [...],        // opcional — inferido a partir de `data`
  *   title?, description?,
+ *   hideHeader?: boolean,   // esconde o título/descrição (vistas via viewModes)
  *   idKey?: string,         // default "id"
  *   viewModes?: ["table","list","cards"],
  *   defaultView?: "table",

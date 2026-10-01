@@ -1,5 +1,5 @@
 export const DATA_TYPES = [
-  'text', 'textarea', 'number', 'email', 'date',
+  'text', 'textarea', 'number', 'email', 'password', 'date',
   'select', 'radio', 'checkbox', 'checkboxgroup', 'file',
 ]
 
@@ -11,6 +11,7 @@ export const FIELD_TYPES = [
   { type: 'textarea', label: 'Texto longo', hint: 'Várias linhas', data: true },
   { type: 'number', label: 'Número', hint: 'Valor numérico', data: true },
   { type: 'email', label: 'Email', hint: 'Endereço de email', data: true },
+  { type: 'password', label: 'Palavra-passe', hint: 'Texto oculto', data: true },
   { type: 'date', label: 'Data', hint: 'Seletor de data', data: true },
   { type: 'select', label: 'Lista', hint: 'Seleção em dropdown', data: true },
   { type: 'radio', label: 'Opções', hint: 'Seleção única', data: true },

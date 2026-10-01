@@ -38,8 +38,10 @@ export function Sidebar({
     .filter((section) => section.items.length > 0);
   const avatarUrl = `https://www.gravatar.com/avatar/${md5((userEmail ?? "").trim().toLowerCase())}?d=identicon&s=64`;
 
-  function handleNavigation(item) {
-    onNavigate?.(item);
+  function handleNavigation(item, event) {
+    if (!onNavigate) return;
+    event?.preventDefault();
+    onNavigate(item);
   }
 
   return (
@@ -118,7 +120,7 @@ export function Sidebar({
                     className={className}
                     href={item.href}
                     key={item.id}
-                    onClick={() => handleNavigation(item)}
+                    onClick={(event) => handleNavigation(item, event)}
                     title={isCollapsed ? item.label : undefined}
                   >
                     {content}

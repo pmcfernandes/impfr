@@ -15,7 +15,7 @@ import LayoutSection from './LayoutSection.jsx'
 import HtmlSection from './HtmlSection.jsx'
 import StepsSection from './StepsSection.jsx'
 
-const PATTERN_TYPES = ['text', 'textarea', 'email', 'number', 'date', 'select', 'radio']
+const PATTERN_TYPES = ['text', 'textarea', 'email', 'password', 'number', 'date', 'select', 'radio']
 const OPTIONS_TYPES = ['select', 'radio', 'checkboxgroup']
 
 export default function FieldProperties({

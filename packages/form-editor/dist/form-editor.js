@@ -16,6 +16,7 @@ var y = Object.defineProperty, b = (e, t) => {
 	"textarea",
 	"number",
 	"email",
+	"password",
 	"date",
 	"select",
 	"radio",
@@ -63,6 +64,12 @@ var y = Object.defineProperty, b = (e, t) => {
 		type: "email",
 		label: "Email",
 		hint: "Endereço de email",
+		data: !0
+	},
+	{
+		type: "password",
+		label: "Palavra-passe",
+		hint: "Texto oculto",
 		data: !0
 	},
 	{
@@ -194,6 +201,10 @@ var y = Object.defineProperty, b = (e, t) => {
 	email: {
 		label: "Email",
 		placeholder: "nome@exemplo.com"
+	},
+	password: {
+		label: "Palavra-passe",
+		placeholder: ""
 	},
 	date: {
 		label: "Data",
@@ -653,6 +664,7 @@ var Ie = {
 	"fields.textarea": "Texto longo",
 	"fields.number": "Número",
 	"fields.email": "Email",
+	"fields.password": "Palavra-passe",
 	"fields.date": "Data",
 	"fields.select": "Lista",
 	"fields.radio": "Opções",
@@ -666,6 +678,7 @@ var Ie = {
 	"fields.textareaHint": "Várias linhas",
 	"fields.numberHint": "Valor numérico",
 	"fields.emailHint": "Endereço de email",
+	"fields.passwordHint": "Texto oculto",
 	"fields.dateHint": "Seletor de data",
 	"fields.selectHint": "Seleção em dropdown",
 	"fields.radioHint": "Seleção única",
@@ -684,6 +697,7 @@ var Ie = {
 	"fields.badge.textarea": "TL",
 	"fields.badge.number": "#",
 	"fields.badge.email": "@",
+	"fields.badge.password": "P",
 	"fields.badge.date": "D",
 	"fields.badge.select": "S",
 	"fields.badge.radio": "R",
@@ -913,6 +927,7 @@ var Ie = {
 	"fields.textarea": "Long text",
 	"fields.number": "Number",
 	"fields.email": "Email",
+	"fields.password": "Password",
 	"fields.date": "Date",
 	"fields.select": "Dropdown",
 	"fields.radio": "Options",
@@ -926,6 +941,7 @@ var Ie = {
 	"fields.textareaHint": "Multiple lines",
 	"fields.numberHint": "Numeric value",
 	"fields.emailHint": "Email address",
+	"fields.passwordHint": "Hidden text",
 	"fields.dateHint": "Date picker",
 	"fields.selectHint": "Dropdown selection",
 	"fields.radioHint": "Single selection",
@@ -944,6 +960,7 @@ var Ie = {
 	"fields.badge.textarea": "TL",
 	"fields.badge.number": "#",
 	"fields.badge.email": "@",
+	"fields.badge.password": "P",
 	"fields.badge.date": "D",
 	"fields.badge.select": "S",
 	"fields.badge.radio": "R",
@@ -10009,7 +10026,8 @@ var Gm = [
 	"text",
 	"textarea",
 	"number",
-	"email"
+	"email",
+	"password"
 ], Km = [
 	"select",
 	"radio",
@@ -10045,7 +10063,7 @@ function qm({ field: e, patch: t }) {
 		onChange: (e) => t({ defaultValue: e.target.value })
 	});
 	if (e.type === "file") return null;
-	let r = e.type === "number" ? "number" : "text";
+	let r = e.type === "number" ? "number" : e.type === "password" ? "password" : "text";
 	return /* @__PURE__ */ h(V, {
 		type: r,
 		value: e.defaultValue ?? "",
@@ -10891,6 +10909,7 @@ var Sh = [
 	"text",
 	"textarea",
 	"email",
+	"password",
 	"number",
 	"date",
 	"select",
@@ -11157,7 +11176,19 @@ function kh(e) {
 	let t = String(e || "").lastIndexOf(".");
 	return t > 0 ? String(e).slice(t).toLowerCase() : "";
 }
-function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
+var Ah = [
+	".png",
+	".jpg",
+	".jpeg",
+	".gif",
+	".webp",
+	".bmp",
+	".svg"
+];
+function jh(e) {
+	return e && e.contentType && String(e.contentType).toLowerCase().startsWith("image/") ? !0 : Ah.includes(kh(e && (e.original || e.name) || ""));
+}
+function Mh({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 	let { t: a } = z(), o = f(null), [s, c] = p(!1), [l, u] = p(""), [d, m] = p(!1), _ = Dh(), v = Array.isArray(t) ? t : [], y = (Number(e.maxSizeMb) > 0 ? Number(e.maxSizeMb) : 5) * 1024 * 1024, b = String(e.accept || "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean), x = e.multiple !== !1, S = Oh(y), C = async (t) => {
 		if (t.length !== 0) {
 			if (u(""), !x && t.length + v.length > 1) {
@@ -11266,6 +11297,12 @@ function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 				return /* @__PURE__ */ g("div", {
 					className: "file-item flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-2.5 py-1.5",
 					children: [
+						jh(e) && n && /* @__PURE__ */ h("img", {
+							src: n,
+							alt: "",
+							"aria-hidden": "true",
+							className: "h-10 w-10 flex-none rounded-md object-cover"
+						}),
 						/* @__PURE__ */ h("span", {
 							className: "min-w-0 flex-1 truncate text-sm text-gray-700 dark:text-gray-300",
 							children: e.original
@@ -11301,11 +11338,12 @@ function Ah({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 }
 //#endregion
 //#region src/components/controls/TextInput.jsx
-function jh({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: a, inputId: o }) {
-	let s = e.type === "number" ? "number" : e.type === "email" ? "email" : "text";
+function Nh({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: a, inputId: o }) {
+	let s = e.type === "number" ? "number" : e.type === "email" ? "email" : e.type === "password" ? "password" : "text";
 	return /* @__PURE__ */ h(V, {
 		id: o,
 		type: s,
+		autoComplete: e.autocomplete ?? (e.type === "password" ? "new-password" : void 0),
 		value: t ?? "",
 		placeholder: e.placeholder || "",
 		disabled: i,
@@ -11320,7 +11358,7 @@ function jh({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: 
 }
 //#endregion
 //#region src/components/controls/TextareaInput.jsx
-function Mh({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: a, inputId: o }) {
+function Ph({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: a, inputId: o }) {
 	return /* @__PURE__ */ h(ct, {
 		id: o,
 		rows: e.rows || 4,
@@ -11335,7 +11373,7 @@ function Mh({ field: e, value: t, onChange: n, error: r, disabled: i, readOnly: 
 }
 //#endregion
 //#region src/components/controls/SelectInput.jsx
-function Nh({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a }) {
+function Fh({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a }) {
 	let { t: o } = z(), s = e.options || [];
 	return /* @__PURE__ */ g(Ac, {
 		id: a,
@@ -11354,7 +11392,7 @@ function Nh({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a
 }
 //#endregion
 //#region src/components/controls/DateInput.jsx
-function Ph({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a }) {
+function Ih({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a }) {
 	return /* @__PURE__ */ h(Am, {
 		id: a,
 		value: t ?? "",
@@ -11366,7 +11404,7 @@ function Ph({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a
 }
 //#endregion
 //#region src/components/controls/RadioInput.jsx
-function Fh({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a }) {
+function Lh({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a }) {
 	let o = e.options || [];
 	return /* @__PURE__ */ h(au, {
 		className: B("option-list flex flex-col gap-1.5 rounded-lg", r && "rounded-md ring-1 ring-red-400"),
@@ -11389,7 +11427,7 @@ function Fh({ field: e, value: t, onChange: n, error: r, disabled: i, inputId: a
 }
 //#endregion
 //#region src/components/controls/CheckboxInput.jsx
-function Ih({ field: e, value: t, onChange: n, disabled: r, inputId: i }) {
+function Rh({ field: e, value: t, onChange: n, disabled: r, inputId: i }) {
 	return /* @__PURE__ */ g("div", {
 		className: "checkbox-line flex items-center gap-2",
 		children: [/* @__PURE__ */ h(Yc, {
@@ -11406,7 +11444,7 @@ function Ih({ field: e, value: t, onChange: n, disabled: r, inputId: i }) {
 }
 //#endregion
 //#region src/components/controls/CheckboxGroupInput.jsx
-function Lh({ field: e, value: t, onChange: n, error: r, disabled: i }) {
+function zh({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 	let a = e.options || [], o = Array.isArray(t) ? t : [];
 	return /* @__PURE__ */ h("div", {
 		className: B("option-list flex flex-col gap-1.5 rounded-lg", r && "rounded-md ring-1 ring-red-400"),
@@ -11422,7 +11460,7 @@ function Lh({ field: e, value: t, onChange: n, error: r, disabled: i }) {
 }
 //#endregion
 //#region src/components/controls/StepsBlock.jsx
-function Rh({ field: e, stepsLabels: t, stepsActive: n, children: r }) {
+function Bh({ field: e, stepsLabels: t, stepsActive: n, children: r }) {
 	let { t: i } = z(), a = (Array.isArray(t) ? t : Array.isArray(e.steps) ? e.steps : []).slice(0, 15), o = n === void 0 ? Number(e.activeStep) || 1 : n, s = Math.min(Math.max(Number(o) || 1, 1), Math.max(a.length, 1));
 	if (e.mode === "progress") {
 		let e = Math.max(a.length, 1), t = Math.round(Math.min(s, e) / e * 100);
@@ -11488,7 +11526,7 @@ function Rh({ field: e, stepsLabels: t, stepsActive: n, children: r }) {
 }
 //#endregion
 //#region src/components/controls/HtmlBlock.jsx
-function zh({ field: e }) {
+function Vh({ field: e }) {
 	return /* @__PURE__ */ h("div", {
 		className: "field field-html text-sm text-gray-700 dark:text-gray-300 [&_a]:text-blue-600 dark:[&_a]:text-blue-400 [&_h2]:mt-3 [&_h2]:text-base [&_h2]:font-semibold [&_h2]:text-gray-900 dark:[&_h2]:text-gray-50 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:text-gray-900 dark:[&_h3]:text-gray-50 [&_li]:my-0.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-1.5 [&_ul]:list-disc [&_ul]:pl-5",
 		dangerouslySetInnerHTML: { __html: e.html || "" }
@@ -11496,7 +11534,7 @@ function zh({ field: e }) {
 }
 //#endregion
 //#region src/components/controls/HeadingBlock.jsx
-function Bh({ field: e, hideTitle: t, children: n }) {
+function Hh({ field: e, hideTitle: t, children: n }) {
 	return /* @__PURE__ */ g("div", {
 		className: B("field field-heading", !t && "border-b border-gray-200 dark:border-gray-800 pb-2"),
 		children: [
@@ -11517,18 +11555,19 @@ function Bh({ field: e, hideTitle: t, children: n }) {
 }
 //#endregion
 //#region src/components/FieldRenderer.jsx
-var Vh = {
-	text: jh,
-	number: jh,
-	email: jh,
-	textarea: Mh,
-	select: Nh,
-	date: Ph,
-	radio: Fh,
-	checkbox: Ih,
-	checkboxgroup: Lh
+var Uh = {
+	text: Nh,
+	number: Nh,
+	email: Nh,
+	password: Nh,
+	textarea: Ph,
+	select: Fh,
+	date: Ih,
+	radio: Lh,
+	checkbox: Rh,
+	checkboxgroup: zh
 };
-function Hh({ field: e, value: t, onChange: n, error: r, disabled: i, children: a, hideTitle: o = !1, hideSteps: s = !1, stepsLabels: c, stepsActive: u }) {
+function Wh({ field: e, value: t, onChange: n, error: r, disabled: i, children: a, hideTitle: o = !1, hideSteps: s = !1, stepsLabels: c, stepsActive: u }) {
 	let d = l(), f = { gridColumn: `span ${k(e.columns)}` };
 	if (e.type === "steps") return s ? /* @__PURE__ */ h("div", {
 		className: "field",
@@ -11539,7 +11578,7 @@ function Hh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 		})
 	}) : /* @__PURE__ */ h("div", {
 		style: f,
-		children: /* @__PURE__ */ h(Rh, {
+		children: /* @__PURE__ */ h(Bh, {
 			field: e,
 			stepsLabels: c,
 			stepsActive: u,
@@ -11548,17 +11587,17 @@ function Hh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 	});
 	if (e.type === "html") return /* @__PURE__ */ h("div", {
 		style: f,
-		children: /* @__PURE__ */ h(zh, { field: e })
+		children: /* @__PURE__ */ h(Vh, { field: e })
 	});
 	if (e.type === "heading") return /* @__PURE__ */ h("div", {
 		style: f,
-		children: /* @__PURE__ */ h(Bh, {
+		children: /* @__PURE__ */ h(Hh, {
 			field: e,
 			hideTitle: o,
 			children: a
 		})
 	});
-	let p = e.readOnly === !0, m = i || p, _ = Vh[e.type] || jh;
+	let p = e.readOnly === !0, m = i || p, _ = Uh[e.type] || Nh;
 	return /* @__PURE__ */ g("div", {
 		className: B("field flex flex-col gap-1.5", r && "has-error"),
 		style: f,
@@ -11572,7 +11611,7 @@ function Hh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 					children: "*"
 				})]
 			}),
-			e.type === "file" ? /* @__PURE__ */ h(Ah, {
+			e.type === "file" ? /* @__PURE__ */ h(Mh, {
 				field: e,
 				value: t,
 				onChange: n,
@@ -11600,7 +11639,7 @@ function Hh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 }
 //#endregion
 //#region src/components/FormRunner.jsx
-function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: i, successActions: a, successTitle: o, successMode: s = "replace", allSteps: c = !1, hideFooter: u = !1, skipConsent: d = !1, domId: f, onUploadFiles: m, onDeleteFile: _, getFileUrl: v }) {
+function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: i, successActions: a, successTitle: o, successMode: s = "replace", allSteps: c = !1, hideFooter: u = !1, skipConsent: d = !1, domId: f, onUploadFiles: m, onDeleteFile: _, getFileUrl: v }) {
 	let { t: y } = z(), b = e.fields || [], x = `${l()}consent`, [S, C] = p(() => ({
 		...ae(b),
 		...i || {}
@@ -11723,7 +11762,7 @@ function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 			let e = xe.sections[we];
 			n = e ? [e] : [];
 		}
-		return /* @__PURE__ */ h(Hh, {
+		return /* @__PURE__ */ h(Wh, {
 			field: e,
 			value: S[e.id],
 			error: w[e.id],
@@ -11835,15 +11874,15 @@ function Uh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 		})
 	});
 }
-function Wh({ lang: e = "pt", ...t }) {
+function Kh({ lang: e = "pt", ...t }) {
 	return /* @__PURE__ */ h(He, {
 		lang: e,
-		children: /* @__PURE__ */ h(Uh, { ...t })
+		children: /* @__PURE__ */ h(Gh, { ...t })
 	});
 }
 //#endregion
 //#region src/components/PreviewModal.jsx
-function Gh({ form: e, onClose: t }) {
+function qh({ form: e, onClose: t }) {
 	let { t: n } = z();
 	return c(() => {
 		let e = (e) => {
@@ -11859,7 +11898,7 @@ function Gh({ form: e, onClose: t }) {
 		onClose: t,
 		title: n("preview.title"),
 		description: e.name,
-		children: /* @__PURE__ */ h(Wh, {
+		children: /* @__PURE__ */ h(Kh, {
 			form: e,
 			submitLabel: n("preview.testSubmit"),
 			successTitle: n("preview.validSubmit"),
@@ -11869,8 +11908,8 @@ function Gh({ form: e, onClose: t }) {
 }
 //#endregion
 //#region src/components/FormEditor.jsx
-var Kh = /^[A-Za-z_][A-Za-z0-9_]*$/;
-function qh(e) {
+var Jh = /^[A-Za-z_][A-Za-z0-9_]*$/;
+function Yh(e) {
 	return {
 		name: e.name,
 		description: e.description,
@@ -11886,7 +11925,7 @@ function qh(e) {
 		fields: e.fields
 	};
 }
-function Jh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i, getFileUrl: a, onFetchSource: s, HtmlEditor: l, tinymceBaseUrl: u }) {
+function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i, getFileUrl: a, onFetchSource: s, HtmlEditor: l, tinymceBaseUrl: u }) {
 	let { t: d } = z(), [f, m] = p(() => e ? JSON.parse(JSON.stringify(e)) : {
 		name: d("editor.newForm"),
 		description: "",
@@ -11938,7 +11977,7 @@ function Jh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 		return f.fields.forEach((e) => {
 			e && n.includes(e.type) && (t[e.name] = (t[e.name] || 0) + 1);
 		}), f.fields.forEach((r) => {
-			r && n.includes(r.type) && (Kh.test(r.name || "") ? t[r.name] > 1 && (e[r.id] = d("editor.nameDuplicate")) : e[r.id] = d("editor.nameError"));
+			r && n.includes(r.type) && (Jh.test(r.name || "") ? t[r.name] > 1 && (e[r.id] = d("editor.nameDuplicate")) : e[r.id] = d("editor.nameError"));
 		}), e;
 	}, I = async () => {
 		if (x) return !1;
@@ -11947,7 +11986,7 @@ function Jh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 			general: {}
 		});
 		try {
-			return typeof t == "function" && await t(qh(f)), b(!1), S(!1), !0;
+			return typeof t == "function" && await t(Yh(f)), b(!1), S(!1), !0;
 		} catch (e) {
 			return e && e.data && e.data.errors ? w(ue(e.data.errors, f.fields)) : w({
 				byId: {},
@@ -12090,22 +12129,22 @@ function Jh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 					})
 				]
 			}),
-			T && /* @__PURE__ */ h(Gh, {
+			T && /* @__PURE__ */ h(qh, {
 				form: f,
 				onClose: () => E(!1)
 			})
 		]
 	});
 }
-function Yh({ lang: e = "pt", ...t }) {
+function Zh({ lang: e = "pt", ...t }) {
 	return /* @__PURE__ */ h(He, {
 		lang: e,
-		children: /* @__PURE__ */ h(Jh, { ...t })
+		children: /* @__PURE__ */ h(Xh, { ...t })
 	});
 }
 //#endregion
 //#region src/components/FormViewer.jsx
-function Xh({ json: e, defaultValues: t, onSubmit: n, onSave: r, onCancel: i, submitLabel: a, readOnly: o = !1, allSteps: s = !1, skipConsent: c = !1, successTitle: l, successActions: u, onUploadFiles: d, onDeleteFile: f, getFileUrl: p }) {
+function Qh({ json: e, defaultValues: t, onSubmit: n, onSave: r, onCancel: i, submitLabel: a, readOnly: o = !1, allSteps: s = !1, skipConsent: c = !1, successTitle: l, successActions: u, onUploadFiles: d, onDeleteFile: f, getFileUrl: p }) {
 	let { t: m } = z();
 	if (!e || !Array.isArray(e.fields)) return /* @__PURE__ */ h(st, { children: m("form.invalidJson") });
 	let g = Te(e);
@@ -12118,7 +12157,7 @@ function Xh({ json: e, defaultValues: t, onSubmit: n, onSave: r, onCancel: i, su
 		children: m("form.notAvailableNow")
 	});
 	let _ = !!t && typeof r == "function";
-	return /* @__PURE__ */ h(Wh, {
+	return /* @__PURE__ */ h(Kh, {
 		form: e,
 		defaultValues: t,
 		onSubmit: _ ? (e, t) => Promise.resolve(r(e, t)) : n,
@@ -12133,11 +12172,11 @@ function Xh({ json: e, defaultValues: t, onSubmit: n, onSave: r, onCancel: i, su
 		getFileUrl: p
 	});
 }
-function Zh({ lang: e = "pt", ...t }) {
+function $h({ lang: e = "pt", ...t }) {
 	return /* @__PURE__ */ h(He, {
 		lang: e,
-		children: /* @__PURE__ */ h(Xh, { ...t })
+		children: /* @__PURE__ */ h(Qh, { ...t })
 	});
 }
 //#endregion
-export { lh as ApiSourceDialog, Mm as Canvas, Um as ConditionEditor, x as DATA_TYPES, Re as DICTS, S as FIELD_TYPES, wh as FieldProperties, Hh as FieldRenderer, Ah as FileControl, Yh as FormEditor, Vm as FormProperties, Wh as FormRunner, Zh as FormViewer, He as LanguageProvider, C as OPERATORS, sh as OptionsEditor, Ke as Palette, Gh as PreviewModal, Th as PropertiesPanel, w as RECORD_STATUSES, T as RECORD_STATUS_META, yh as RichTextEditor, ve as canDropInto, me as childrenOf, k as clampColumns, re as conditionSummary, M as createField, ge as descendantsOf, Le as en, L as evalCondition, te as evalRule, Qm as findArrayPath, xe as flatInsertIndex, Oh as fmtBytes, Lm as fmtDate, Im as fmtDateTime, Rm as fmtWhen, Te as formAvailability, Ge as getDict, Xm as getPath, We as getTranslator, ae as initialValues, _e as isAncestorOf, fe as isContainerType, P as isDataType, F as isEmptyValue, R as isFieldVisible, ne as isRequired, eh as itemKeys, ue as mapFormErrors, rh as mapOptions, de as mapRecordErrors, th as pickDefaultKey, Ie as pt, zm as rangeLabel, $m as resolveItems, ih as resolveUrl, ah as shortUrl, he as siblingsOf, A as slugify, we as statusColor, Ce as statusLabel, le as toPayload, pe as topLevelFields, N as typeMeta, O as uid, j as uniqueName, oh as unwrapPayload, z as useLanguage, Ue as useTranslation, oe as validateValues, ye as wizardSections };
+export { lh as ApiSourceDialog, Mm as Canvas, Um as ConditionEditor, x as DATA_TYPES, Re as DICTS, S as FIELD_TYPES, wh as FieldProperties, Wh as FieldRenderer, Mh as FileControl, Zh as FormEditor, Vm as FormProperties, Kh as FormRunner, $h as FormViewer, He as LanguageProvider, C as OPERATORS, sh as OptionsEditor, Ke as Palette, qh as PreviewModal, Th as PropertiesPanel, w as RECORD_STATUSES, T as RECORD_STATUS_META, yh as RichTextEditor, ve as canDropInto, me as childrenOf, k as clampColumns, re as conditionSummary, M as createField, ge as descendantsOf, Le as en, L as evalCondition, te as evalRule, Qm as findArrayPath, xe as flatInsertIndex, Oh as fmtBytes, Lm as fmtDate, Im as fmtDateTime, Rm as fmtWhen, Te as formAvailability, Ge as getDict, Xm as getPath, We as getTranslator, ae as initialValues, _e as isAncestorOf, fe as isContainerType, P as isDataType, F as isEmptyValue, R as isFieldVisible, ne as isRequired, eh as itemKeys, ue as mapFormErrors, rh as mapOptions, de as mapRecordErrors, th as pickDefaultKey, Ie as pt, zm as rangeLabel, $m as resolveItems, ih as resolveUrl, ah as shortUrl, he as siblingsOf, A as slugify, we as statusColor, Ce as statusLabel, le as toPayload, pe as topLevelFields, N as typeMeta, O as uid, j as uniqueName, oh as unwrapPayload, z as useLanguage, Ue as useTranslation, oe as validateValues, ye as wizardSections };

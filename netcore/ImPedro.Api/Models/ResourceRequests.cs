@@ -1,8 +1,27 @@
 namespace ImPedro.Api.Models;
 
-public sealed record CreateUserRequest(string Username, string Email, string Password, string? Fullname = null);
+public sealed record CreateUserRequest(
+    string Username,
+    string Email,
+    string Password,
+    string? Fullname = null,
+    string? Address = null,
+    string? City = null,
+    string? ZipCode = null,
+    string? Phone = null,
+    string? Mobile = null,
+    string? PhotoName = null);
 
-public sealed record UpdateUserRequest(string? Username = null, string? Fullname = null, string? Email = null);
+public sealed record UpdateUserRequest(
+    string? Username = null,
+    string? Fullname = null,
+    string? Email = null,
+    string? Address = null,
+    string? City = null,
+    string? ZipCode = null,
+    string? Phone = null,
+    string? Mobile = null,
+    string? PhotoName = null);
 
 public sealed record SetPasswordRequest(string NewPassword);
 

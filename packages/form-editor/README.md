@@ -132,7 +132,7 @@ function MyViewer() {
   "fields": [
     {
       "id": "f1a2b3c4d5e6",
-      "type": "text",       // text|textarea|number|email|date|select|radio|checkbox|checkboxgroup|file|heading|html|steps
+      "type": "text",       // text|textarea|number|email|password|date|select|radio|checkbox|checkboxgroup|file|heading|html|steps
       "label": "Name",
       "name": "name",       // unique, [A-Za-z_][A-Za-z0-9_]*
       "helpText": "",
@@ -154,7 +154,7 @@ function MyViewer() {
 
 ### Data field types
 
-`text`, `textarea`, `number`, `email`, `date`, `select`, `radio`, `checkbox`, `checkboxgroup`, `file`
+`text`, `textarea`, `number`, `email`, `password`, `date`, `select`, `radio`, `checkbox`, `checkboxgroup`, `file`
 
 ### Containers
 

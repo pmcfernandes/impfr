@@ -98,6 +98,8 @@ Email and password sign-in form.
 | `title` | `string` | translated text | Form title. |
 | `description` | `string` | translated text | Form description. |
 | `onSubmit` | `({ email, password, rememberMe }) => void \| Promise<void>` | - | Receives submitted credentials and the "Remember me" choice. |
+| `identifierLabel` | `string` | - | Label for the identifier field. |
+| `identifierType` | `string` | `"email"` | Input type for the identifier field, such as `"text"` for username or email. |
 | `onSocialLogin` | `(provider) => void \| Promise<void>` | - | Receives `google`, `microsoft`, or `apple`. |
 | `socialProviders` | `string[]` | `[]` | Displayed providers: `google`, `microsoft`, and `apple`. Unknown values are ignored. |
 | `submitting` | `boolean` | `false` | Disables buttons while authenticating. |
@@ -197,6 +199,7 @@ Interface for creating and editing groups, users, and permissions.
 | `onCreate` | `(payload) => void \| Promise<void>` | - | Receives a new group's data and clears the form when completed. |
 | `onUpdate` | `(groupId, payload) => void \| Promise<void>` | - | Receives the ID and data of the edited group. |
 | `isSaving` | `boolean` | `false` | Disables form submission. |
+| `hideHeader` | `boolean` | `false` | Hides the component title and description header. |
 | `errors` | `object` | `{}` | Messages for `name`, `description`, `permissions`, and `userIds`. |
 | `locale` | `"pt" \| "en"` | `"pt"` | Text language. |
 | `accentColor` | `string` | `"#155DFC"` | Control and selection color. |

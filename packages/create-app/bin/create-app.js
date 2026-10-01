@@ -97,8 +97,12 @@ export default function App() {
 function help() {
   return `Usage: create-app <project-name> [options]
 
+Projects are created inside ./projects/<project-name> when a projects
+directory exists, otherwise inside ./<project-name>.
+
 Options:
   -t, --template <name>  Template to use: dashboard (default) or blank
+  -o, --output <dir>     Parent directory for the project (overrides the default)
   --no-install            Do not run npm install in the frontend directory
   -f, --force             Write into an existing directory
   -h, --help              Show this help message
@@ -106,7 +110,7 @@ Options:
 }
 
 export function parseArgs(args) {
-  const options = { force: false, install: true, template: "dashboard" };
+  const options = { force: false, install: true, output: null, template: "dashboard" };
   const positional = [];
 
   for (let index = 0; index < args.length; index += 1) {
@@ -117,6 +121,9 @@ export function parseArgs(args) {
     else if (argument === "--template" || argument === "-t") {
       options.template = args[++index];
       if (!options.template) throw new Error(`${argument} requires a template name.`);
+    } else if (argument === "--output" || argument === "-o") {
+      options.output = args[++index];
+      if (!options.output) throw new Error(`${argument} requires a directory.`);
     } else if (argument.startsWith("-")) {
       throw new Error(`Unknown option: ${argument}`);
     } else {
@@ -135,7 +142,7 @@ export function parseArgs(args) {
   return { ...options, projectName: positional[0] };
 }
 
-function filesFor(projectName, templateName, frontendDirectory) {
+function filesFor(projectName, templateName, frontendDirectory, backendUrl) {
   const template = templates[templateName];
   const frameworkPackages = resolve(dirname(fileURLToPath(import.meta.url)), "../../../packages");
   const frameworkDependencies = Object.fromEntries(
@@ -158,6 +165,7 @@ function filesFor(projectName, templateName, frontendDirectory) {
       ...frameworkDependencies,
       react: "^18.3.1",
       "react-dom": "^18.3.1",
+      "react-router-dom": "^7.13.1",
     },
     devDependencies: {
       "@tailwindcss/vite": "^4.0.0",
@@ -179,7 +187,7 @@ function filesFor(projectName, templateName, frontendDirectory) {
     "src/pages/.gitkeep": "",
     "src/services/.gitkeep": "",
     "src/main.jsx": `import { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport App from "./App.jsx";\nimport "./index.css";\n${templateName === "dashboard" ? 'import "@pmcfernandes/app-shell/styles.css";\nimport "@pmcfernandes/auth/styles.css";\nimport "@pmcfernandes/form-editor/styles.css";\nimport "@pmcfernandes/table-editor/styles.css";\n' : ""}\n\ncreateRoot(document.getElementById("root")).render(\n  <StrictMode><App /></StrictMode>,\n);\n`,
-    "vite.config.js": `import { defineConfig } from "vite";\nimport tailwindcss from "@tailwindcss/vite";\nimport react from "@vitejs/plugin-react";\n\nexport default defineConfig({\n  plugins: [react(), tailwindcss()],\n  build: { outDir: "../wwwroot", emptyOutDir: true },\n});\n`,
+    "vite.config.js": `import { defineConfig } from "vite";\nimport tailwindcss from "@tailwindcss/vite";\nimport react from "@vitejs/plugin-react";\n\nexport default defineConfig({\n  plugins: [react(), tailwindcss()],\n  build: { outDir: "../wwwroot", emptyOutDir: true },\n  server: {\n    port: 5173,\n    strictPort: true,\n    proxy: { "/api": "${backendUrl}" },\n  },\n});\n`,
   };
 }
 
@@ -198,7 +206,7 @@ function appsettingsFor(projectName) {
       Enabled: false,
       ApplicationCode: "app",
       ApplicationName: projectName,
-      ApplicationVersion: "01.00.00.00",
+      ApplicationVersion: "1.00.00.00",
       AdminUsername: "admin",
       AdminPassword: "",
       AdminName: "Administrator",
@@ -239,8 +247,40 @@ function addFrameworkReferences(projectDirectory) {
   return `\n  <ItemGroup>\n${references}\n  </ItemGroup>\n`;
 }
 
+function spaProxyProjectXml() {
+  return `\n  <PropertyGroup>\n    <SpaRoot>frontend\\</SpaRoot>\n    <SpaProxyServerUrl>http://localhost:5173</SpaProxyServerUrl>\n    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>\n  </PropertyGroup>\n\n  <ItemGroup>\n    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="10.0.12" />\n  </ItemGroup>\n`;
+}
+
+async function configureSpaProxy(target) {
+  const launchSettingsFile = resolve(target, "Properties", "launchSettings.json");
+  let backendUrl = "http://localhost:5168";
+  try {
+    const launchSettings = JSON.parse((await readFile(launchSettingsFile, "utf8")).replace(/^\uFEFF/, ""));
+    const applicationUrl = launchSettings?.profiles?.http?.applicationUrl ?? "";
+    const httpUrl = applicationUrl.split(";").find((entry) => entry.startsWith("http://"));
+    if (httpUrl) backendUrl = httpUrl;
+    for (const profile of Object.values(launchSettings.profiles ?? {})) {
+      if (profile && typeof profile === "object") {
+        profile.environmentVariables ??= {};
+        profile.environmentVariables.ASPNETCORE_HOSTINGSTARTUPASSEMBLIES = "Microsoft.AspNetCore.SpaProxy";
+      }
+    }
+    await writeFile(launchSettingsFile, `${JSON.stringify(launchSettings, null, 2)}\n`, "utf8");
+  } catch {
+    // Mantém os valores por omissão quando o modelo do `dotnet new` mudar.
+  }
+  return backendUrl;
+}
+
+export function resolveTargetDirectory(options, cwd = process.cwd()) {
+  if (options.output) return resolve(cwd, options.output, options.projectName);
+  const projectsDirectory = resolve(cwd, "projects");
+  if (existsSync(projectsDirectory)) return resolve(projectsDirectory, options.projectName);
+  return resolve(cwd, options.projectName);
+}
+
 export async function createProject(options, cwd = process.cwd()) {
-  const target = resolve(cwd, options.projectName);
+  const target = resolveTargetDirectory(options, cwd);
   if (existsSync(target)) {
     const entries = await readdir(target);
     if (entries.length > 0 && !options.force) {
@@ -261,17 +301,18 @@ export async function createProject(options, cwd = process.cwd()) {
 
   const projectFile = resolve(target, `${options.projectName}.csproj`);
   await writeFile(resolve(target, "appsettings.json"), appsettingsFor(options.projectName), "utf8");
+  const backendUrl = await configureSpaProxy(target);
   const projectXml = await readFile(projectFile, "utf8");
   const referenceGroup = addFrameworkReferences(target);
   const frontendBuildTarget = `\n  <Target Name="BuildReactFrontend" BeforeTargets="Build">\n    <Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)/frontend" />\n    <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)/frontend" />\n  </Target>\n`;
-  const updatedProjectXml = projectXml.replace("</Project>", `${referenceGroup}${frontendBuildTarget}</Project>`);
+  const updatedProjectXml = projectXml.replace("</Project>", `${referenceGroup}${spaProxyProjectXml()}${frontendBuildTarget}</Project>`);
   await writeFile(projectFile, updatedProjectXml, "utf8");
 
   const programFile = resolve(target, "Program.cs");
   await writeFile(programFile, `using ImPedro.Api.Bootstrap;\nusing ImPedro.Data.Initialization;\n\nvar builder = WebApplication.CreateBuilder(args);\nbuilder.Services.AddImPedroWebApi(builder.Configuration);\n// builder.Services.AddImPedroMinimalApi(builder.Configuration);\n\nvar app = builder.Build();\nif (builder.Configuration.GetValue<bool>("Initializer:Enabled"))\n{\n    await using var scope = app.Services.CreateAsyncScope();\n    await scope.ServiceProvider.GetRequiredService<IFrameworkInitializer>().InitializeAsync();\n}\n\napp.UseDefaultFiles();\napp.UseStaticFiles();\napp.UseImPedroWebApi();\n// app.UseImPedroMinimalApi();\napp.Run();\n`, "utf8");
 
   const frontendTarget = resolve(target, "frontend");
-  for (const [relativePath, content] of Object.entries(filesFor(options.projectName, options.template, frontendTarget))) {
+  for (const [relativePath, content] of Object.entries(filesFor(options.projectName, options.template, frontendTarget, backendUrl))) {
     const filePath = resolve(frontendTarget, relativePath);
     await mkdir(dirname(filePath), { recursive: true });
     await writeFile(filePath, content, "utf8");
@@ -314,7 +355,7 @@ export async function main(args = process.argv.slice(2), cwd = process.cwd()) {
   const target = await createProject(options, cwd);
   console.log(`Created .NET Web API and ${options.template} frontend in ${target}`);
   if (options.install) await install(target);
-  console.log(`\nNext steps:\n  cd ${options.projectName}\n  dotnet run\n  cd frontend\n  npm run dev`);
+  console.log(`\nNext steps:\n  cd ${options.projectName}\n  dotnet run\n\nThe API and the Vite dev server (npm run dev) start together.`);
 }
 
 const isEntrypoint = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);

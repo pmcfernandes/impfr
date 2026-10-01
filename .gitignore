@@ -10,3 +10,5 @@ netcore/**/obj/
 netcore/**/.vs/
 
 data.sql
+
+*.user

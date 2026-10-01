@@ -11,6 +11,8 @@ export function Login({
   onSocialLogin,
   socialProviders = [],
   submitting = false,
+  identifierLabel,
+  identifierType = "email",
   showRememberMe = true,
   rememberMe,
   defaultRememberMe = false,
@@ -43,12 +45,12 @@ export function Login({
       </header>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <Input
-          autoComplete="email"
-          label={t("email")}
+          autoComplete={identifierType === "email" ? "email" : "username"}
+          label={identifierLabel ?? t("email")}
           name="email"
           onChange={(event) => setEmail(event.target.value)}
           required
-          type="email"
+          type={identifierType}
           value={email}
         />
         <Input

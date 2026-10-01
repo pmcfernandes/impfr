@@ -8,6 +8,7 @@ const FIELD_DEFAULTS = {
   textarea: { label: 'Texto longo', placeholder: 'Introduza o texto', rows: 4 },
   number: { label: 'Número', placeholder: '0' },
   email: { label: 'Email', placeholder: 'nome@exemplo.com' },
+  password: { label: 'Palavra-passe', placeholder: '' },
   date: { label: 'Data', placeholder: '' },
   select: { label: 'Selecção' },
   radio: { label: 'Opções' },

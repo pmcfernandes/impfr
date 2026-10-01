@@ -20,6 +20,9 @@ import { DataViewViewSwitcher } from "./DataViewViewSwitcher.jsx";
  *   Sobrepõe-se a `config.viewModes`.
  * @param {boolean} [props.showExport] mostra/esconde o botão Exportar CSV.
  *   Sobrepõe-se a `config.exportable`.
+ * @param {boolean} [props.hideHeader] esconde o título e a descrição do
+ *   cabeçalho. O alternador de vistas continua a ser controlado por
+ *   `viewModes`. Sobrepõe-se a `config.hideHeader`.
  * @param {boolean|string[]} [props.fieldSearch] mostra filtros por coluna.
  *   `true` mostra todos; uma lista limita as chaves. Sobrepõe `config.fieldSearch`.
  * @param {Array} [props.actions] botões extra na toolbar:
@@ -47,6 +50,7 @@ export function DataView({
   className,
   viewModes,
   showExport,
+  hideHeader,
   fieldSearch,
   actions,
   onDeleteSelected,
@@ -65,6 +69,8 @@ export function DataView({
 
     // Prop `showExport` sobrepõe-se a `config.exportable`.
     if (typeof showExport === "boolean") normalized.exportable = showExport;
+    // Prop `hideHeader` sobrepõe-se a `config.hideHeader`.
+    if (typeof hideHeader === "boolean") normalized.hideHeader = hideHeader;
     if (fieldSearch !== undefined) {
       normalized.fieldSearch = fieldSearch;
       normalized.fieldSearchKeys = resolveFieldSearchKeys(fieldSearch, normalized.columns);
@@ -73,7 +79,7 @@ export function DataView({
     if (Array.isArray(actions)) normalized.actions = actions;
 
     return normalized;
-  }, [rawConfig, viewModes, showExport, fieldSearch, actions]);
+  }, [rawConfig, viewModes, showExport, hideHeader, fieldSearch, actions]);
   const activeLocale = locale ?? rawConfig.locale ?? "pt";
   const t = createTranslator(activeLocale);
 
@@ -106,8 +112,10 @@ export function DataView({
   // Se a vista ativa deixar de estar disponível (ex.: viewModes mudou), usa a 1ª.
   const activeView = config.viewModes.includes(view) ? view : config.viewModes[0];
 
-  // Cabeçalho: título à esquerda, alternador de vistas à direita no topo.
-  const showHeader = config.title || config.description || config.viewModes.length > 1;
+  // Cabeçalho: título/descrição à esquerda (ocultável via hideHeader),
+  // alternador de vistas à direita (controlado por viewModes).
+  const showTitle = !config.hideHeader && (config.title || config.description);
+  const showHeader = showTitle || config.viewModes.length > 1;
 
   function handleDelete(row) {
     if (window.confirm(t("confirmDelete"))) state.deleteRow(row);
@@ -133,9 +141,11 @@ export function DataView({
     <Card className={className}>
       {showHeader && (
         <CardHeader
-          title={config.title}
+          title={showTitle ? config.title : undefined}
           description={
-            config.description ?? `${state.total} ${t("rows")}`
+            showTitle
+              ? (config.description ?? `${state.total} ${t("rows")}`)
+              : undefined
           }
           actions={
             <DataViewViewSwitcher

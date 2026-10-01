@@ -15,6 +15,13 @@ function fileExt(name) {
   return i > 0 ? String(name).slice(i).toLowerCase() : ''
 }
 
+const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.svg']
+
+function isImageFile(file) {
+  if (file && file.contentType && String(file.contentType).toLowerCase().startsWith('image/')) return true
+  return IMAGE_EXTENSIONS.includes(fileExt((file && (file.original || file.name)) || ''))
+}
+
 export default function FileControl({ field, value, onChange, error, disabled }) {
   const { t } = useLanguage()
   const inputRef = useRef(null)
@@ -126,6 +133,9 @@ export default function FileControl({ field, value, onChange, error, disabled })
         const href = fileHref(file)
         return (
           <div key={`${file.name}-${i}`} className="file-item flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-2.5 py-1.5">
+            {isImageFile(file) && href && (
+              <img src={href} alt="" aria-hidden="true" className="h-10 w-10 flex-none rounded-md object-cover" />
+            )}
             <span className="min-w-0 flex-1 truncate text-sm text-gray-700 dark:text-gray-300">{file.original}</span>
             <span className="text-xs whitespace-nowrap text-gray-500 dark:text-gray-400">{fmtBytes(file.size)}</span>
             {href && (

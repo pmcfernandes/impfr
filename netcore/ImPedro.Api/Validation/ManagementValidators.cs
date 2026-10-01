@@ -13,6 +13,7 @@ public sealed class CreateUserRequestValidator : IValidator<CreateUserRequest>
         else result.Merge("email", EmailValidator.Instance.Validate(value.Email));
         if (string.IsNullOrEmpty(value.Password)) result.AddError("password", "Password is required.");
         else if (value.Password.Length < 6) result.AddError("password", "Password must have at least 6 characters.");
+        UserContactValidation.ValidateUserContactFields(value.Address, value.City, value.ZipCode, value.Phone, value.Mobile, result);
         return result;
     }
 }
@@ -22,10 +23,13 @@ public sealed class UpdateUserRequestValidator : IValidator<UpdateUserRequest>
     public ValidationResult Validate(UpdateUserRequest value)
     {
         var result = new ValidationResult();
-        if (value.Username is null && value.Fullname is null && value.Email is null)
+        if (value.Username is null && value.Fullname is null && value.Email is null
+            && value.Address is null && value.City is null && value.ZipCode is null
+            && value.Phone is null && value.Mobile is null && value.PhotoName is null)
             result.AddError("", "At least one field must be supplied.");
         if (value.Email is not null && !EmailValidator.IsValid(value.Email))
             result.AddError("email", "Email format is invalid.");
+        UserContactValidation.ValidateUserContactFields(value.Address, value.City, value.ZipCode, value.Phone, value.Mobile, result);
         return result;
     }
 }
@@ -58,7 +62,6 @@ public sealed class SetGroupPermissionsRequestValidator : IValidator<SetGroupPer
     public ValidationResult Validate(SetGroupPermissionsRequest value)
     {
         var result = new ValidationResult();
-        if (value.Assignments.Count == 0) result.AddError("assignments", "At least one permission assignment is required.");
         for (var i = 0; i < value.Assignments.Count; i++)
         {
             if (string.IsNullOrWhiteSpace(value.Assignments[i].TableName))
@@ -105,5 +108,28 @@ public sealed class SetCustomValueRequestValidator : IValidator<SetCustomValueRe
         if (value.Value.ValueKind == System.Text.Json.JsonValueKind.Undefined)
             result.AddError("value", "Value is required.");
         return result;
+    }
+}
+
+internal static class UserContactValidation
+{
+    public static void ValidateUserContactFields(
+        string? address,
+        string? city,
+        string? zipCode,
+        string? phone,
+        string? mobile,
+        ValidationResult result)
+    {
+        if (address is not null && address.Length > 255)
+            result.AddError("address", "Address must have at most 255 characters.");
+        if (city is not null && city.Length > 80)
+            result.AddError("city", "City must have at most 80 characters.");
+        if (zipCode is not null && zipCode.Length > 8)
+            result.AddError("zipCode", "Zip code must have at most 8 characters.");
+        if (phone is not null && phone.Length > 15)
+            result.AddError("phone", "Phone must have at most 15 characters.");
+        if (mobile is not null && mobile.Length > 15)
+            result.AddError("mobile", "Mobile must have at most 15 characters.");
     }
 }

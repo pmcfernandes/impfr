@@ -95,6 +95,7 @@ Set `subGrid` on a column whose value is an array. The nested grid is rendered u
 | `onChange(rows)` | Called after records are created, edited, or deleted. |
 | `viewModes` | Overrides `config.viewModes`. |
 | `showExport` | Overrides `config.exportable`. |
+| `hideHeader` | Hides the header title and description (the view switcher stays controlled by `viewModes`). Overrides `config.hideHeader`. |
 | `fieldSearch` | Overrides `config.fieldSearch`. |
 | `actions` | Additional toolbar buttons. |
 | `onDeleteSelected` | Bulk-delete callback. Return `false` to prevent the local deletion. |

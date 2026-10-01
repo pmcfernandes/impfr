@@ -13,6 +13,7 @@ export function GroupsPermissions({
   onUpdate,
   isSaving = false,
   errors = {},
+  hideHeader = false,
   locale = "pt",
   accentColor = "#155DFC",
   className = "",
@@ -29,10 +30,12 @@ export function GroupsPermissions({
 
   return (
     <section className={`w-full ${className}`}>
-      <header className="mb-6">
-        <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-50">{t("groupsPermissionsTitle")}</h1>
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t("groupsPermissionsDescription")}</p>
-      </header>
+      {!hideHeader && (
+        <header className="mb-6">
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-50">{t("groupsPermissionsTitle")}</h1>
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t("groupsPermissionsDescription")}</p>
+        </header>
+      )}
       <div className="grid gap-6 xl:grid-cols-[340px_minmax(0,1fr)]">
         <aside className="space-y-3 self-start">
           <button

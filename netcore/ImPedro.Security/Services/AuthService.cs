@@ -22,7 +22,7 @@ public sealed class AuthService
             return AuthResult.Fail(AuthErrors.InvalidCredentials);
 
         var user = await _context.MetaUsers
-            .FirstOrDefaultAsync(u => u.Username == username && !u.IsDeleted && !u.IsGroup, cancellationToken);
+            .FirstOrDefaultAsync(u => (u.Username == username || u.Email == username) && !u.IsDeleted && !u.IsGroup, cancellationToken);
         if (user is null || !PasswordHasher.VerifyMd5(password, user.Password))
             return AuthResult.Fail(AuthErrors.InvalidCredentials);
         if (user.Locked == true)

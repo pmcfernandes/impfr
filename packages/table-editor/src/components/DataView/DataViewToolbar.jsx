@@ -50,7 +50,7 @@ export function DataViewToolbar({
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
           placeholder={t("search")}
-          className="min-w-52 flex-1"
+          className="min-w-0 flex-1"
         />
       )}
 

@@ -6,10 +6,14 @@ Create a full-stack project with an ASP.NET Core Web API and a Vite React fronte
 npx create-app my-app
 ```
 
+Projects are created inside `./projects/my-app` when a `projects` directory
+exists (as in this repository), otherwise inside `./my-app`. Use
+`-o <dir>` to choose another parent directory.
+
 The generated structure is:
 
 ```text
-my-app/
+projects/my-app/
   my-app.csproj
   my-app.slnx
   appsettings.json
@@ -41,8 +45,9 @@ npx create-app my-app --no-install
 ## Options
 
 - `-t, --template <dashboard|blank>` selects a template. Default: `dashboard`.
+- `-o, --output <dir>` sets the parent directory for the project. Default: `./projects` when it exists, otherwise the working directory.
 - `--no-install` skips dependency installation immediately after scaffolding. A later `dotnet build` still runs `npm install` and `npm run build` as part of the project build.
 - `-f, --force` allows writing into an existing directory. Existing files with matching names are replaced; files are never deleted.
 - `-h, --help` prints usage.
 
-After creation, run `cd my-app`, `dotnet run`, then `cd frontend` and `npm run dev`.
+After creation, run `cd projects/my-app` and `dotnet run`. The API and the Vite dev server (`npm run dev`) start together.

@@ -1,11 +1,49 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { requestJson } from "./request.js";
+
+/*
+function headersEntries(headers) {
+  try {
+    return JSON.stringify([...new Headers(headers ?? {}).entries()].sort());
+  } catch {
+    return JSON.stringify(headers ?? null);
+  }
+}
+
+function sameFetchOptions(left, right) {
+  const leftOptions = left ?? {};
+  const rightOptions = right ?? {};
+  const leftKeys = Object.keys(leftOptions);
+  const rightKeys = Object.keys(rightOptions);
+  if (leftKeys.length !== rightKeys.length) return false;
+  return leftKeys.every((key) => {
+    if (!(key in rightOptions)) return false;
+    if (key === "headers") return headersEntries(leftOptions.headers) === headersEntries(rightOptions.headers);
+    return leftOptions[key] === rightOptions[key];
+  });
+}
+*/
 
 export function useRequest(url, { enabled = true, fetchOptions } = {}) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(Boolean(enabled && url));
   const [requestVersion, setRequestVersion] = useState(0);
+  const fetchOptionsRef = useRef(fetchOptions);
+
+  const normalizedFetchOptions = useMemo(() => {
+    if (!fetchOptions) return fetchOptions;
+    return {
+      ...fetchOptions,
+      headers: new Headers(fetchOptions.headers),
+    };
+  }, [fetchOptions]);
+
+  if (!sameFetchOptions(fetchOptionsRef.current, normalizedFetchOptions)) {
+    fetchOptionsRef.current = normalizedFetchOptions;
+  }
+
+  const stableFetchOptions = fetchOptionsRef.current;
 
   useEffect(() => {
     if (!url || !enabled) {
@@ -17,7 +55,7 @@ export function useRequest(url, { enabled = true, fetchOptions } = {}) {
     setIsLoading(true);
     setError(null);
 
-    requestJson(url, { ...fetchOptions, signal: controller.signal })
+    requestJson(url, { ...stableFetchOptions, signal: controller.signal })
       .then((response) => setData(response))
       .catch((requestError) => {
         if (requestError.name !== "AbortError") setError(requestError);
@@ -27,7 +65,7 @@ export function useRequest(url, { enabled = true, fetchOptions } = {}) {
       });
 
     return () => controller.abort();
-  }, [enabled, fetchOptions, requestVersion, url]);
+  }, [enabled, requestVersion, stableFetchOptions, url]);
 
   return {
     data,

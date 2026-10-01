@@ -2,7 +2,7 @@ import { useLanguage } from '../../i18n/index.jsx'
 import { Checkbox, DatePicker, Input, Select, Textarea } from '../../ui/index.js'
 import { Row, sectionClass, sectionTitle } from './Row.jsx'
 
-const PLACEHOLDER_TYPES = ['text', 'textarea', 'number', 'email']
+const PLACEHOLDER_TYPES = ['text', 'textarea', 'number', 'email', 'password']
 const OPTIONS_TYPES = ['select', 'radio', 'checkboxgroup']
 
 function DefaultControl({ field, patch }) {
@@ -32,7 +32,7 @@ function DefaultControl({ field, patch }) {
     return <DatePicker value={field.defaultValue ?? ''} onChange={(e) => patch({ defaultValue: e.target.value })} />
   }
   if (field.type === 'file') return null
-  const inputType = field.type === 'number' ? 'number' : 'text'
+  const inputType = field.type === 'number' ? 'number' : field.type === 'password' ? 'password' : 'text'
   return <Input type={inputType} value={field.defaultValue ?? ''} onChange={(e) => patch({ defaultValue: e.target.value })} />
 }
 

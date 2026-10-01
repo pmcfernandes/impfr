@@ -1,11 +1,12 @@
 import { Input } from '../../ui/index.js'
 
 export default function TextInput({ field, value, onChange, error, disabled, readOnly, inputId }) {
-  const inputType = field.type === 'number' ? 'number' : field.type === 'email' ? 'email' : 'text'
+  const inputType = field.type === 'number' ? 'number' : field.type === 'email' ? 'email' : field.type === 'password' ? 'password' : 'text'
   return (
     <Input
       id={inputId}
       type={inputType}
+      autoComplete={field.autocomplete ?? (field.type === 'password' ? 'new-password' : undefined)}
       value={value ?? ''}
       placeholder={field.placeholder || ''}
       disabled={disabled}
