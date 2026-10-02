@@ -5,6 +5,16 @@ import { cx } from "../../ui/cx.js";
 export function Dialog({ open, onOpenChange, title, description, actions, children, className }) {
   const titleId = useId();
 
+  // Permite aumentar a largura via className (ex.: max-w-6xl/max-w-7xl):
+  // se for passado um max-w-*, não aplicamos o max-w-lg por omissão para
+  // evitar conflito de classes no Tailwind.
+  const hasCustomMaxWidth = typeof className === "string" && className.includes("max-w-");
+  const panelClassName = cx(
+    "w-full rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-950",
+    hasCustomMaxWidth ? null : "max-w-lg",
+    className,
+  );
+
   useEffect(() => {
     if (!open) return undefined;
 
@@ -27,7 +37,7 @@ export function Dialog({ open, onOpenChange, title, description, actions, childr
       role="dialog"
     >
       <div
-        className={cx("w-full max-w-lg rounded-lg border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-950", className)}
+        className={panelClassName}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4 border-b border-gray-200 px-6 py-4 dark:border-gray-700">

@@ -32,6 +32,7 @@ function FormEditorInner({
   json: initialJson,
   onSave,
   onCancel,
+  allowedTypes,
   onUploadFiles,
   onDeleteFile,
   getFileUrl,
@@ -201,7 +202,7 @@ function FormEditorInner({
       {generalMessages.length > 0 && <Callout className="mx-4 mt-3">{generalMessages.join(' ')}</Callout>}
 
       <div className="editor-body grid min-h-0 flex-1 grid-cols-1 gap-3 p-4 lg:grid-cols-[220px_minmax(0,1fr)_var(--props-w)] lg:grid-rows-[minmax(0,1fr)] lg:overflow-hidden">
-        <Palette onAdd={tree.addField} />
+        <Palette onAdd={tree.addField} allowedTypes={allowedTypes} />
         <Canvas
           fields={form.fields}
           selectedId={selectedId}

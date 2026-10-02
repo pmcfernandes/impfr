@@ -18,6 +18,8 @@ function FormRunnerInner({
   successActions,
   successTitle,
   successMode = 'replace',
+  showSuccess = true,
+  onSuccess,
   allSteps = false,
   hideFooter = false,
   skipConsent = false,
@@ -96,11 +98,19 @@ function FormRunnerInner({
     setGeneral('')
     setShowNotice(false)
     try {
-      const message = await onSubmit(toPayload(fields, values), { consent: consentChecked === true })
+      const payload = toPayload(fields, values)
+      const message = await onSubmit(payload, { consent: consentChecked === true })
       setErrors({})
-      setSuccessText(message || t('form.successMessage'))
-      if (successMode === 'notice') setShowNotice(true)
-      else setDone(true)
+      if (showSuccess === false) {
+        // Opção para não mostrar o ecrã de sucesso ("Alterações guardadas", ...).
+        // O formulário mantém-se visível e o resultado é entregue via onSuccess
+        // para o anfitrião decidir (ex.: fechar um diálogo automaticamente).
+        if (typeof onSuccess === 'function') await onSuccess(message || t('form.successMessage'), { payload })
+      } else {
+        setSuccessText(message || t('form.successMessage'))
+        if (successMode === 'notice') setShowNotice(true)
+        else setDone(true)
+      }
     } catch (err) {
       const mapped = mapRecordErrors(err.data && err.data.errors, fields)
       setErrors(mapped.byId)
@@ -180,7 +190,7 @@ function FormRunnerInner({
     return Boolean(parent && parent.type === 'steps')
   }
 
-  const renderField = (field) => {
+  const renderField = (field, hideDivider = false) => {
     if (!isFieldVisible(field, fields, values)) return null
     const isDriver = isWizard && field.id === wizardDriver.field.id
     let kids = childrenOf(fields, field.id)
@@ -196,13 +206,23 @@ function FormRunnerInner({
         error={errors[field.id]}
         onChange={(value) => handleChange(field.id, value)}
         hideTitle={insideSteps(field) && !allSteps}
+        hideDivider={hideDivider}
         hideSteps={allSteps}
         stepsLabels={isDriver ? stepLabels : undefined}
         stepsActive={isDriver ? currentStep + 1 : undefined}
       >
-        {isContainerType(field.type) && kids.length > 0 ? kids.map(renderField) : null}
+        {isContainerType(field.type) && kids.length > 0 ? renderSiblings(kids) : null}
       </FieldRenderer>
     )
+  }
+
+  // O último heading visível de cada grupo de irmãos não leva a linha
+  // inferior; com vários headings, todos exceto o último mantêm a linha.
+  const renderSiblings = (siblings) => {
+    const visible = siblings.filter((field) => isFieldVisible(field, fields, values))
+    const headings = visible.filter((field) => field.type === 'heading')
+    const lastHeadingId = headings.length > 0 ? headings[headings.length - 1].id : null
+    return visible.map((field) => renderField(field, field.id === lastHeadingId))
   }
 
   return (
@@ -226,7 +246,7 @@ function FormRunnerInner({
           {visibleTop.length === 0 && (
             <p className="col-span-full text-sm text-gray-500 dark:text-gray-400">{t('form.emptyFields')}</p>
           )}
-          {topLevel.map(renderField)}
+          {renderSiblings(topLevel)}
         </div>
         {needsConsent && isLastStep && (
           <div data-consent-block className={`rounded-lg border p-3.5 ${consentError ? 'border-red-300 dark:border-red-900 bg-red-50 dark:bg-red-950/50' : 'border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900'}`}>

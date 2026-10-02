@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { requestJson } from "./request.js";
 
-/*
 function headersEntries(headers) {
   try {
     return JSON.stringify([...new Headers(headers ?? {}).entries()].sort());
@@ -22,7 +21,6 @@ function sameFetchOptions(left, right) {
     return leftOptions[key] === rightOptions[key];
   });
 }
-*/
 
 export function useRequest(url, { enabled = true, fetchOptions } = {}) {
   const [data, setData] = useState(null);
@@ -31,18 +29,9 @@ export function useRequest(url, { enabled = true, fetchOptions } = {}) {
   const [requestVersion, setRequestVersion] = useState(0);
   const fetchOptionsRef = useRef(fetchOptions);
 
-  const normalizedFetchOptions = useMemo(() => {
-    if (!fetchOptions) return fetchOptions;
-    return {
-      ...fetchOptions,
-      headers: new Headers(fetchOptions.headers),
-    };
-  }, [fetchOptions]);
-
-  if (!sameFetchOptions(fetchOptionsRef.current, normalizedFetchOptions)) {
-    fetchOptionsRef.current = normalizedFetchOptions;
+  if (!sameFetchOptions(fetchOptionsRef.current, fetchOptions)) {
+    fetchOptionsRef.current = fetchOptions;
   }
-
   const stableFetchOptions = fetchOptionsRef.current;
 
   useEffect(() => {

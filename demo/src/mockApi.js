@@ -93,7 +93,7 @@ async function handleTasks(url, method, init) {
     return jsonResponse(row, 201);
   }
 
-  if (method === "PATCH" && id !== null) {
+  if ((method === "PUT" || method === "PATCH") && id !== null) {
     const body = await readJsonBody(init);
     if (!tasks.some((task) => task.id === id)) {
       return jsonResponse({ message: "Task not found" }, 404);

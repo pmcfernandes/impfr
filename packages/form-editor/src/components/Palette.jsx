@@ -1,14 +1,19 @@
 import { FIELD_TYPES } from '../core/index.js'
 import { useLanguage } from '../i18n/index.jsx'
 
-export default function Palette({ onAdd }) {
+export default function Palette({ onAdd, allowedTypes }) {
   const { t } = useLanguage()
+  // Toolbox limitada aos controlos indicados; se não for preenchida, aceita todos.
+  const visibleTypes =
+    Array.isArray(allowedTypes) && allowedTypes.length > 0
+      ? FIELD_TYPES.filter((type) => allowedTypes.includes(type.type))
+      : FIELD_TYPES
   return (
     <aside className="palette flex min-h-0 flex-col rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3.5 lg:overflow-y-auto">
       <h2 className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">{t('palette.title')}</h2>
       <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{t('palette.hint')}</p>
       <div className="mt-3 flex flex-col gap-2">
-        {FIELD_TYPES.map((type) => (
+        {visibleTypes.map((type) => (
           <div
             key={type.type}
             className="palette-item flex cursor-grab touch-none items-center gap-2.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-2.5 py-2 select-none transition hover:border-blue-400 dark:hover:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950 active:cursor-grabbing"

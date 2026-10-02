@@ -34,6 +34,7 @@ export default function FieldRenderer({
   disabled,
   children,
   hideTitle = false,
+  hideDivider = false,
   hideSteps = false,
   stepsLabels,
   stepsActive,
@@ -69,7 +70,7 @@ export default function FieldRenderer({
   if (field.type === 'heading') {
     return (
       <div style={span}>
-        <HeadingBlock field={field} hideTitle={hideTitle}>
+        <HeadingBlock field={field} hideTitle={hideTitle} hideDivider={hideDivider}>
           {children}
         </HeadingBlock>
       </div>

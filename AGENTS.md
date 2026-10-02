@@ -16,6 +16,13 @@
 6. Keep secrets out of source code and version control; use environment-based configuration or a secret provider. Do not store passwords or authentication tokens in `localStorage`.
 7. Implement loading, error, empty, and success states; validate on both client and server; and support keyboard accessibility with explicit labels.
 
+## Project vs framework code
+
+- All logic for application-specific tables lives in the **project**, never in the `netcore/ImPedro.*` framework packages. Framework packages change only for reusable, cross-cutting concerns (shared UI, auth, security, storage, workflow).
+- For each new project table, create in the project: the EF entity (`Entities/`), a `DbContext` derived from `FrameworkDbContext` (`Data/`) with the `DbSet` and mapping, the DTO and request records (`Models/`), the application service (`Services/`, registered in `Program.cs`), and the API controller (`Controllers/`, discovered automatically from the entry assembly).
+- The derived context reuses the framework-registered `DbContextOptions<FrameworkDbContext>` and must call `base.OnModelCreating(modelBuilder)` before its own mappings. Register it in `Program.cs` and use it in `EnsureCreatedAsync()`.
+- Frontend code for the table (pages, components, forms, services) lives in the project's `frontend/src/`, reusing the framework packages without modifying them.
+
 ## Structure and App Shell
 
 Use `AppShell` as the authenticated layout, with navigation suited to the functional areas, user details, breadcrumbs, and a sign-out action. Keep screens/pages, reusable components, and API calls in separate modules, following the existing structure in `frontend/src/` (`api/`, `components/`, `pages/`, `services/`).
@@ -84,7 +91,7 @@ The `authService` is application-specific and must communicate with the API, han
 - **Forms:** Use `FormViewer` to display or fill out a configured form, and `FormEditor` when the form definition needs to be edited. For simple, specific forms, use accessible HTML inputs or the project's UI components. Validate critical rules in the API as well.
 - **Read:** Use `GET` for lists and individual records. Use `useGetList`/`useGetOne` or the existing service; show loading, error, and empty states, and allow refreshing the list after changes.
 - **Create:** Use `POST` with the allowed fields; validate and normalize on the server. Use `useCreate` or the existing service, and provide success/error feedback.
-- **Edit:** Use `PATCH`/`PUT` on the identified resource; load existing values, validate changes, and update the view after success. `useUpdate` uses `PATCH {url}/{id}`.
+- **Edit:** Use `PUT`/`PATCH` on the identified resource; load existing values, validate changes, and update the view after success. `useUpdate` uses `PUT {url}/{id}` by default (override via `method`, e.g. `{ method: "PATCH" }`).
 - **Delete:** Use `DELETE {url}/{id}`; ask for confirmation before destructive actions, validate authorization on the server, and update the list after success. Use `useDelete` or `useDeleteMany` for batch operations.
 - Never trust IDs, permissions, validations, or filters sent by the browser. Validate authorization and input in every endpoint, and use parameterized database access.
 

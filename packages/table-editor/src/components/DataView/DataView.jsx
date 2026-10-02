@@ -31,6 +31,17 @@ import { DataViewViewSwitcher } from "./DataViewViewSwitcher.jsx";
  *   Também pode vir em `config.actions` (sem onClick em JSON puro).
  * @param {(ctx: { rows: object[], selectedIds: string[] }) => boolean | void} [props.onDeleteSelected]
  *   Callback do botão "Eliminar seleção". Devolver `false` impede a eliminação local.
+ * @param {(row: object) => void} [props.onEditRow]
+ *   Callback do botão editar de cada linha. Quando fornecido (ou via
+ *   `config.onEditRow`), é chamado em vez do editor interno, permitindo
+ *   abrir um diálogo/formulário externo em modo de edição.
+ * @param {() => void} [props.onAddRow]
+ *   Callback do botão adicionar. Quando fornecido (ou via `config.onAddRow`),
+ *   é chamado em vez do editor interno de criação.
+ * @param {(row: object) => void} [props.onDeleteRow]
+ *   Callback do botão eliminar de cada linha. Quando fornecido (ou via
+ *   `config.onDeleteRow`), é chamado em vez da confirmação e eliminação
+ *   internas, permitindo usar um diálogo próprio e/ou uma API externa.
  *
  * @example
  * const config = { title: "Produtos", data: [...], columns: [...] };
@@ -54,6 +65,9 @@ export function DataView({
   fieldSearch,
   actions,
   onDeleteSelected,
+  onEditRow,
+  onAddRow,
+  onDeleteRow,
 }) {
   const config = useMemo(() => {
     const normalized = normalizeConfig(rawConfig);
@@ -118,7 +132,30 @@ export function DataView({
   const showHeader = showTitle || config.viewModes.length > 1;
 
   function handleDelete(row) {
+    const handler = onDeleteRow ?? config.onDeleteRow;
+    if (typeof handler === "function") {
+      handler(row);
+      return;
+    }
     if (window.confirm(t("confirmDelete"))) state.deleteRow(row);
+  }
+
+  function handleEdit(row) {
+    const handler = onEditRow ?? config.onEditRow;
+    if (typeof handler === "function") {
+      handler(row);
+      return;
+    }
+    setEditingRow({ mode: "edit", row });
+  }
+
+  function handleAdd() {
+    const handler = onAddRow ?? config.onAddRow;
+    if (typeof handler === "function") {
+      handler();
+      return;
+    }
+    setEditingRow({ mode: "create", row: {} });
   }
 
   function handleDeleteSelected() {
@@ -164,7 +201,7 @@ export function DataView({
           query={query}
           onQueryChange={setQuery}
           selectedCount={selectedIds.length}
-          onAdd={() => setEditingRow({ mode: "create", row: {} })}
+          onAdd={handleAdd}
           onDeleteSelected={handleDeleteSelected}
           filteredRows={allFilteredRows}
           showExport={config.exportable}
@@ -198,7 +235,7 @@ export function DataView({
           selectedIds={selectedIds}
           onToggleSelect={state.toggleSelect}
           onToggleSelectAll={state.toggleSelectAll}
-          onEdit={(row) => setEditingRow({ mode: "edit", row })}
+          onEdit={handleEdit}
           onDelete={handleDelete}
           t={t}
         />
@@ -208,7 +245,7 @@ export function DataView({
           config={config}
           rows={visibleRows}
           locale={activeLocale}
-          onEdit={(row) => setEditingRow({ mode: "edit", row })}
+          onEdit={handleEdit}
           onDelete={handleDelete}
           t={t}
         />
@@ -218,7 +255,7 @@ export function DataView({
           config={config}
           rows={visibleRows}
           locale={activeLocale}
-          onEdit={(row) => setEditingRow({ mode: "edit", row })}
+          onEdit={handleEdit}
           onDelete={handleDelete}
           t={t}
         />

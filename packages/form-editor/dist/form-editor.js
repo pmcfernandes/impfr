@@ -245,7 +245,7 @@ function j(e, t) {
 	for (; n.includes(r);) r = `${e}_${i++}`;
 	return r;
 }
-function M(e, t = []) {
+function ee(e, t = []) {
 	let n = E[e] || E.text, r = x.includes(e), i = {
 		id: O(),
 		type: e,
@@ -267,35 +267,35 @@ function M(e, t = []) {
 		rules: []
 	}, i.defaultValue = "", i.columns = 12, i.pattern = "", i.patternMessage = "", (e === "select" || e === "radio" || e === "checkboxgroup") && (i.options = D()), e === "number" && (i.min = "", i.max = "", i.step = ""), e === "textarea" && (i.rows = n.rows || 4), e === "file" && (i.multiple = !0, i.maxSizeMb = 5, i.accept = ".pdf,.png,.jpg,.jpeg,.txt,.csv,.doc,.docx,.xls,.xlsx,.zip")), i);
 }
-function N(e) {
+function M(e) {
 	return S.find((t) => t.type === e) || S[1];
 }
-function P(e) {
+function N(e) {
 	return x.includes(e);
 }
-function F(e) {
+function te(e) {
 	return e == null || e === "" || e === !1 ? !0 : Array.isArray(e) ? e.length === 0 : !1;
 }
 //#endregion
 //#region src/core/conditions.js
-function I(e) {
+function P(e) {
 	return Array.isArray(e) ? e.map((e) => String(e)).join(", ") : e === !0 ? "1" : e === !1 || e == null ? "" : String(e).trim();
 }
-function ee(e, t) {
-	return t === "checkbox" ? e === !0 || e === 1 || e === "1" || e === "true" : t === "checkboxgroup" ? Array.isArray(e) && e.length > 0 : !F(e);
+function F(e, t) {
+	return t === "checkbox" ? e === !0 || e === 1 || e === "1" || e === "true" : t === "checkboxgroup" ? Array.isArray(e) && e.length > 0 : !te(e);
 }
-function te(e, t, n, r) {
-	let i = r && r.type || "text", a = String(n ?? "").trim(), o = F(t);
+function ne(e, t, n, r) {
+	let i = r && r.type || "text", a = String(n ?? "").trim(), o = te(t);
 	if (e === "empty") return o;
 	if (e === "not_empty") return !o;
-	if (e === "checked") return ee(t, i);
-	if (e === "not_checked") return !ee(t, i);
+	if (e === "checked") return F(t, i);
+	if (e === "not_checked") return !F(t, i);
 	if (i === "checkboxgroup" && Array.isArray(t)) {
-		let n = t.some((e) => I(e).toLowerCase() === a.toLowerCase());
+		let n = t.some((e) => P(e).toLowerCase() === a.toLowerCase());
 		if (e === "eq" || e === "contains") return n;
 		if (e === "ne" || e === "not_contains") return !n;
 	}
-	let s = I(t);
+	let s = P(t);
 	switch (e) {
 		case "eq": return s.toLowerCase() === a.toLowerCase();
 		case "ne": return s.toLowerCase() !== a.toLowerCase();
@@ -314,20 +314,20 @@ function te(e, t, n, r) {
 		default: return !1;
 	}
 }
-function L(e, t, n) {
+function I(e, t, n) {
 	if (!e || !e.enabled) return !0;
 	let r = Array.isArray(e.rules) ? e.rules : [], i = e.logic === "all" ? "all" : "any", a = [];
 	for (let e of r) {
 		let r = n.find((t) => t.id === e.field);
-		r && r.type !== "heading" && a.push(te(e.op, t[r.id], e.value, r));
+		r && r.type !== "heading" && a.push(ne(e.op, t[r.id], e.value, r));
 	}
 	return a.length === 0 ? !0 : i === "all" ? a.every(Boolean) : a.some(Boolean);
 }
-function R(e, t, n) {
-	return e.visible !== !1 && L(e.condition, n, t);
+function L(e, t, n) {
+	return e.visible !== !1 && I(e.condition, n, t);
 }
-function ne(e, t, n) {
-	return e.requiredCondition && e.requiredCondition.enabled ? L(e.requiredCondition, n, t) : !!e.required;
+function R(e, t, n) {
+	return e.requiredCondition && e.requiredCondition.enabled ? I(e.requiredCondition, n, t) : !!e.required;
 }
 function re(e, t) {
 	if (!e || !e.enabled || !e.rules || e.rules.length === 0) return "";
@@ -344,7 +344,7 @@ var ie = {
 };
 function ae(e) {
 	let t = {};
-	for (let n of e) P(n.type) && (n.type === "checkbox" ? t[n.id] = n.defaultValue === !0 || n.defaultValue === "1" || n.defaultValue === "true" : n.type === "checkboxgroup" ? t[n.id] = Array.isArray(n.defaultValue) ? n.defaultValue.slice() : [] : n.type === "file" ? t[n.id] = [] : t[n.id] = n.defaultValue ?? "");
+	for (let n of e) N(n.type) && (n.type === "checkbox" ? t[n.id] = n.defaultValue === !0 || n.defaultValue === "1" || n.defaultValue === "true" : n.type === "checkboxgroup" ? t[n.id] = Array.isArray(n.defaultValue) ? n.defaultValue.slice() : [] : n.type === "file" ? t[n.id] = [] : t[n.id] = n.defaultValue ?? "");
 	return t;
 }
 function oe(e, t, n) {
@@ -353,9 +353,9 @@ function oe(e, t, n) {
 		...n || {}
 	}, i = {};
 	for (let n of e) {
-		if (!P(n.type) || !R(n, e, t)) continue;
+		if (!N(n.type) || !L(n, e, t)) continue;
 		let a = t[n.id], o = se(a);
-		if (ne(n, e, t) && o) {
+		if (R(n, e, t) && o) {
 			i[n.id] = r.required;
 			continue;
 		}
@@ -381,7 +381,7 @@ function ce(e, t) {
 }
 function le(e, t) {
 	let n = {};
-	for (let r of e) P(r.type) && R(r, e, t) && (n[r.name] = ce(r, t[r.id]));
+	for (let r of e) N(r.type) && L(r, e, t) && (n[r.name] = ce(r, t[r.id]));
 	return n;
 }
 function ue(e, t) {
@@ -503,20 +503,20 @@ function Ee(e) {
 	return JSON.parse(JSON.stringify(e));
 }
 function De(e) {
-	return e.filter((e) => P(e.type)).map((e) => e.name);
+	return e.filter((e) => N(e.type)).map((e) => e.name);
 }
 function Oe(e, t, n) {
 	let r = f(e);
 	return r.current = e, {
 		addField: o((e) => {
-			let i = M(e, De(r.current.fields));
+			let i = ee(e, De(r.current.fields));
 			t((e) => ({
 				...e,
 				fields: [...e.fields, i]
 			})), n(i.id);
 		}, [t, n]),
 		insertField: o((e, i, a = null) => {
-			let o = M(e, De(r.current.fields)), s = e === "steps" ? null : a || null;
+			let o = ee(e, De(r.current.fields)), s = e === "steps" ? null : a || null;
 			if (s && (o.parentId = s), s && e === "heading") {
 				let e = r.current.fields.find((e) => e.id === s);
 				if (e && e.type === "steps") {
@@ -556,7 +556,7 @@ function Oe(e, t, n) {
 			let i = r.current.fields, a = i.findIndex((t) => t.id === e);
 			if (a < 0) return;
 			let o = i[a], s = Ee(o);
-			s.id = O(), s.label = `${o.label} (cópia)`, P(o.type) && (s.name = j(A(`${o.name}_copia`), De(i)));
+			s.id = O(), s.label = `${o.label} (cópia)`, N(o.type) && (s.name = j(A(`${o.name}_copia`), De(i)));
 			let c = [s];
 			if (fe(o.type)) {
 				let e = { [o.id]: s.id }, t = [o.id];
@@ -564,7 +564,7 @@ function Oe(e, t, n) {
 					let n = t.shift();
 					for (let r of me(i, n)) {
 						let a = Ee(r);
-						a.id = O(), P(r.type) && (a.name = j(A(`${r.name}_copia`), De(i))), a.parentId = e[n], e[r.id] = a.id, c.push(a), fe(r.type) && t.push(r.id);
+						a.id = O(), N(r.type) && (a.name = j(A(`${r.name}_copia`), De(i))), a.parentId = e[n], e[r.id] = a.id, c.push(a), fe(r.type) && t.push(r.id);
 					}
 				}
 			}
@@ -1189,47 +1189,47 @@ function Ge(e) {
 }
 //#endregion
 //#region src/components/Palette.jsx
-function Ke({ onAdd: e }) {
-	let { t } = z();
+function Ke({ onAdd: e, allowedTypes: t }) {
+	let { t: n } = z(), r = Array.isArray(t) && t.length > 0 ? S.filter((e) => t.includes(e.type)) : S;
 	return /* @__PURE__ */ g("aside", {
 		className: "palette flex min-h-0 flex-col rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3.5 lg:overflow-y-auto",
 		children: [
 			/* @__PURE__ */ h("h2", {
 				className: "text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400",
-				children: t("palette.title")
+				children: n("palette.title")
 			}),
 			/* @__PURE__ */ h("p", {
 				className: "mt-1 text-xs text-gray-500 dark:text-gray-400",
-				children: t("palette.hint")
+				children: n("palette.hint")
 			}),
 			/* @__PURE__ */ h("div", {
 				className: "mt-3 flex flex-col gap-2",
-				children: S.map((n) => /* @__PURE__ */ g("div", {
+				children: r.map((t) => /* @__PURE__ */ g("div", {
 					className: "palette-item flex cursor-grab touch-none items-center gap-2.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-2.5 py-2 select-none transition hover:border-blue-400 dark:hover:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950 active:cursor-grabbing",
 					role: "button",
 					tabIndex: 0,
 					draggable: !0,
 					onDragStart: (e) => {
-						e.dataTransfer.setData("text/plain", "new:" + n.type), e.dataTransfer.effectAllowed = "copy";
+						e.dataTransfer.setData("text/plain", "new:" + t.type), e.dataTransfer.effectAllowed = "copy";
 					},
-					onDoubleClick: () => e(n.type),
-					onKeyDown: (t) => {
-						(t.key === "Enter" || t.key === " ") && (t.preventDefault(), e(n.type));
+					onDoubleClick: () => e(t.type),
+					onKeyDown: (n) => {
+						(n.key === "Enter" || n.key === " ") && (n.preventDefault(), e(t.type));
 					},
 					children: [/* @__PURE__ */ h("span", {
 						className: "type-badge flex h-6 min-w-[30px] flex-none items-center justify-center rounded-md bg-blue-50 dark:bg-blue-950 px-1.5 text-[11px] font-bold text-blue-700 dark:text-blue-300",
-						children: t(`fields.badge.${n.type}`)
+						children: n(`fields.badge.${t.type}`)
 					}), /* @__PURE__ */ g("span", {
 						className: "flex min-w-0 flex-col",
 						children: [/* @__PURE__ */ h("strong", {
 							className: "truncate text-sm font-medium text-gray-900 dark:text-gray-50",
-							children: t(`fields.${n.type}`)
+							children: n(`fields.${t.type}`)
 						}), /* @__PURE__ */ h("small", {
 							className: "truncate text-xs text-gray-500 dark:text-gray-400",
-							children: t(`fields.${n.type}Hint`)
+							children: n(`fields.${t.type}Hint`)
 						})]
 					})]
-				}, n.type))
+				}, t.type))
 			})
 		]
 	});
@@ -2678,13 +2678,13 @@ var jr = 50, Mr = async (e, t, n) => {
 			y: r
 		}, p = hr(i), m = pr(p), h = await o.getDimensions(l), g = p === "y", _ = g ? "top" : "left", v = g ? "bottom" : "right", y = g ? "clientHeight" : "clientWidth", b = a.reference[m] + a.reference[p] - f[p] - a.floating[m], x = f[p] - a.reference[p], S = await (o.getOffsetParent == null ? void 0 : o.getOffsetParent(l)), C = S ? S[y] : 0;
 		(!C || !await (o.isElement == null ? void 0 : o.isElement(S))) && (C = s.floating[y] || a.floating[m]);
-		let w = b / 2 - x / 2, T = C / 2 - h[m] / 2 - 1, E = nr(d[_], T), D = nr(d[v], T), O = C - h[m] - D, k = C / 2 - h[m] / 2 + w, A = cr(E, k, O), j = !c.arrow && dr(i) != null && k !== A && a.reference[m] / 2 - (k < E ? E : D) - h[m] / 2 < 0, M = j ? k < E ? k - E : k - O : 0;
+		let w = b / 2 - x / 2, T = C / 2 - h[m] / 2 - 1, E = nr(d[_], T), D = nr(d[v], T), O = C - h[m] - D, k = C / 2 - h[m] / 2 + w, A = cr(E, k, O), j = !c.arrow && dr(i) != null && k !== A && a.reference[m] / 2 - (k < E ? E : D) - h[m] / 2 < 0, ee = j ? k < E ? k - E : k - O : 0;
 		return {
-			[p]: f[p] + M,
+			[p]: f[p] + ee,
 			data: {
 				[p]: A,
-				centerOffset: k - A - M,
-				...j && { alignmentOffset: M }
+				centerOffset: k - A - ee,
+				...j && { alignmentOffset: ee }
 			},
 			reset: j
 		};
@@ -3371,7 +3371,7 @@ function ra(t) {
 				...e,
 				isPositioned: A.current !== !1
 			};
-			M.current && !$i(E.current, t) && (E.current = t, _.flushSync(() => {
+			ee.current && !$i(E.current, t) && (E.current = t, _.flushSync(() => {
 				f(t);
 			}));
 		});
@@ -3388,9 +3388,9 @@ function ra(t) {
 			isPositioned: !1
 		})));
 	}, [u]);
-	let M = e.useRef(!1);
-	Qi(() => (M.current = !0, () => {
-		M.current = !1;
+	let ee = e.useRef(!1);
+	Qi(() => (ee.current = !0, () => {
+		ee.current = !1;
 	}), []), Qi(() => {
 		if (S && (w.current = S), C && (T.current = C), S && C) {
 			if (O.current) return O.current(S, C, j);
@@ -3403,26 +3403,26 @@ function ra(t) {
 		O,
 		D
 	]);
-	let N = e.useMemo(() => ({
+	let M = e.useMemo(() => ({
 		reference: w,
 		floating: T,
 		setReference: b,
 		setFloating: x
-	}), [b, x]), P = e.useMemo(() => ({
+	}), [b, x]), N = e.useMemo(() => ({
 		reference: S,
 		floating: C
-	}), [S, C]), F = e.useMemo(() => {
+	}), [S, C]), te = e.useMemo(() => {
 		let e = {
 			position: r,
 			left: 0,
 			top: 0
 		};
-		if (!P.floating) return e;
-		let t = ta(P.floating, d.x), n = ta(P.floating, d.y);
+		if (!N.floating) return e;
+		let t = ta(N.floating, d.x), n = ta(N.floating, d.y);
 		return c ? {
 			...e,
 			transform: "translate(" + t + "px, " + n + "px)",
-			...ea(P.floating) >= 1.5 && { willChange: "transform" }
+			...ea(N.floating) >= 1.5 && { willChange: "transform" }
 		} : {
 			position: r,
 			left: t,
@@ -3431,22 +3431,22 @@ function ra(t) {
 	}, [
 		r,
 		c,
-		P.floating,
+		N.floating,
 		d.x,
 		d.y
 	]);
 	return e.useMemo(() => ({
 		...d,
 		update: j,
-		refs: N,
-		elements: P,
-		floatingStyles: F
+		refs: M,
+		elements: N,
+		floatingStyles: te
 	}), [
 		d,
 		j,
+		M,
 		N,
-		P,
-		F
+		te
 	]);
 }
 var ia = (e) => {
@@ -3584,7 +3584,7 @@ var ha = Object.defineProperty, ga = (e, t) => ha(e, "name", {
 		padding: O,
 		boundary: k.filter(ka),
 		altBoundary: A
-	}, { refs: M, floatingStyles: N, placement: P, isPositioned: F, middlewareData: I } = ra({
+	}, { refs: ee, floatingStyles: M, placement: N, isPositioned: te, middlewareData: P } = ra({
 		strategy: "fixed",
 		placement: D,
 		whileElementsMounted: /* @__PURE__ */ ga((...e) => Ui(...e, { animationFrame: m === "always" }), "whileElementsMounted"),
@@ -3622,27 +3622,27 @@ var ha = Object.defineProperty, ga = (e, t) => ha(e, "name", {
 				boundary: A ? j.boundary : void 0
 			})
 		]
-	}), ee = v.setPlacementState;
-	Yn(() => (ee(P), () => {
-		ee(void 0);
-	}), [P, ee]);
-	let [te, L] = ja(P), R = dn(g);
+	}), F = v.setPlacementState;
+	Yn(() => (F(N), () => {
+		F(void 0);
+	}), [N, F]);
+	let [ne, I] = ja(N), L = dn(g);
 	Yn(() => {
-		F && R?.();
-	}, [F, R]);
-	let ne = I.arrow?.x, re = I.arrow?.y, ie = I.arrow?.centerOffset !== 0, [ae, oe] = e.useState();
+		te && L?.();
+	}, [te, L]);
+	let R = P.arrow?.x, re = P.arrow?.y, ie = P.arrow?.centerOffset !== 0, [ae, oe] = e.useState();
 	return Yn(() => {
 		y && oe(window.getComputedStyle(y).zIndex);
 	}, [y]), /* @__PURE__ */ h("div", {
-		ref: M.setFloating,
+		ref: ee.setFloating,
 		"data-radix-popper-content-wrapper": "",
 		style: {
-			...N,
-			transform: F ? N.transform : "translate(0, -200%)",
+			...M,
+			transform: te ? M.transform : "translate(0, -200%)",
 			minWidth: "max-content",
 			zIndex: ae,
-			"--radix-popper-transform-origin": [I.transformOrigin?.x, I.transformOrigin?.y].join(" "),
-			...I.hide?.referenceHidden && {
+			"--radix-popper-transform-origin": [P.transformOrigin?.x, P.transformOrigin?.y].join(" "),
+			...P.hide?.referenceHidden && {
 				visibility: "hidden",
 				pointerEvents: "none"
 			}
@@ -3650,20 +3650,20 @@ var ha = Object.defineProperty, ga = (e, t) => ha(e, "name", {
 		dir: t.dir,
 		children: /* @__PURE__ */ h(Ea, {
 			scope: r,
-			placedSide: te,
-			placedAlign: L,
+			placedSide: ne,
+			placedAlign: I,
 			onArrowChange: C,
-			arrowX: ne,
+			arrowX: R,
 			arrowY: re,
 			shouldHideArrow: ie,
 			children: /* @__PURE__ */ h(G.div, {
-				"data-side": te,
-				"data-align": L,
+				"data-side": ne,
+				"data-align": I,
 				..._,
 				ref: x,
 				style: {
 					..._.style,
-					animation: F ? _.style?.animation : "none"
+					animation: te ? _.style?.animation : "none"
 				}
 			})
 		})
@@ -4488,14 +4488,14 @@ function Vs(t) {
 		y,
 		k
 	]);
-	let M = !y || !!g || !!y.closest("form"), [N, P] = e.useState(/* @__PURE__ */ new Set()), F = er(), I = Array.from(N).map((e) => e.props.value).join(";"), ee = e.useCallback((e) => {
-		P((t) => new Set(t).add(e));
-	}, []), te = e.useCallback((e) => {
-		P((t) => {
+	let ee = !y || !!g || !!y.closest("form"), [M, N] = e.useState(/* @__PURE__ */ new Set()), te = er(), P = Array.from(M).map((e) => e.props.value).join(";"), F = e.useCallback((e) => {
+		N((t) => new Set(t).add(e));
+	}, []), ne = e.useCallback((e) => {
+		N((t) => {
 			let n = new Set(t);
 			return n.delete(e), n;
 		});
-	}, []), L = {
+	}, []), I = {
 		required: m,
 		trigger: y,
 		onTriggerChange: b,
@@ -4503,7 +4503,7 @@ function Vs(t) {
 		onValueNodeChange: S,
 		valueNodeHasChildren: C,
 		onValueNodeHasChildrenChange: w,
-		contentId: F,
+		contentId: te,
 		value: O,
 		onValueChange: k,
 		open: E,
@@ -4514,22 +4514,22 @@ function Vs(t) {
 		name: d,
 		autoComplete: f,
 		form: g,
-		nativeOptions: N,
-		nativeSelectKey: I,
-		isFormControl: M
+		nativeOptions: M,
+		nativeSelectKey: P,
+		isFormControl: ee
 	};
 	return /* @__PURE__ */ h(Ma, {
 		...v,
 		children: /* @__PURE__ */ h(Ls, {
 			scope: n,
-			...L,
+			...I,
 			children: /* @__PURE__ */ h(js.Provider, {
 				scope: n,
 				children: /* @__PURE__ */ h(zs, {
 					scope: n,
-					onNativeOptionAdd: ee,
-					onNativeOptionRemove: te,
-					children: Cc(_) ? _(L) : r
+					onNativeOptionAdd: F,
+					onNativeOptionRemove: ne,
+					children: Cc(_) ? _(I) : r
 				})
 			})
 		})
@@ -4642,22 +4642,22 @@ var Hs = /* @__PURE__ */ q((e) => {
 		})
 	}), i) : null;
 }, "SelectContentFragment")), ec = 10, [tc, nc] = Ps(Zs), rc = /* @__PURE__ */ At("SelectContent.RemoveScroll"), ic = /* @__PURE__ */ e.forwardRef(/* @__PURE__ */ q(function(t, n) {
-	let { __scopeSelect: r } = t, { position: i = "item-aligned", onCloseAutoFocus: a, onEscapeKeyDown: o, onPointerDownOutside: s, side: c, sideOffset: l, align: u, alignOffset: d, arrowPadding: f, collisionBoundary: p, collisionPadding: m, sticky: g, hideWhenDetached: _, avoidCollisions: v, ...y } = t, b = Rs(Zs, r), [x, S] = e.useState(null), [C, w] = e.useState(null), T = U(n, S), [E, D] = e.useState(null), [O, k] = e.useState(null), A = Ms(r), [j, M] = e.useState(!1), N = e.useRef(!1);
+	let { __scopeSelect: r } = t, { position: i = "item-aligned", onCloseAutoFocus: a, onEscapeKeyDown: o, onPointerDownOutside: s, side: c, sideOffset: l, align: u, alignOffset: d, arrowPadding: f, collisionBoundary: p, collisionPadding: m, sticky: g, hideWhenDetached: _, avoidCollisions: v, ...y } = t, b = Rs(Zs, r), [x, S] = e.useState(null), [C, w] = e.useState(null), T = U(n, S), [E, D] = e.useState(null), [O, k] = e.useState(null), A = Ms(r), [j, ee] = e.useState(!1), M = e.useRef(!1);
 	e.useEffect(() => {
 		if (x) return vo(x);
 	}, [x]), An();
-	let P = e.useCallback((e) => {
+	let N = e.useCallback((e) => {
 		let [t, ...n] = A().map((e) => e.ref.current), [r] = n.slice(-1), i = document.activeElement;
 		for (let n of e) if (n === i || (n?.scrollIntoView({ block: "nearest" }), n === t && C && (C.scrollTop = 0), n === r && C && (C.scrollTop = C.scrollHeight), n?.focus(), document.activeElement !== i)) return;
-	}, [A, C]), F = e.useCallback(() => P([E, x]), [
-		P,
+	}, [A, C]), te = e.useCallback(() => N([E, x]), [
+		N,
 		E,
 		x
 	]);
 	e.useEffect(() => {
-		j && F();
-	}, [j, F]);
-	let { onOpenChange: I, triggerPointerDownPosRef: ee } = b;
+		j && te();
+	}, [j, te]);
+	let { onOpenChange: P, triggerPointerDownPosRef: F } = b;
 	e.useEffect(() => {
 		if (x) {
 			let e = {
@@ -4665,13 +4665,13 @@ var Hs = /* @__PURE__ */ q((e) => {
 				y: 0
 			}, t = /* @__PURE__ */ q((t) => {
 				e = {
-					x: Math.abs(Math.round(t.pageX) - (ee.current?.x ?? 0)),
-					y: Math.abs(Math.round(t.pageY) - (ee.current?.y ?? 0))
+					x: Math.abs(Math.round(t.pageX) - (F.current?.x ?? 0)),
+					y: Math.abs(Math.round(t.pageY) - (F.current?.y ?? 0))
 				};
 			}, "handlePointerMove"), n = /* @__PURE__ */ q((n) => {
-				e.x <= 10 && e.y <= 10 ? n.preventDefault() : n.composedPath().includes(x) || I(!1), document.removeEventListener("pointermove", t), ee.current = null;
+				e.x <= 10 && e.y <= 10 ? n.preventDefault() : n.composedPath().includes(x) || P(!1), document.removeEventListener("pointermove", t), F.current = null;
 			}, "handlePointerUp");
-			return ee.current !== null && (document.addEventListener("pointermove", t), document.addEventListener("pointerup", n, {
+			return F.current !== null && (document.addEventListener("pointermove", t), document.addEventListener("pointerup", n, {
 				capture: !0,
 				once: !0
 			})), () => {
@@ -4680,22 +4680,22 @@ var Hs = /* @__PURE__ */ q((e) => {
 		}
 	}, [
 		x,
-		I,
-		ee
+		P,
+		F
 	]), e.useEffect(() => {
-		let e = /* @__PURE__ */ q(() => I(!1), "close");
+		let e = /* @__PURE__ */ q(() => P(!1), "close");
 		return window.addEventListener("blur", e), window.addEventListener("resize", e), () => {
 			window.removeEventListener("blur", e), window.removeEventListener("resize", e);
 		};
-	}, [I]);
-	let [te, L] = Tc((e) => {
+	}, [P]);
+	let [ne, I] = Tc((e) => {
 		let t = A().filter((e) => !e.disabled), n = Ec(t, e, t.find((e) => e.ref.current === document.activeElement));
 		n && setTimeout(() => n.ref.current?.focus());
-	}), R = e.useCallback((e, t, n) => {
-		let r = !N.current && !n;
-		(b.value !== void 0 && b.value === t || r) && (D(e), r && (N.current = !0));
-	}, [b.value]), ne = e.useCallback(() => x?.focus(), [x]), re = e.useCallback((e, t, n) => {
-		let r = !N.current && !n;
+	}), L = e.useCallback((e, t, n) => {
+		let r = !M.current && !n;
+		(b.value !== void 0 && b.value === t || r) && (D(e), r && (M.current = !0));
+	}, [b.value]), R = e.useCallback(() => x?.focus(), [x]), re = e.useCallback((e, t, n) => {
+		let r = !M.current && !n;
 		(b.value !== void 0 && b.value === t || r) && k(e);
 	}, [b.value]), ie = i === "popper" ? oc : ac, ae = ie === oc ? {
 		side: c,
@@ -4714,15 +4714,15 @@ var Hs = /* @__PURE__ */ q((e) => {
 		content: x,
 		viewport: C,
 		onViewportChange: w,
-		itemRefCallback: R,
+		itemRefCallback: L,
 		selectedItem: E,
-		onItemLeave: ne,
+		onItemLeave: R,
 		itemTextRefCallback: re,
-		focusSelectedItem: F,
+		focusSelectedItem: te,
 		selectedItemText: O,
 		position: i,
 		isPositioned: j,
-		searchRef: te,
+		searchRef: ne,
 		children: /* @__PURE__ */ h(Es, {
 			as: rc,
 			allowPinchZoom: !0,
@@ -4750,7 +4750,7 @@ var Hs = /* @__PURE__ */ q((e) => {
 						onContextMenu: (e) => e.preventDefault(),
 						...y,
 						...ae,
-						onPlaced: () => M(!0),
+						onPlaced: () => ee(!0),
 						ref: T,
 						style: {
 							display: "flex",
@@ -4760,7 +4760,7 @@ var Hs = /* @__PURE__ */ q((e) => {
 						},
 						onKeyDown: H(y.onKeyDown, (e) => {
 							let t = e.ctrlKey || e.altKey || e.metaKey;
-							if (e.key === "Tab" && e.preventDefault(), !t && e.key.length === 1 && L(e.key), [
+							if (e.key === "Tab" && e.preventDefault(), !t && e.key.length === 1 && I(e.key), [
 								"ArrowUp",
 								"ArrowDown",
 								"Home",
@@ -4771,7 +4771,7 @@ var Hs = /* @__PURE__ */ q((e) => {
 									let n = e.target, r = t.indexOf(n);
 									t = t.slice(r + 1);
 								}
-								setTimeout(() => P(t)), e.preventDefault();
+								setTimeout(() => N(t)), e.preventDefault();
 							}
 						})
 					})
@@ -9007,22 +9007,22 @@ function wm(e) {
 		...n,
 		today: c.today()
 	});
-	let { captionLayout: p, mode: m, navLayout: h, numberOfMonths: g = 1, onDayBlur: _, onDayClick: v, onDayFocus: y, onDayKeyDown: b, onDayMouseEnter: x, onDayMouseLeave: S, onNextClick: C, onPrevClick: w, showWeekNumber: T, styles: E } = n, { formatCaption: D, formatDay: O, formatMonthDropdown: k, formatWeekNumber: A, formatWeekNumberHeader: j, formatWeekdayName: M, formatYearDropdown: N } = a, P = am(n, c), { days: F, months: I, navStart: ee, navEnd: te, previousMonth: L, nextMonth: R, goToMonth: ne } = P, re = sp(F, n, ee, te, c), { isSelected: ie, select: ae, selected: oe } = ym(n, c) ?? {}, { blur: se, focused: ce, isFocusTarget: le, moveFocus: ue, setFocused: de } = dm(n, P, re, ie ?? (() => !1), c), { labelDayButton: fe, labelGridcell: pe, labelGrid: me, labelMonthDropdown: he, labelNav: ge, labelPrevious: _e, labelNext: ve, labelWeekday: ye, labelWeekNumber: be, labelWeekNumberHeader: xe, labelYearDropdown: Se } = s, Ce = d(() => Rp(c, n.ISOWeek, n.broadcastCalendar, n.today), [
+	let { captionLayout: p, mode: m, navLayout: h, numberOfMonths: g = 1, onDayBlur: _, onDayClick: v, onDayFocus: y, onDayKeyDown: b, onDayMouseEnter: x, onDayMouseLeave: S, onNextClick: C, onPrevClick: w, showWeekNumber: T, styles: E } = n, { formatCaption: D, formatDay: O, formatMonthDropdown: k, formatWeekNumber: A, formatWeekNumberHeader: j, formatWeekdayName: ee, formatYearDropdown: M } = a, N = am(n, c), { days: te, months: P, navStart: F, navEnd: ne, previousMonth: I, nextMonth: L, goToMonth: R } = N, re = sp(te, n, F, ne, c), { isSelected: ie, select: ae, selected: oe } = ym(n, c) ?? {}, { blur: se, focused: ce, isFocusTarget: le, moveFocus: ue, setFocused: de } = dm(n, N, re, ie ?? (() => !1), c), { labelDayButton: fe, labelGridcell: pe, labelGrid: me, labelMonthDropdown: he, labelNav: ge, labelPrevious: _e, labelNext: ve, labelWeekday: ye, labelWeekNumber: be, labelWeekNumberHeader: xe, labelYearDropdown: Se } = s, Ce = d(() => Rp(c, n.ISOWeek, n.broadcastCalendar, n.today), [
 		c,
 		n.ISOWeek,
 		n.broadcastCalendar,
 		n.today
 	]), we = m !== void 0 || v !== void 0, Te = o(() => {
-		L && (ne(L), w?.(L));
+		I && (R(I), w?.(I));
 	}, [
-		L,
-		ne,
+		I,
+		R,
 		w
 	]), Ee = o(() => {
-		R && (ne(R), C?.(R));
+		L && (R(L), C?.(L));
 	}, [
-		ne,
 		R,
+		L,
 		C
 	]), De = o((e, t) => (n) => {
 		n.preventDefault(), n.stopPropagation(), de(e), !t.disabled && (ae?.(e.date, t, n), v?.(e.date, t, n));
@@ -9061,11 +9061,11 @@ function wm(e) {
 		S?.(e.date, t, n);
 	}, [S]), Ne = o((e, t) => (n) => {
 		let r = Number(n.target.value), i = c.setMonth(c.startOfMonth(e), r);
-		ne(c.addMonths(i, -t));
-	}, [c, ne]), Pe = o((e, t) => (n) => {
+		R(c.addMonths(i, -t));
+	}, [c, R]), Pe = o((e, t) => (n) => {
 		let r = Number(n.target.value), i = c.setYear(c.startOfMonth(e), r);
-		ne(c.addMonths(i, -t));
-	}, [c, ne]), { className: Fe, style: Ie } = d(() => ({
+		R(c.addMonths(i, -t));
+	}, [c, R]), { className: Fe, style: Ie } = d(() => ({
 		className: [u[Z.Root], n.className].filter(Boolean).join(" "),
 		style: {
 			...E?.[Z.Root],
@@ -9085,7 +9085,7 @@ function wm(e) {
 	}, ze = f(null);
 	Jp(ze, !!n.animate, {
 		classNames: u,
-		months: I,
+		months: P,
 		focused: ce,
 		dateLib: c
 	});
@@ -9094,10 +9094,10 @@ function wm(e) {
 		selected: oe,
 		select: ae,
 		isSelected: ie,
-		months: I,
-		nextMonth: R,
-		previousMonth: L,
-		goToMonth: ne,
+		months: P,
+		nextMonth: L,
+		previousMonth: I,
+		goToMonth: R,
 		getModifiers: re,
 		components: i,
 		classNames: u,
@@ -9128,10 +9128,10 @@ function wm(e) {
 		"aria-label": ge(),
 		onPreviousClick: Te,
 		onNextClick: Ee,
-		previousMonth: L,
-		nextMonth: R
-	}), I.map((e, r) => {
-		let o = n.reverseMonths ? I.length - 1 - r : r;
+		previousMonth: I,
+		nextMonth: L
+	}), P.map((e, r) => {
+		let o = n.reverseMonths ? P.length - 1 - r : r;
 		return t.createElement(i.Month, {
 			"data-animated-month": n.animate ? "true" : void 0,
 			className: u[Z.Month],
@@ -9143,13 +9143,13 @@ function wm(e) {
 			type: "button",
 			className: u[Z.PreviousMonthButton],
 			style: E?.[Z.PreviousMonthButton],
-			tabIndex: L ? void 0 : -1,
-			"aria-disabled": !L || void 0,
-			"aria-label": _e(L),
+			tabIndex: I ? void 0 : -1,
+			"aria-disabled": !I || void 0,
+			"aria-label": _e(I),
 			onClick: Te,
 			"data-animated-button": n.animate ? "true" : void 0
 		}, t.createElement(i.Chevron, {
-			disabled: !L || void 0,
+			disabled: !I || void 0,
 			className: u[Z.Chevron],
 			style: E?.[Z.Chevron],
 			orientation: n.dir === "rtl" ? "right" : "left"
@@ -9169,7 +9169,7 @@ function wm(e) {
 				"aria-label": he(),
 				disabled: !!n.disableNavigation,
 				onChange: Ne(e.date, o),
-				options: Ip(e.date, ee, te, a, c),
+				options: Ip(e.date, F, ne, a, c),
 				style: Re(Z.MonthsDropdown),
 				value: c.getMonth(e.date)
 			}) : t.createElement("span", { key: "month" }, k(e.date, c)), s = p === "dropdown" || p === "dropdown-years" ? t.createElement(i.YearsDropdown, {
@@ -9178,10 +9178,10 @@ function wm(e) {
 				"aria-label": Se(c.options),
 				disabled: !!n.disableNavigation,
 				onChange: Pe(e.date, o),
-				options: zp(ee, te, a, c, !!n.reverseYears),
+				options: zp(F, ne, a, c, !!n.reverseYears),
 				style: Re(Z.YearsDropdown),
 				value: c.getYear(e.date)
-			}) : t.createElement("span", { key: "year" }, N(e.date, c));
+			}) : t.createElement("span", { key: "year" }, M(e.date, c));
 			return c.getMonthYearOrder() === "year-first" ? [s, r] : [r, s];
 		})(), t.createElement("span", {
 			role: "status",
@@ -9207,13 +9207,13 @@ function wm(e) {
 			type: "button",
 			className: u[Z.NextMonthButton],
 			style: E?.[Z.NextMonthButton],
-			tabIndex: R ? void 0 : -1,
-			"aria-disabled": !R || void 0,
-			"aria-label": ve(R),
+			tabIndex: L ? void 0 : -1,
+			"aria-disabled": !L || void 0,
+			"aria-label": ve(L),
 			onClick: Ee,
 			"data-animated-button": n.animate ? "true" : void 0
 		}, t.createElement(i.Chevron, {
-			disabled: !R || void 0,
+			disabled: !L || void 0,
 			className: u[Z.Chevron],
 			style: E?.[Z.Chevron],
 			orientation: n.dir === "rtl" ? "left" : "right"
@@ -9224,8 +9224,8 @@ function wm(e) {
 			"aria-label": ge(),
 			onPreviousClick: Te,
 			onNextClick: Ee,
-			previousMonth: L,
-			nextMonth: R
+			previousMonth: I,
+			nextMonth: L
 		}), t.createElement(i.MonthGrid, {
 			role: "grid",
 			"aria-multiselectable": m === "multiple" || m === "range",
@@ -9247,7 +9247,7 @@ function wm(e) {
 			key: String(e),
 			style: E?.[Z.Weekday],
 			scope: "col"
-		}, M(e, c.options, c)))), t.createElement(i.Weeks, {
+		}, ee(e, c.options, c)))), t.createElement(i.Weeks, {
 			"data-animated-weeks": n.animate ? "true" : void 0,
 			className: u[Z.Weeks],
 			style: E?.[Z.Weeks]
@@ -9453,7 +9453,7 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 	}), b = (e, t) => !!(u && u.parentId === e && u.index === t), x = (e, t) => !!(u && u.parentId === e && u.index >= t), S = () => {
 		d(null), _(null);
 	}, C = (r, i = !1) => {
-		N(r.type);
+		M(r.type);
 		let a = r.id === t, l = re(r.condition, { summary: c("condition.summary") }), u = fe(r.type), d = me(e, r.id).length;
 		return /* @__PURE__ */ g("div", {
 			"data-field-card": !0,
@@ -9481,7 +9481,7 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 					className: "flex min-w-0 flex-1 flex-col",
 					children: [/* @__PURE__ */ g("span", {
 						className: "field-card-label truncate text-sm font-semibold text-gray-900 dark:text-gray-50",
-						children: [r.label || c("fields.noLabel"), P(r.type) && r.required && /* @__PURE__ */ h("span", {
+						children: [r.label || c("fields.noLabel"), N(r.type) && r.required && /* @__PURE__ */ h("span", {
 							className: "text-red-500 dark:text-red-400",
 							children: "*"
 						})]
@@ -9489,7 +9489,7 @@ function Mm({ fields: e, selectedId: t, onSelect: n, onInsert: i, onMove: a, onD
 						className: "field-card-sub truncate text-xs text-gray-500 dark:text-gray-400",
 						children: [
 							c(`fields.${r.type}`),
-							P(r.type) && r.name ? ` · ${r.name}` : "",
+							N(r.type) && r.name ? ` · ${r.name}` : "",
 							jm(r) < 12 ? ` · ${jm(r)}/12` : "",
 							l ? ` · ${l}` : "",
 							u && d > 0 ? ` · ${d} ${c("fields.internal")}` : "",
@@ -9897,7 +9897,7 @@ function Um({ condition: e, onChange: t, fields: n, fieldId: r, title: i, toggle
 		enabled: !1,
 		logic: "any",
 		rules: []
-	}, u = n.filter((e) => e.id !== r && P(e.type)), d = l.rules || [], f = (e) => t({
+	}, u = n.filter((e) => e.id !== r && N(e.type)), d = l.rules || [], f = (e) => t({
 		...l,
 		...e
 	}), p = (e, t) => f({ rules: d.map((n, r) => r === e ? {
@@ -10372,9 +10372,9 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 		} catch (e) {
 			x(null), C("error"), T(e.message || "Falha ao contactar o endpoint.");
 		}
-	}, M = (e) => {
+	}, ee = (e) => {
 		s(e), e !== (a.url || "") && (f(""), _(""), y(""), D([]), x(null), C("idle"), T(""));
-	}, N = () => {
+	}, M = () => {
 		let e = rh(k, m, v);
 		e.length !== 0 && r(e, {
 			url: o.trim(),
@@ -10383,7 +10383,7 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 			labelKey: m,
 			valueKey: v
 		});
-	}, P = S === "ok" && b !== null && k.length === 0;
+	}, N = S === "ok" && b !== null && k.length === 0;
 	return /* @__PURE__ */ h(cu, {
 		open: e,
 		onClose: n,
@@ -10403,7 +10403,7 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 							id: "api-url",
 							placeholder: "https://servico.example.com/api/itens",
 							value: o,
-							onChange: (e) => M(e.target.value)
+							onChange: (e) => ee(e.target.value)
 						}), /* @__PURE__ */ h(at, {
 							variant: "primary",
 							onClick: j,
@@ -10477,7 +10477,7 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 					className: "text-xs font-medium text-emerald-700 dark:text-emerald-400",
 					children: w
 				}),
-				P && /* @__PURE__ */ h("p", {
+				N && /* @__PURE__ */ h("p", {
 					className: "text-xs font-medium text-amber-700 dark:text-amber-400",
 					children: "Nenhuma lista encontrada neste caminho — ajuste o caminho e clique em \"Obter\"."
 				}),
@@ -10509,7 +10509,7 @@ function lh({ open: e, field: t, onCancel: n, onImport: r, onFetchSource: i }) {
 						children: "Cancelar"
 					}), /* @__PURE__ */ h(at, {
 						variant: "primary",
-						onClick: N,
+						onClick: M,
 						disabled: A.length === 0 || S === "loading",
 						children: A.length > 0 ? `Importar ${A.length} opções` : "Importar opções"
 					})]
@@ -10921,8 +10921,8 @@ var Sh = [
 ];
 function wh({ field: e, fields: t, errors: n, onChangeField: r, onDuplicate: i, onDelete: a, onResizeStart: o, onResizeKey: s, onFetchSource: c, HtmlEditor: l, tinymceBaseUrl: u }) {
 	let { t: d } = z();
-	N(e.type);
-	let f = P(e.type), p = e.type === "html", _ = e.type === "steps", v = n.byId[e.id], y = t.indexOf(e), b = (t) => r({
+	M(e.type);
+	let f = N(e.type), p = e.type === "html", _ = e.type === "steps", v = n.byId[e.id], y = t.indexOf(e), b = (t) => r({
 		...e,
 		...t
 	}), x = n.general[`fields.${y}.pattern`], S = !!(e.requiredCondition && e.requiredCondition.enabled);
@@ -11534,9 +11534,9 @@ function Vh({ field: e }) {
 }
 //#endregion
 //#region src/components/controls/HeadingBlock.jsx
-function Hh({ field: e, hideTitle: t, children: n }) {
+function Hh({ field: e, hideTitle: t, hideDivider: n, children: r }) {
 	return /* @__PURE__ */ g("div", {
-		className: B("field field-heading", !t && "border-b border-gray-200 dark:border-gray-800 pb-2"),
+		className: B("field field-heading", !t && !n && "border-b border-gray-200 dark:border-gray-800 pb-2"),
 		children: [
 			!t && /* @__PURE__ */ h("h3", {
 				className: "text-base font-semibold text-gray-900 dark:text-gray-50",
@@ -11546,9 +11546,9 @@ function Hh({ field: e, hideTitle: t, children: n }) {
 				className: "field-help mt-0.5 text-xs text-gray-500 dark:text-gray-400",
 				children: e.helpText
 			}),
-			n && /* @__PURE__ */ h("div", {
+			r && /* @__PURE__ */ h("div", {
 				className: B("grid grid-cols-12 items-start gap-4", !t && "mt-3"),
-				children: n
+				children: r
 			})
 		]
 	});
@@ -11567,44 +11567,45 @@ var Uh = {
 	checkbox: Rh,
 	checkboxgroup: zh
 };
-function Wh({ field: e, value: t, onChange: n, error: r, disabled: i, children: a, hideTitle: o = !1, hideSteps: s = !1, stepsLabels: c, stepsActive: u }) {
-	let d = l(), f = { gridColumn: `span ${k(e.columns)}` };
-	if (e.type === "steps") return s ? /* @__PURE__ */ h("div", {
+function Wh({ field: e, value: t, onChange: n, error: r, disabled: i, children: a, hideTitle: o = !1, hideDivider: s = !1, hideSteps: c = !1, stepsLabels: u, stepsActive: d }) {
+	let f = l(), p = { gridColumn: `span ${k(e.columns)}` };
+	if (e.type === "steps") return c ? /* @__PURE__ */ h("div", {
 		className: "field",
-		style: f,
+		style: p,
 		children: a && /* @__PURE__ */ h("div", {
 			className: "grid grid-cols-12 items-start gap-4",
 			children: a
 		})
 	}) : /* @__PURE__ */ h("div", {
-		style: f,
+		style: p,
 		children: /* @__PURE__ */ h(Bh, {
 			field: e,
-			stepsLabels: c,
-			stepsActive: u,
+			stepsLabels: u,
+			stepsActive: d,
 			children: a
 		})
 	});
 	if (e.type === "html") return /* @__PURE__ */ h("div", {
-		style: f,
+		style: p,
 		children: /* @__PURE__ */ h(Vh, { field: e })
 	});
 	if (e.type === "heading") return /* @__PURE__ */ h("div", {
-		style: f,
+		style: p,
 		children: /* @__PURE__ */ h(Hh, {
 			field: e,
 			hideTitle: o,
+			hideDivider: s,
 			children: a
 		})
 	});
-	let p = e.readOnly === !0, m = i || p, _ = Uh[e.type] || Nh;
+	let m = e.readOnly === !0, _ = i || m, v = Uh[e.type] || Nh;
 	return /* @__PURE__ */ g("div", {
 		className: B("field flex flex-col gap-1.5", r && "has-error"),
-		style: f,
+		style: p,
 		children: [
 			e.type !== "checkbox" && /* @__PURE__ */ g("label", {
 				className: "field-label block text-sm font-semibold text-gray-900 dark:text-gray-50",
-				htmlFor: d,
+				htmlFor: f,
 				children: [e.label, e.required && /* @__PURE__ */ h("span", {
 					className: "ml-1 text-red-500 dark:text-red-400",
 					title: "Obrigatório",
@@ -11616,15 +11617,15 @@ function Wh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 				value: t,
 				onChange: n,
 				error: r,
-				disabled: m
-			}) : /* @__PURE__ */ h(_, {
+				disabled: _
+			}) : /* @__PURE__ */ h(v, {
 				field: e,
 				value: t,
 				onChange: n,
 				error: r,
-				disabled: m,
-				readOnly: p,
-				inputId: d
+				disabled: _,
+				readOnly: m,
+				inputId: f
 			}),
 			e.helpText && /* @__PURE__ */ h("p", {
 				className: "field-help text-xs text-gray-500 dark:text-gray-400",
@@ -11639,20 +11640,20 @@ function Wh({ field: e, value: t, onChange: n, error: r, disabled: i, children: 
 }
 //#endregion
 //#region src/components/FormRunner.jsx
-function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: i, successActions: a, successTitle: o, successMode: s = "replace", allSteps: c = !1, hideFooter: u = !1, skipConsent: d = !1, domId: f, onUploadFiles: m, onDeleteFile: _, getFileUrl: v }) {
-	let { t: y } = z(), b = e.fields || [], x = `${l()}consent`, [S, C] = p(() => ({
-		...ae(b),
+function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: i, successActions: a, successTitle: o, successMode: s = "replace", showSuccess: c = !0, onSuccess: u, allSteps: d = !1, hideFooter: f = !1, skipConsent: m = !1, domId: _, onUploadFiles: v, onDeleteFile: y, getFileUrl: b }) {
+	let { t: x } = z(), S = e.fields || [], C = `${l()}consent`, [w, T] = p(() => ({
+		...ae(S),
 		...i || {}
-	})), [w, T] = p({}), [E, D] = p(""), [O, k] = p(!1), [A, j] = p(!1), [M, N] = p(""), [P, F] = p(!1), [I, ee] = p(0), [te, L] = p(!1), [ne, re] = p(!1), ie = e.consent_required === !0 && !d, se = {
-		onUploadFiles: m,
-		onDeleteFile: _,
-		getFileUrl: v
-	}, ce = {
-		required: y("validation.required"),
-		invalidEmail: y("validation.invalidEmail"),
-		invalidNumber: y("validation.invalidNumber"),
-		pattern: y("validation.patternDefault")
-	}, ue = () => {
+	})), [E, D] = p({}), [O, k] = p(""), [A, j] = p(!1), [ee, M] = p(!1), [N, te] = p(""), [P, F] = p(!1), [ne, I] = p(0), [R, re] = p(!1), [ie, se] = p(!1), ce = e.consent_required === !0 && !m, ue = {
+		onUploadFiles: v,
+		onDeleteFile: y,
+		getFileUrl: b
+	}, he = {
+		required: x("validation.required"),
+		invalidEmail: x("validation.invalidEmail"),
+		invalidNumber: x("validation.invalidNumber"),
+		pattern: x("validation.patternDefault")
+	}, _e = () => {
 		requestAnimationFrame(() => {
 			let e = document.querySelector("[data-consent-block]");
 			e && e.scrollIntoView({
@@ -11660,20 +11661,20 @@ function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 				block: "center"
 			});
 		});
-	}, he = (e, t) => {
-		C((n) => ({
+	}, ve = (e, t) => {
+		T((n) => ({
 			...n,
 			[e]: t
-		})), T((t) => {
+		})), D((t) => {
 			if (!t[e]) return t;
 			let n = { ...t };
 			return delete n[e], n;
-		}), D("");
-	}, _e = async (e) => {
+		}), k("");
+	}, be = async (e) => {
 		if (e.preventDefault(), P) return;
-		let t = oe(b, S, ce);
-		if (T(t), Object.keys(t).length > 0) {
-			D(""), k(!1), requestAnimationFrame(() => {
+		let t = oe(S, w, he);
+		if (D(t), Object.keys(t).length > 0) {
+			k(""), j(!1), requestAnimationFrame(() => {
 				let e = document.querySelector(".field.has-error");
 				e && e.scrollIntoView({
 					behavior: "smooth",
@@ -11682,22 +11683,22 @@ function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 			});
 			return;
 		}
-		if (ie && !te) {
-			re(!0), D(""), k(!1), ue();
+		if (ce && !R) {
+			se(!0), k(""), j(!1), _e();
 			return;
 		}
-		re(!1), F(!0), D(""), j(!1);
+		se(!1), F(!0), k(""), M(!1);
 		try {
-			let e = await n(le(b, S), { consent: te === !0 });
-			T({}), N(e || y("form.successMessage")), s === "notice" ? j(!0) : k(!0);
+			let e = le(S, w), t = await n(e, { consent: R === !0 });
+			D({}), c === !1 ? typeof u == "function" && await u(t || x("form.successMessage"), { payload: e }) : (te(t || x("form.successMessage")), s === "notice" ? M(!0) : j(!0));
 		} catch (e) {
-			let t = de(e.data && e.data.errors, b);
-			T(t.byId), D(Object.keys(t.general).length > 0 ? Object.values(t.general).join(" ") : e.message || y("form.submitError")), e.data && e.data.errors && e.data.errors.consent && (re(!0), ue()), k(!1), j(!1);
+			let t = de(e.data && e.data.errors, S);
+			D(t.byId), k(Object.keys(t.general).length > 0 ? Object.values(t.general).join(" ") : e.message || x("form.submitError")), e.data && e.data.errors && e.data.errors.consent && (se(!0), _e()), j(!1), M(!1);
 		} finally {
 			F(!1);
 		}
 	};
-	if (O) return /* @__PURE__ */ h("div", {
+	if (A) return /* @__PURE__ */ h("div", {
 		className: "form-viewer runner flex flex-col gap-5",
 		children: /* @__PURE__ */ g("div", {
 			className: "success-box flex flex-col items-center gap-2 rounded-xl border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-6 py-9 text-center",
@@ -11709,11 +11710,11 @@ function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 				}),
 				/* @__PURE__ */ h("h3", {
 					className: "text-base font-semibold text-emerald-900 dark:text-emerald-300",
-					children: o || y("form.successTitle")
+					children: o || x("form.successTitle")
 				}),
 				/* @__PURE__ */ h("p", {
 					className: "text-sm text-emerald-800 dark:text-emerald-300",
-					children: M
+					children: N
 				}),
 				/* @__PURE__ */ h("div", {
 					className: "success-actions mt-2 flex flex-wrap items-center justify-center gap-2",
@@ -11722,26 +11723,26 @@ function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 			]
 		})
 	});
-	let ve = pe(b), be = ve.filter((e) => R(e, b, S)), xe = (() => {
-		for (let e of b) {
+	let xe = pe(S), Se = xe.filter((e) => L(e, S, w)), Ce = (() => {
+		for (let e of S) {
 			if (e.type !== "steps") continue;
-			let t = ye(b, e);
+			let t = ye(S, e);
 			if (t.length > 0) return {
 				field: e,
 				sections: t
 			};
 		}
 		return null;
-	})(), Se = !!xe && !c, Ce = Se ? xe.sections.map((e, t) => e.label || y("fields.steps") + ` ${t + 1}`) : [], we = Se ? Math.min(Math.max(I, 0), Ce.length - 1) : 0, Te = !Se || we >= Ce.length - 1, Ee = (e) => {
-		ee(e), T({}), D(""), requestAnimationFrame(() => window.scrollTo({
+	})(), we = !!Ce && !d, Te = we ? Ce.sections.map((e, t) => e.label || x("fields.steps") + ` ${t + 1}`) : [], Ee = we ? Math.min(Math.max(ne, 0), Te.length - 1) : 0, De = !we || Ee >= Te.length - 1, Oe = (e) => {
+		I(e), D({}), k(""), requestAnimationFrame(() => window.scrollTo({
 			top: 0,
 			behavior: "smooth"
 		}));
-	}, De = () => {
-		if (!xe) return;
-		let e = xe.sections[we], t = oe(e ? ge(b, e.id) : [], S, ce);
+	}, ke = () => {
+		if (!Ce) return;
+		let e = Ce.sections[Ee], t = oe(e ? ge(S, e.id) : [], w, he);
 		if (Object.keys(t).length > 0) {
-			T(t), D(""), requestAnimationFrame(() => {
+			D(t), k(""), requestAnimationFrame(() => {
 				let e = document.querySelector(".field.has-error");
 				e && e.scrollIntoView({
 					behavior: "smooth",
@@ -11750,36 +11751,40 @@ function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 			});
 			return;
 		}
-		Ee(we + 1);
-	}, Oe = (e) => {
+		Oe(Ee + 1);
+	}, Ae = (e) => {
 		if (e.type !== "heading" || !e.parentId) return !1;
-		let t = b.find((t) => t.id === e.parentId);
+		let t = S.find((t) => t.id === e.parentId);
 		return !!(t && t.type === "steps");
-	}, ke = (e) => {
-		if (!R(e, b, S)) return null;
-		let t = Se && e.id === xe.field.id, n = me(b, e.id);
-		if (t) {
-			let e = xe.sections[we];
-			n = e ? [e] : [];
+	}, je = (e, t = !1) => {
+		if (!L(e, S, w)) return null;
+		let n = we && e.id === Ce.field.id, r = me(S, e.id);
+		if (n) {
+			let e = Ce.sections[Ee];
+			r = e ? [e] : [];
 		}
 		return /* @__PURE__ */ h(Wh, {
 			field: e,
-			value: S[e.id],
-			error: w[e.id],
-			onChange: (t) => he(e.id, t),
-			hideTitle: Oe(e) && !c,
-			hideSteps: c,
-			stepsLabels: t ? Ce : void 0,
-			stepsActive: t ? we + 1 : void 0,
-			children: fe(e.type) && n.length > 0 ? n.map(ke) : null
+			value: w[e.id],
+			error: E[e.id],
+			onChange: (t) => ve(e.id, t),
+			hideTitle: Ae(e) && !d,
+			hideDivider: t,
+			hideSteps: d,
+			stepsLabels: n ? Te : void 0,
+			stepsActive: n ? Ee + 1 : void 0,
+			children: fe(e.type) && r.length > 0 ? Me(r) : null
 		}, e.id);
+	}, Me = (e) => {
+		let t = e.filter((e) => L(e, S, w)), n = t.filter((e) => e.type === "heading"), r = n.length > 0 ? n[n.length - 1].id : null;
+		return t.map((e) => je(e, e.id === r));
 	};
 	return /* @__PURE__ */ h(Eh.Provider, {
-		value: se,
+		value: ue,
 		children: /* @__PURE__ */ g("form", {
-			id: f,
+			id: _,
 			className: "form-viewer runner flex flex-col gap-5",
-			onSubmit: _e,
+			onSubmit: be,
 			noValidate: !0,
 			onKeyDown: (e) => {
 				if (e.key !== "Enter") return;
@@ -11787,31 +11792,31 @@ function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 				(t === "INPUT" || t === "SELECT") && e.preventDefault();
 			},
 			children: [
-				E && /* @__PURE__ */ h(st, { children: E }),
-				A && /* @__PURE__ */ h("div", {
+				O && /* @__PURE__ */ h(st, { children: O }),
+				ee && /* @__PURE__ */ h("div", {
 					className: "rounded-lg border border-emerald-200 dark:border-emerald-900 bg-emerald-50 dark:bg-emerald-950/50 px-3.5 py-2.5 text-sm font-medium text-emerald-800 dark:text-emerald-300",
-					children: M
+					children: N
 				}),
 				/* @__PURE__ */ g("div", {
 					className: "runner-fields grid grid-cols-12 items-start gap-4",
-					children: [be.length === 0 && /* @__PURE__ */ h("p", {
+					children: [Se.length === 0 && /* @__PURE__ */ h("p", {
 						className: "col-span-full text-sm text-gray-500 dark:text-gray-400",
-						children: y("form.emptyFields")
-					}), ve.map(ke)]
+						children: x("form.emptyFields")
+					}), Me(xe)]
 				}),
-				ie && Te && /* @__PURE__ */ g("div", {
+				ce && De && /* @__PURE__ */ g("div", {
 					"data-consent-block": !0,
-					className: `rounded-lg border p-3.5 ${ne ? "border-red-300 dark:border-red-900 bg-red-50 dark:bg-red-950/50" : "border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900"}`,
+					className: `rounded-lg border p-3.5 ${ie ? "border-red-300 dark:border-red-900 bg-red-50 dark:bg-red-950/50" : "border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900"}`,
 					children: [
 						/* @__PURE__ */ g("label", {
-							className: `flex cursor-pointer items-start gap-2 text-sm ${ne ? "text-red-800 dark:text-red-300" : "text-gray-700 dark:text-gray-300"}`,
-							htmlFor: x,
+							className: `flex cursor-pointer items-start gap-2 text-sm ${ie ? "text-red-800 dark:text-red-300" : "text-gray-700 dark:text-gray-300"}`,
+							htmlFor: C,
 							children: [/* @__PURE__ */ h(Yc, {
-								id: x,
+								id: C,
 								className: "mt-0.5",
-								checked: te,
+								checked: R,
 								onChange: (e) => {
-									L(e.target.checked), e.target.checked && re(!1);
+									re(e.target.checked), e.target.checked && se(!1);
 								}
 							}), /* @__PURE__ */ h("span", {
 								className: "whitespace-pre-line",
@@ -11823,51 +11828,51 @@ function Gh({ form: e, submitLabel: t, onSubmit: n, onCancel: r, defaultValues: 
 							target: "_blank",
 							rel: "noopener noreferrer",
 							className: "ml-6 mt-1 inline-block text-sm font-medium text-blue-600 dark:text-blue-400 underline",
-							children: y("form.privacyPolicy")
+							children: x("form.privacyPolicy")
 						}),
-						ne && /* @__PURE__ */ h("p", {
+						ie && /* @__PURE__ */ h("p", {
 							className: "ml-6 mt-1 text-xs font-medium text-red-600 dark:text-red-400",
-							children: y("form.consentError")
+							children: x("form.consentError")
 						}),
-						!te && /* @__PURE__ */ h("p", {
+						!R && /* @__PURE__ */ h("p", {
 							className: "ml-6 mt-1 text-xs text-gray-500 dark:text-gray-400",
-							children: y("form.consentHint")
+							children: x("form.consentHint")
 						})
 					]
 				}),
-				!u && /* @__PURE__ */ g("div", {
+				!f && /* @__PURE__ */ g("div", {
 					className: "runner-actions flex items-center justify-between gap-2 border-t border-gray-100 dark:border-gray-800 pt-4",
 					children: [/* @__PURE__ */ g("div", {
 						className: "flex items-center gap-2",
 						children: [
-							Se && /* @__PURE__ */ h(at, {
+							we && /* @__PURE__ */ h(at, {
 								variant: "secondary",
-								disabled: we === 0,
+								disabled: Ee === 0,
 								onClick: (e) => {
-									e.preventDefault(), Ee(we - 1);
+									e.preventDefault(), Oe(Ee - 1);
 								},
-								children: y("form.previous")
+								children: x("form.previous")
 							}),
 							r && /* @__PURE__ */ h(at, {
 								variant: "ghost",
 								onClick: r,
-								children: y("common.cancel")
+								children: x("common.cancel")
 							}),
-							!Se && !r && /* @__PURE__ */ h("span", { "aria-hidden": "true" })
+							!we && !r && /* @__PURE__ */ h("span", { "aria-hidden": "true" })
 						]
-					}), Se && !Te ? /* @__PURE__ */ h(at, {
+					}), we && !De ? /* @__PURE__ */ h(at, {
 						variant: "primary",
 						size: "lg",
 						onClick: (e) => {
-							e.preventDefault(), De();
+							e.preventDefault(), ke();
 						},
-						children: y("form.next")
+						children: x("form.next")
 					}) : /* @__PURE__ */ h(at, {
 						type: "submit",
 						variant: "primary",
 						size: "lg",
-						disabled: P || ie && !te,
-						children: P ? y("form.submitting") : t || y("form.submit")
+						disabled: P || ce && !R,
+						children: P ? x("form.submitting") : t || x("form.submit")
 					})]
 				})
 			]
@@ -11925,26 +11930,26 @@ function Yh(e) {
 		fields: e.fields
 	};
 }
-function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i, getFileUrl: a, onFetchSource: s, HtmlEditor: l, tinymceBaseUrl: u }) {
-	let { t: d } = z(), [f, m] = p(() => e ? JSON.parse(JSON.stringify(e)) : {
-		name: d("editor.newForm"),
+function Xh({ json: e, onSave: t, onCancel: n, allowedTypes: r, onUploadFiles: i, onDeleteFile: a, getFileUrl: s, onFetchSource: l, HtmlEditor: u, tinymceBaseUrl: d }) {
+	let { t: f } = z(), [m, _] = p(() => e ? JSON.parse(JSON.stringify(e)) : {
+		name: f("editor.newForm"),
 		description: "",
 		available_from: "",
 		available_to: "",
 		visible: !0,
 		fields: []
-	}), [_, v] = p(null), [y, b] = p(!1), [x, S] = p(!1), [C, w] = p({
+	}), [v, y] = p(null), [b, x] = p(!1), [S, C] = p(!1), [w, T] = p({
 		byId: {},
 		general: {}
-	}), [T, E] = p(!1), { width: D, startResize: O, resizeByKey: k } = Fe(), A = o(() => {
-		b(!0), w({
+	}), [E, D] = p(!1), { width: O, startResize: k, resizeByKey: A } = Fe(), j = o(() => {
+		x(!0), T({
 			byId: {},
 			general: {}
 		});
-	}, []), j = o((e) => {
-		m((t) => t && e(t)), A();
-	}, [A]), M = Oe(f, j, v), N = (e) => {
-		w((t) => {
+	}, []), ee = o((e) => {
+		_((t) => t && e(t)), j();
+	}, [j]), M = Oe(m, ee, y), N = (e) => {
+		T((t) => {
 			if (!t.general || !t.general[e]) return t;
 			let n = { ...t.general };
 			return delete n[e], {
@@ -11952,8 +11957,8 @@ function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 				general: n
 			};
 		});
-	}, P = (e) => {
-		w((t) => {
+	}, te = (e) => {
+		T((t) => {
 			if (!t.byId || !t.byId[e.id]) return t;
 			let n = { ...t.byId };
 			return delete n[e.id], {
@@ -11961,7 +11966,7 @@ function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 				byId: n
 			};
 		}), M.updateField(e);
-	}, F = () => {
+	}, P = () => {
 		let e = {}, t = {}, n = [
 			"text",
 			"textarea",
@@ -11974,48 +11979,48 @@ function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 			"checkboxgroup",
 			"file"
 		];
-		return f.fields.forEach((e) => {
+		return m.fields.forEach((e) => {
 			e && n.includes(e.type) && (t[e.name] = (t[e.name] || 0) + 1);
-		}), f.fields.forEach((r) => {
-			r && n.includes(r.type) && (Jh.test(r.name || "") ? t[r.name] > 1 && (e[r.id] = d("editor.nameDuplicate")) : e[r.id] = d("editor.nameError"));
+		}), m.fields.forEach((r) => {
+			r && n.includes(r.type) && (Jh.test(r.name || "") ? t[r.name] > 1 && (e[r.id] = f("editor.nameDuplicate")) : e[r.id] = f("editor.nameError"));
 		}), e;
-	}, I = async () => {
-		if (x) return !1;
-		S(!0), w({
+	}, F = async () => {
+		if (S) return !1;
+		C(!0), T({
 			byId: {},
 			general: {}
 		});
 		try {
-			return typeof t == "function" && await t(Yh(f)), b(!1), S(!1), !0;
+			return typeof t == "function" && await t(Yh(m)), x(!1), C(!1), !0;
 		} catch (e) {
-			return e && e.data && e.data.errors ? w(ue(e.data.errors, f.fields)) : w({
+			return e && e.data && e.data.errors ? T(ue(e.data.errors, m.fields)) : T({
 				byId: {},
-				general: { save: e && e.message || d("editor.saveError") }
-			}), S(!1), !1;
+				general: { save: e && e.message || f("editor.saveError") }
+			}), C(!1), !1;
 		}
-	}, ee = () => {
-		(!y || typeof window > "u" || window.confirm(d("editor.confirmLeave"))) && typeof n == "function" && n();
+	}, ne = () => {
+		(!b || typeof window > "u" || window.confirm(f("editor.confirmLeave"))) && typeof n == "function" && n();
 	};
 	c(() => {
 		let e = (e) => {
-			(e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s" && (e.preventDefault(), I());
+			(e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s" && (e.preventDefault(), F());
 		}, t = (e) => {
-			y && (e.preventDefault(), e.returnValue = "");
+			b && (e.preventDefault(), e.returnValue = "");
 		};
 		return window.addEventListener("keydown", e), window.addEventListener("beforeunload", t), () => {
 			window.removeEventListener("keydown", e), window.removeEventListener("beforeunload", t);
 		};
 	});
-	let te = f.fields.find((e) => e.id === _) || null, L = {
+	let I = m.fields.find((e) => e.id === v) || null, L = {
 		byId: {
-			...F(),
-			...C.byId
+			...P(),
+			...w.byId
 		},
-		general: C.general
-	}, R = Object.entries(C.general).filter(([e]) => e !== "available_to" && !e.startsWith("fields.")).map(([, e]) => e);
+		general: w.general
+	}, R = Object.entries(w.general).filter(([e]) => e !== "available_to" && !e.startsWith("fields.")).map(([, e]) => e);
 	return /* @__PURE__ */ g("div", {
 		className: "form-editor editor flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden bg-gray-50 dark:bg-gray-950",
-		style: { "--props-w": `${D}px` },
+		style: { "--props-w": `${O}px` },
 		children: [
 			/* @__PURE__ */ g("header", {
 				className: "editor-top flex flex-wrap items-center gap-3 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-4 py-2.5",
@@ -12023,28 +12028,28 @@ function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 					n && /* @__PURE__ */ h(at, {
 						variant: "ghost",
 						size: "sm",
-						onClick: ee,
-						children: d("common.back")
+						onClick: ne,
+						children: f("common.back")
 					}),
 					/* @__PURE__ */ g("div", {
 						className: "editor-title flex min-w-0 flex-1 flex-wrap items-center gap-3",
 						children: [
 							/* @__PURE__ */ h("input", {
 								className: "w-full max-w-sm rounded-lg border border-transparent bg-transparent px-2 py-1.5 text-base font-semibold text-gray-900 dark:text-gray-50 transition hover:bg-gray-50 dark:hover:bg-gray-900 focus:border-blue-500 focus:bg-white dark:focus:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-blue-500/30",
-								value: f.name,
-								placeholder: d("editor.formName"),
-								"aria-label": d("editor.formName"),
+								value: m.name,
+								placeholder: f("editor.formName"),
+								"aria-label": f("editor.formName"),
 								onChange: (e) => {
-									N("name"), j((t) => ({
+									N("name"), ee((t) => ({
 										...t,
 										name: e.target.value
 									}));
 								}
 							}),
-							y && /* @__PURE__ */ h("span", {
+							b && /* @__PURE__ */ h("span", {
 								className: "inline-flex h-6 w-6 items-center justify-center text-amber-500",
-								title: d("editor.unsaved"),
-								"aria-label": d("editor.unsaved"),
+								title: f("editor.unsaved"),
+								"aria-label": f("editor.unsaved"),
 								children: /* @__PURE__ */ g("svg", {
 									viewBox: "0 0 16 16",
 									className: "h-4 w-4",
@@ -12076,14 +12081,14 @@ function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 						children: [/* @__PURE__ */ h(at, {
 							variant: "ghost",
 							size: "sm",
-							onClick: () => E(!0),
-							children: d("editor.preview")
+							onClick: () => D(!0),
+							children: f("editor.preview")
 						}), /* @__PURE__ */ h(at, {
 							variant: "primary",
 							size: "sm",
-							onClick: () => I(),
-							disabled: x,
-							children: d(x ? "editor.saving" : "common.save")
+							onClick: () => F(),
+							disabled: S,
+							children: f(S ? "editor.saving" : "common.save")
 						})]
 					})
 				]
@@ -12095,43 +12100,46 @@ function Xh({ json: e, onSave: t, onCancel: n, onUploadFiles: r, onDeleteFile: i
 			/* @__PURE__ */ g("div", {
 				className: "editor-body grid min-h-0 flex-1 grid-cols-1 gap-3 p-4 lg:grid-cols-[220px_minmax(0,1fr)_var(--props-w)] lg:grid-rows-[minmax(0,1fr)] lg:overflow-hidden",
 				children: [
-					/* @__PURE__ */ h(Ke, { onAdd: M.addField }),
+					/* @__PURE__ */ h(Ke, {
+						onAdd: M.addField,
+						allowedTypes: r
+					}),
 					/* @__PURE__ */ h(Mm, {
-						fields: f.fields,
-						selectedId: _,
-						onSelect: v,
+						fields: m.fields,
+						selectedId: v,
+						onSelect: y,
 						onInsert: M.insertField,
 						onMove: M.moveField,
 						onDuplicate: M.duplicateField,
 						onDelete: M.deleteField
 					}),
 					/* @__PURE__ */ h(Th, {
-						form: f,
-						field: te,
-						fields: f.fields,
+						form: m,
+						field: I,
+						fields: m.fields,
 						errors: L,
-						onResizeStart: O,
-						onResizeKey: k,
+						onResizeStart: k,
+						onResizeKey: A,
 						onChangeForm: (e) => {
-							e && typeof e == "object" && Object.keys(e).forEach(N), j((t) => ({
+							e && typeof e == "object" && Object.keys(e).forEach(N), ee((t) => ({
 								...t,
 								...e
 							}));
 						},
-						onChangeField: P,
+						onChangeField: te,
 						onDuplicate: M.duplicateField,
 						onDelete: (e) => {
-							M.deleteField(e), e === _ && v(null);
+							M.deleteField(e), e === v && y(null);
 						},
-						onFetchSource: s,
-						HtmlEditor: l,
-						tinymceBaseUrl: u
+						onFetchSource: l,
+						HtmlEditor: u,
+						tinymceBaseUrl: d
 					})
 				]
 			}),
-			T && /* @__PURE__ */ h(qh, {
-				form: f,
-				onClose: () => E(!1)
+			E && /* @__PURE__ */ h(qh, {
+				form: m,
+				onClose: () => D(!1)
 			})
 		]
 	});
@@ -12144,32 +12152,37 @@ function Zh({ lang: e = "pt", ...t }) {
 }
 //#endregion
 //#region src/components/FormViewer.jsx
-function Qh({ json: e, defaultValues: t, onSubmit: n, onSave: r, onCancel: i, submitLabel: a, readOnly: o = !1, allSteps: s = !1, skipConsent: c = !1, successTitle: l, successActions: u, onUploadFiles: d, onDeleteFile: f, getFileUrl: p }) {
-	let { t: m } = z();
-	if (!e || !Array.isArray(e.fields)) return /* @__PURE__ */ h(st, { children: m("form.invalidJson") });
-	let g = Te(e);
+function Qh({ json: e, defaultValues: t, onSubmit: n, onSave: r, onCancel: i, submitLabel: a, readOnly: o = !1, allSteps: s = !1, skipConsent: c = !1, successTitle: l, successActions: u, successMode: d, showSuccess: f = !0, onSuccess: p, hideFooter: m = !1, domId: g, onUploadFiles: _, onDeleteFile: v, getFileUrl: y }) {
+	let { t: b } = z();
+	if (!e || !Array.isArray(e.fields)) return /* @__PURE__ */ h(st, { children: b("form.invalidJson") });
+	let x = Te(e);
 	if (e.visible === !1) return /* @__PURE__ */ h(st, {
 		color: "amber",
-		children: m("form.notAvailable")
+		children: b("form.notAvailable")
 	});
-	if (!g.available) return /* @__PURE__ */ h(st, {
+	if (!x.available) return /* @__PURE__ */ h(st, {
 		color: "amber",
-		children: m("form.notAvailableNow")
+		children: b("form.notAvailableNow")
 	});
-	let _ = !!t && typeof r == "function";
+	let S = !!t && typeof r == "function";
 	return /* @__PURE__ */ h(Kh, {
 		form: e,
 		defaultValues: t,
-		onSubmit: _ ? (e, t) => Promise.resolve(r(e, t)) : n,
+		onSubmit: S ? (e, t) => Promise.resolve(r(e, t)) : n,
 		onCancel: i,
-		submitLabel: a || m(_ ? "form.editSave" : "form.submit"),
-		successTitle: l || m(_ ? "form.editSaved" : "form.successTitle"),
+		submitLabel: a || b(S ? "form.editSave" : "form.submit"),
+		successTitle: l || b(S ? "form.editSaved" : "form.successTitle"),
+		successMode: d,
+		showSuccess: f,
+		onSuccess: p,
+		hideFooter: m,
+		domId: g,
 		allSteps: s,
 		skipConsent: c || o,
 		successActions: u,
-		onUploadFiles: d,
-		onDeleteFile: f,
-		getFileUrl: p
+		onUploadFiles: _,
+		onDeleteFile: v,
+		getFileUrl: y
 	});
 }
 function $h({ lang: e = "pt", ...t }) {
@@ -12179,4 +12192,4 @@ function $h({ lang: e = "pt", ...t }) {
 	});
 }
 //#endregion
-export { lh as ApiSourceDialog, Mm as Canvas, Um as ConditionEditor, x as DATA_TYPES, Re as DICTS, S as FIELD_TYPES, wh as FieldProperties, Wh as FieldRenderer, Mh as FileControl, Zh as FormEditor, Vm as FormProperties, Kh as FormRunner, $h as FormViewer, He as LanguageProvider, C as OPERATORS, sh as OptionsEditor, Ke as Palette, qh as PreviewModal, Th as PropertiesPanel, w as RECORD_STATUSES, T as RECORD_STATUS_META, yh as RichTextEditor, ve as canDropInto, me as childrenOf, k as clampColumns, re as conditionSummary, M as createField, ge as descendantsOf, Le as en, L as evalCondition, te as evalRule, Qm as findArrayPath, xe as flatInsertIndex, Oh as fmtBytes, Lm as fmtDate, Im as fmtDateTime, Rm as fmtWhen, Te as formAvailability, Ge as getDict, Xm as getPath, We as getTranslator, ae as initialValues, _e as isAncestorOf, fe as isContainerType, P as isDataType, F as isEmptyValue, R as isFieldVisible, ne as isRequired, eh as itemKeys, ue as mapFormErrors, rh as mapOptions, de as mapRecordErrors, th as pickDefaultKey, Ie as pt, zm as rangeLabel, $m as resolveItems, ih as resolveUrl, ah as shortUrl, he as siblingsOf, A as slugify, we as statusColor, Ce as statusLabel, le as toPayload, pe as topLevelFields, N as typeMeta, O as uid, j as uniqueName, oh as unwrapPayload, z as useLanguage, Ue as useTranslation, oe as validateValues, ye as wizardSections };
+export { lh as ApiSourceDialog, Mm as Canvas, Um as ConditionEditor, x as DATA_TYPES, Re as DICTS, S as FIELD_TYPES, wh as FieldProperties, Wh as FieldRenderer, Mh as FileControl, Zh as FormEditor, Vm as FormProperties, Kh as FormRunner, $h as FormViewer, He as LanguageProvider, C as OPERATORS, sh as OptionsEditor, Ke as Palette, qh as PreviewModal, Th as PropertiesPanel, w as RECORD_STATUSES, T as RECORD_STATUS_META, yh as RichTextEditor, ve as canDropInto, me as childrenOf, k as clampColumns, re as conditionSummary, ee as createField, ge as descendantsOf, Le as en, I as evalCondition, ne as evalRule, Qm as findArrayPath, xe as flatInsertIndex, Oh as fmtBytes, Lm as fmtDate, Im as fmtDateTime, Rm as fmtWhen, Te as formAvailability, Ge as getDict, Xm as getPath, We as getTranslator, ae as initialValues, _e as isAncestorOf, fe as isContainerType, N as isDataType, te as isEmptyValue, L as isFieldVisible, R as isRequired, eh as itemKeys, ue as mapFormErrors, rh as mapOptions, de as mapRecordErrors, th as pickDefaultKey, Ie as pt, zm as rangeLabel, $m as resolveItems, ih as resolveUrl, ah as shortUrl, he as siblingsOf, A as slugify, we as statusColor, Ce as statusLabel, le as toPayload, pe as topLevelFields, M as typeMeta, O as uid, j as uniqueName, oh as unwrapPayload, z as useLanguage, Ue as useTranslation, oe as validateValues, ye as wizardSections };

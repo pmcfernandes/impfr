@@ -2,7 +2,15 @@ export async function fetchJson(url, options = {}) {
   const response = await fetch(url, options);
 
   if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}`);
+    let message = `Request failed with status ${response.status}`;
+    try {
+      const body = await response.json();
+      if (body?.error) message = body.error;
+      else if (body?.title) message = body.title;
+    } catch {
+      // Corpo sem JSON (ou vazio): mantém a mensagem genérica.
+    }
+    throw new Error(message);
   }
 
   if (response.status === 204) return null;

@@ -319,6 +319,33 @@ Composable primitives that accept the respective element's native props and `cla
 | `locale` | `pt \| en` | Button language. Default: `pt`. |
 | `className` | `string` | Additional classes. |
 
+### Notifications
+
+Toast notifications rendered bottom-right with auto-dismiss.
+
+```jsx
+import { NotificationProvider, useNotifications } from "@pmcfernandes/app-shell";
+
+function App() {
+  return (
+    <NotificationProvider duration={6000} max={4}>
+      <Pages />
+    </NotificationProvider>
+  );
+}
+
+function SaveButton() {
+  const { success, error } = useNotifications();
+  return <button onClick={() => success("Alterações guardadas com sucesso.")}>Guardar</button>;
+}
+```
+
+| Export | Description |
+| --- | --- |
+| `NotificationProvider` | Provides the queue and renders the `Toaster`. Props: `duration` (ms, default `6000`), `max` (default `4`). |
+| `useNotifications()` | Returns `{ notify, success, error, info, dismiss }`. `notify(message, { title?, variant?, duration? })`; variants: `success \| error \| info`. |
+| `Toaster` | Rendered automatically by the provider; can also be used standalone with `toasts` + `onDismiss`. |
+
 ## REST Hooks
 
 All hooks use `fetch`. Read hooks return `data`, `error`, `isLoading`, and `refetch`. Mutation hooks return `data`, `error`, and `isLoading`.
@@ -416,7 +443,7 @@ const { update } = useUpdate("/api/projects", fetchOptions);
 await update(projectId, { name: "Updated name" });
 ```
 
-Signature: `useUpdate(url, fetchOptions?)`. Executes `PATCH {url}/{id}` with the JSON payload.
+Signature: `useUpdate(url, fetchOptions?)`. Executes `PUT {url}/{id}` with the JSON payload (override via `method`, e.g. `{ method: "PATCH" }`).
 
 ### useDelete
 

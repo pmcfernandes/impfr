@@ -27,6 +27,7 @@ export { DonutChart } from "./components/DonutChart/index.js";
 export { Drawer } from "./components/Drawer/index.js";
 export { Kpi } from "./components/Kpi/index.js";
 export { LineChart } from "./components/LineChart/index.js";
+export { NotificationProvider, Toaster, useNotifications } from "./components/Notifications/index.js";
 export { PanelContainer } from "./components/PanelContainer/index.js";
 export { Sidebar } from "./components/Sidebar/index.js";
 export { SubHeader } from "./components/SubHeader/index.js";

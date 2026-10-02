@@ -15,6 +15,11 @@ function FormViewerInner({
   skipConsent = false,
   successTitle,
   successActions,
+  successMode,
+  showSuccess = true,
+  onSuccess,
+  hideFooter = false,
+  domId,
   onUploadFiles,
   onDeleteFile,
   getFileUrl,
@@ -44,6 +49,11 @@ function FormViewerInner({
       onCancel={onCancel}
       submitLabel={submitLabel || (isEdit ? t('form.editSave') : t('form.submit'))}
       successTitle={successTitle || (isEdit ? t('form.editSaved') : t('form.successTitle'))}
+      successMode={successMode}
+      showSuccess={showSuccess}
+      onSuccess={onSuccess}
+      hideFooter={hideFooter}
+      domId={domId}
       allSteps={allSteps}
       skipConsent={skipConsent || readOnly}
       successActions={successActions}

@@ -178,7 +178,7 @@ export default function ApiData() {
           <ResultJson title={`Task #${selectedId ?? "—"}`} data={detail.data} />
         </PanelContainer>
 
-        <PanelContainer title="Create / Edit · useCreate + useUpdate" description="POST and PATCH /api/tasks, then refetch the lists.">
+        <PanelContainer title="Create / Edit · useCreate + useUpdate" description="POST and PUT /api/tasks, then refetch the lists.">
           <form className="space-y-3" onSubmit={handleCreate}>
             <input className={inputClass} onChange={(event) => setTitle(event.target.value)} placeholder="Task title" required value={title} />
             <input className={inputClass} onChange={(event) => setOwner(event.target.value)} placeholder="Owner" required value={owner} />

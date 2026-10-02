@@ -63,6 +63,7 @@ function MyEditor() {
 | `onDeleteFile` | `({field, name}) => Promise<void>` | Remove file (optional) |
 | `getFileUrl` | `({field, name}) => string` | URL to open file (optional) |
 | `onFetchSource` | `({url, headers}) => Promise<payload>` | Fetch API options (optional) |
+| `allowedTypes` | `string[]` | Controlos disponíveis na toolbox (ex.: `["text", "email", "date"]`). Se não for preenchido, aceita todos |
 | `HtmlEditor` | `Component` | Custom HTML editor (replaces TinyMCE) |
 | `tinymceBaseUrl` | `string` | TinyMCE base URL (self-hosted) |
 
